@@ -113,7 +113,7 @@ const MUSIC_FILE = '../assets/audio/741hz.mp3';
   work.forEach(w => { w.media = w.media.filter(m => !BLURRY.includes(m.src)); });
   const byId = Object.fromEntries(work.map((w, i) => [w.id, i]));
   const GROWTH = ['darena', 'nexa'];
-  const OBJ = { darena: ['butterfly', '#ff8a5b', '#ffd36e'], nexa: ['globe', '#b49bff', '#5a37c9'], cyub: ['button', '#ff7a7a', '#b8324a'], fanzart: ['fan', '#ffb547', '#c4581f'], whims: ['hanger', '#ff6b6b', '#e4e9f3'], tasteables: ['cupcake', '#ff9ad5', '#ffd9a0'], holidaytribe: ['suitcase', '#4fd1c5', '#1f7a8c'], ckc: ['plane', '#e4e9f3', '#8fa3d9'], aira: ['flower', '#ff9ad5', '#ffe27a'], soundofc: ['note', '#e3b78a', '#8a5a3b'], kdp: ['book', '#7ec8ff', '#2c5fa8'], credtech: ['mic', '#c3cde6', '#56607a'], nektar: ['bee', '#ffcf4a', '#3a2a10'] };
+  const OBJ = { darena: ['butterfly', '#ff8a5b', '#ffd36e'], nexa: ['globe', '#b49bff', '#5a37c9'], cyub: ['button', '#ff7a7a', '#b8324a'], fanzart: ['fan', '#ffb547', '#c4581f'], whims: ['needle', '#ff6b6b', '#e4e9f3'], tasteables: ['cupcake', '#ff9ad5', '#ffd9a0'], holidaytribe: ['suitcase', '#4fd1c5', '#1f7a8c'], ckc: ['plane', '#e4e9f3', '#8fa3d9'], aira: ['flower', '#ff9ad5', '#ffe27a'], soundofc: ['note', '#e3b78a', '#8a5a3b'], kdp: ['book', '#7ec8ff', '#2c5fa8'], credtech: ['mic', '#c3cde6', '#56607a'], nektar: ['bee', '#ffcf4a', '#3a2a10'] };
   function icon(t) {
     const s = {
       butterfly: '<path d="M24 14 v22"/><path d="M24 18 C19 8 8 7 7 13 C6 19 13 23 23 23"/><path d="M24 18 C29 8 40 7 41 13 C42 19 35 23 25 23"/><path d="M23 25 C15 26 11 31 14 35 C17 38 22 33 24 28"/><path d="M25 25 C33 26 37 31 34 35 C31 38 26 33 24 28"/><path d="M24 14 l-3 -5 M24 14 l3 -5"/>',
@@ -129,6 +129,28 @@ const MUSIC_FILE = '../assets/audio/741hz.mp3';
       bee: '<ellipse cx="24" cy="28" rx="10" ry="8"/><path d="M20 20.5 v15 M26 20.3 v15.4" stroke-width="1.3"/><path d="M21 21 C14 10 7 15 12 20 C14 22 18 21.5 21 21"/><path d="M27 21 C34 10 41 15 36 20 C34 22 30 21.5 27 21"/><path d="M14 28 h-4 M38 28 l3 0"/><path d="M41 8 l.8 2 2 .8 -2 .8 -.8 2 -.8 -2 -2 -.8 2 -.8z"/>'
     };
     return `<svg viewBox="0 0 48 48" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">${s[t]}</svg>`;
+  }
+  const BERRY = '#d6336c', SUN = '#ffc93c', SKY = '#4dabf7', MINT = '#38d9a9', LAV = '#9775fa', PEACH = '#ff922b';
+  function dayIcon(t) {
+    const s = {
+      butterfly: `<path d="M24 22 C18 6 4 6 5 15 C6 22 14 24 23 24Z" fill="${BERRY}"/><path d="M24 22 C30 6 44 6 43 15 C42 22 34 24 25 24Z" fill="${BERRY}"/><path d="M23 25 C13 26 9 33 13 37 C17 40 22 33 24 28Z" fill="${SUN}"/><path d="M25 25 C35 26 39 33 35 37 C31 40 26 33 24 28Z" fill="${SUN}"/><rect x="22.6" y="16" width="2.8" height="22" rx="1.4" fill="#3b2a4a"/><path d="M23 17 l-3 -6 M25 17 l3 -6" stroke="#3b2a4a" stroke-width="1.4" stroke-linecap="round"/>`,
+      globe: `<circle cx="24" cy="24" r="17" fill="${SKY}"/><path d="M14 15 c4 2 6 6 4 9 c-2 3 1 6 4 6 c3 0 3 5 1 8 M30 9 c-2 4 1 7 5 7 c3 0 5 3 4 6" fill="none" stroke="${MINT}" stroke-width="4" stroke-linecap="round"/><circle cx="24" cy="24" r="17" fill="none" stroke="#1c4f8c" stroke-width="1.4" opacity=".4"/>`,
+      button: `<circle cx="24" cy="24" r="17" fill="${BERRY}"/><circle cx="24" cy="24" r="12.5" fill="none" stroke="#fff" stroke-opacity=".55" stroke-width="1.4" stroke-dasharray="2 2.6"/><g fill="#fff"><circle cx="20" cy="20" r="2.3"/><circle cx="28" cy="20" r="2.3"/><circle cx="20" cy="28" r="2.3"/><circle cx="28" cy="28" r="2.3"/></g><path d="M20 20 L28 28 M28 20 L20 28" stroke="${SUN}" stroke-width="1.6"/>`,
+      fan: `<g class="spin"><path d="M24 24 C21 12 27 4 33 7 C37 10 33 19 24 24Z" fill="${SKY}"/><path d="M24 24 C36 25 41 33 36 37 C32 40 26 33 24 24Z" fill="${SUN}"/><path d="M24 24 C17 34 7 33 8 27 C9 22 18 21 24 24Z" fill="${BERRY}"/></g><circle cx="24" cy="24" r="4" fill="#3b2a4a"/>`,
+      needle: `<path d="M12 38 L36 10" stroke="#8a93b8" stroke-width="3" stroke-linecap="round"/><ellipse cx="34.5" cy="11.8" rx="1.2" ry="2.6" transform="rotate(40 34.5 11.8)" fill="#fff"/><path d="M35 12 C44 18 30 26 22 24 C14 22 8 30 14 36 C18 40 26 36 24 30" fill="none" stroke="${BERRY}" stroke-width="2.2" stroke-linecap="round"/>`,
+      cupcake: `<path d="M13 27 L16 41 H32 L35 27Z" fill="${SUN}"/><path d="M19 27 L20.5 41 M24 27 V41 M29 27 L27.5 41" stroke="#e0a400" stroke-width="1.2"/><path d="M10 28 C8 22 12 17 17 18 C17 12 23 10 24 13 C25 10 31 12 31 18 C36 17 40 22 38 28Z" fill="#ffb3cf"/><circle cx="24" cy="10" r="3.4" fill="${BERRY}"/><g fill="#fff"><circle cx="17" cy="23" r=".9"/><circle cx="24" cy="20" r=".9"/><circle cx="30" cy="23" r=".9"/></g>`,
+      suitcase: `<rect x="17" y="9" width="14" height="8" rx="3" fill="none" stroke="#3b2a4a" stroke-width="2.4"/><rect x="7" y="15" width="34" height="25" rx="5" fill="${MINT}"/><rect x="7" y="24" width="34" height="3" fill="#1f9e7e"/><circle cx="33" cy="20" r="3" fill="${SUN}"/><rect x="12" y="30" width="8" height="5" rx="1.5" fill="${BERRY}"/>`,
+      flower: `<g fill="#ffa8c5"><ellipse cx="24" cy="12" rx="6.5" ry="9"/><ellipse cx="24" cy="36" rx="6.5" ry="9"/><ellipse cx="12" cy="24" rx="9" ry="6.5"/><ellipse cx="36" cy="24" rx="9" ry="6.5"/></g><g fill="${BERRY}" opacity=".85" transform="rotate(45 24 24)"><ellipse cx="24" cy="13" rx="5" ry="8"/><ellipse cx="24" cy="35" rx="5" ry="8"/><ellipse cx="13" cy="24" rx="8" ry="5"/><ellipse cx="35" cy="24" rx="8" ry="5"/></g><circle cx="24" cy="24" r="5.5" fill="${SUN}"/>`,
+      book: `<path d="M24 12 C18 8 11 8 6 10 V38 C11 36 18 36 24 40Z" fill="${LAV}"/><path d="M24 12 C30 8 37 8 42 10 V38 C37 36 30 36 24 40Z" fill="${SKY}"/><path d="M10 16 C13 15 17 15 20 16.5 M10 21 C13 20 17 20 20 21.5 M28 16.5 C31 15 35 15 38 16 M28 21.5 C31 20 35 20 38 21" stroke="#fff" stroke-opacity=".7" stroke-width="1.3" fill="none"/><path d="M33 8 v10 l2 -1.6 l2 1.6 v-10" fill="${BERRY}"/>`,
+      mic: `<rect x="17" y="5" width="14" height="23" rx="7" fill="${LAV}"/><path d="M17 13 h14 M17 18 h14" stroke="#fff" stroke-opacity=".6" stroke-width="1.2"/><path d="M12 21 a12 12 0 0 0 24 0" fill="none" stroke="#3b2a4a" stroke-width="2.4"/><path d="M24 33 v7 M17 41 h14" stroke="#3b2a4a" stroke-width="2.4" stroke-linecap="round"/><circle cx="36" cy="9" r="2" fill="${SUN}"/>`,
+      bee: `<ellipse cx="17" cy="15" rx="8" ry="5.5" fill="#d0ebff" transform="rotate(-25 17 15)"/><ellipse cx="29" cy="14" rx="8" ry="5.5" fill="#d0ebff" transform="rotate(25 29 14)"/><ellipse cx="24" cy="28" rx="14" ry="10.5" fill="${SUN}"/><path d="M19 18.5 v19 M27 18.3 v19.4" stroke="#3b2a4a" stroke-width="3.4"/><circle cx="35" cy="26" r="1.7" fill="#3b2a4a"/><path d="M10 30 l-4 2" stroke="#3b2a4a" stroke-width="2" stroke-linecap="round"/>`
+    };
+    return `<svg class="ico-day" viewBox="0 0 48 48" aria-hidden="true">${s[t]}</svg>`;
+  }
+  const PLANET = { darena: ['#ffd29a', '#e0662f', '#5a1d0b', 1], nexa: ['#cfe3ff', '#4f6bd8', '#141a5a', 0], cyub: ['#ffc2d4', '#c2255c', '#3d0a1f', 0], fanzart: ['#ffe8a3', '#d99a1e', '#4a2c05', 1], whims: ['#ffd0c4', '#d9480f', '#3d1205', 0], tasteables: ['#ffdff0', '#e64980', '#4a0f2c', 0], holidaytribe: ['#c3fae8', '#12b886', '#06352a', 0], aira: ['#f3d9fa', '#ae3ec9', '#360b40', 1], kdp: ['#d0ebff', '#1c7ed6', '#0a2647', 0], credtech: ['#e9ecef', '#868e96', '#1e2226', 0], nektar: ['#fff3bf', '#f59f00', '#3d2800', 0] };
+  function planetEl(id) {
+    const [a, b, c, ring] = PLANET[id] || ['#fff', '#999', '#222', 0];
+    return `<span class="planet3d${ring ? ' ringed' : ''}" style="--p1:${a};--p2:${b};--p3:${c}"><i></i></span>`;
   }
   // Bonus coin notes. DRAFTS for Sushma to edit: why I chose it, what I learnt, a fun fact.
   const notes = {
@@ -262,12 +284,12 @@ const MUSIC_FILE = '../assets/audio/741hz.mp3';
   const skipWall = ['credtech-floor.webp', 'credtech-wrapper.webp', 'kdp-mock-1.webp', 'nektar-kit-2.webp'];
   const pools = work.map((w, wi) => w.media.filter(mm => !skipWall.includes(mm.src)).map(mm => ({ ...mm, brand: w.full || (w.name + ' ' + w.em), i: wi })));
   for (let r = 0; pools.some(p => p.length); r++) pools.forEach(p => { if (p.length) all.push(p.shift()); });
-  const wallCols = $('#wall-cols');
+  const wallCols = $('#wall-cols') || document.createElement('div');
   const colN = 4, cols = Array.from({ length: colN }, () => []);
   all.forEach((t, k) => cols[k % colN].push(t));
   wallCols.innerHTML = cols.map((c, ci) => `<div class="wall-col" data-speed="${[.08, -.06, .12, -.04][ci]}">${c.map(t =>
     `<div class="tile" data-i="${t.i}">${mediaEl(t, t.brand + ' work')}${t.type === 'video' ? '<span class="play">▶</span>' : ''}<span class="cap">${t.brand}</span></div>`).join('')}</div>`).join('');
-  const wallColEls = $$('.wall-col'), wallSec = $('#wall');
+  const wallColEls = $$('.wall-col'), wallSec = $('#wall') || document.createElement('div');
 
   /* ================= DARENA FILMS =================
      Add a screen recording: put the MP4 in assets/video/ and add a line below.
@@ -289,8 +311,15 @@ const MUSIC_FILE = '../assets/audio/741hz.mp3';
   $$('video[data-auto]').forEach(v => vio.observe(v));
 
   /* ================= QUOTES ================= */
+  const wg = $('#words-grid');
+  wg.innerHTML = quotes.map((q, k) => `<figure class="wq${k ? '' : ' on'}"><p>“${q[0]}”</p><figcaption><b>${q[1]}</b><small>${q[2]}</small></figcaption></figure>`).join('') + `<div class="wdots">${quotes.map((q, k) => `<button aria-label="Quote ${k + 1}" class="${k ? '' : 'on'}"></button>`).join('')}</div>`;
+  let wqi = 0, wqT;
+  const showQ = n => { wqi = (n + quotes.length) % quotes.length; $$('.wq', wg).forEach((f, k) => f.classList.toggle('on', k === wqi)); $$('.wdots button', wg).forEach((d, k) => d.classList.toggle('on', k === wqi)); };
+  const runQ = () => { clearInterval(wqT); if (!RM) wqT = setInterval(() => showQ(wqi + 1), 6500); };
+  $$('.wdots button', wg).forEach((d, k) => d.addEventListener('click', () => { showQ(k); runQ(); }));
+  wg.addEventListener('mouseenter', () => clearInterval(wqT)); wg.addEventListener('mouseleave', runQ); runQ();
   const qHTML = quotes.map(q => `<figure class="quote"><p>“${q[0]}”</p><b>${q[1]}</b><small>${q[2]}</small></figure>`).join('');
-  $('.words-track').innerHTML = qHTML + qHTML;
+  
 
   /* ================= MAIN LOOP ================= */
   function frame(t) {
@@ -370,6 +399,8 @@ const MUSIC_FILE = '../assets/audio/741hz.mp3';
     $('#case-kicker').textContent = `Project ${String(+i + 1).padStart(2, '0')} · ${w.chips.join(' · ')}`;
     $('#case-title').innerHTML = `${w.name} <em>${w.em}</em>`;
     $('#case-about').textContent = w.about; $('#case-role').textContent = w.role; $('#case-win').textContent = w.win;
+    const order = work.map((x, k) => k).filter(k => !GROWTH.includes(work[k].id)), pos = order.indexOf(+i), nx = order[(pos + 1) % order.length];
+    $('#case-next').dataset.i = nx; $('#case-next-name').textContent = work[nx].name;
     const cc = $('#case-coin'); cc.dataset.coin = w.id; cc.hidden = !notes[w.id]; cc.classList.toggle('got', got.has(w.id));
     $('#case-pts').innerHTML = w.pts ? `<h4>Highlights</h4><ul>${w.pts.map(p => `<li>${p}</li>`).join('')}</ul>` : '';
     $('#case-media').innerHTML = w.media.map(mm => mediaEl(mm, (w.full || w.name) + ' work', mm.wide ? 'class="wide"' : '', true)).join('');
@@ -401,7 +432,11 @@ const MUSIC_FILE = '../assets/audio/741hz.mp3';
     const cc = $('#case-coin'); if (cc.dataset.coin) cc.classList.toggle('got', got.has(cc.dataset.coin));
   }
   function openNote(id) {
-    if (id === '_help') {
+    if (id === '_done') {
+      $('#note-brand').textContent = 'All coins found'; $('#note-title').textContent = 'You found every coin. Thank you!';
+      $('#note-body').innerHTML = `<dd>You explored every corner, and that curiosity is exactly what I bring to every brief. Shall we make something together?</dd><dd><a class="note-cta" href="#contact">Let's talk →</a></dd>`;
+      noteEl.classList.add('help');
+    } else if (id === '_help') {
       $('#note-brand').textContent = 'Bonus coins'; $('#note-title').textContent = 'Little notes, hidden in plain sight';
       $('#note-body').innerHTML = `<dd>Every project hides a coin. Open one to read why I chose it and what it taught me. You have ${got.size} of ${Object.keys(notes).length}.</dd>`;
       noteEl.classList.add('help');
@@ -411,8 +446,9 @@ const MUSIC_FILE = '../assets/audio/741hz.mp3';
       $('#note-brand').textContent = w.full || (w.name + ' ' + w.em);
       $('#note-title').textContent = got.has(id) ? 'You found this one already' : 'You found a bonus coin';
       $('#note-body').innerHTML = `<dt>Why I chose it</dt><dd>${n[0]}</dd><dt>What I learnt</dt><dd>${n[1]}</dd><dt>Fun fact</dt><dd>${n[2]}</dd>`;
-      got.add(id); try { localStorage.setItem('coins', JSON.stringify([...got])); } catch (e) {}
+      const before = got.size; got.add(id); try { localStorage.setItem('coins', JSON.stringify([...got])); } catch (e) {}
       paintCoins();
+      if (before < got.size && got.size === Object.keys(notes).length) setTimeout(() => openNote('_done'), 2600);
     }
     noteEl.classList.remove('open'); void noteEl.offsetWidth; noteEl.classList.add('open'); noteEl.setAttribute('aria-hidden', 'false');
     setTimeout(() => $('.note-close').focus(), 200);
@@ -420,7 +456,7 @@ const MUSIC_FILE = '../assets/audio/741hz.mp3';
   function closeNote() { if (!noteEl.classList.contains('open')) return false; noteEl.classList.remove('open'); noteEl.setAttribute('aria-hidden', 'true'); return true; }
   document.addEventListener('click', e => {
     const c = e.target.closest('[data-coin],#case-coin'); if (c) { e.stopPropagation(); openNote(c.dataset.coin); return; }
-    if (e.target === noteEl || e.target.closest('.note-close')) closeNote();
+    if (e.target === noteEl || e.target.closest('.note-close') || e.target.closest('.note-cta')) { closeNote(); if (e.target.closest('.note-cta')) { $$('.case.open').forEach(() => closeCase()); closeGP(); } }
   }, true);
   $('#coins').addEventListener('click', () => openNote('_help'));
   const themeBtn = $('#theme-btn');
@@ -433,8 +469,35 @@ const MUSIC_FILE = '../assets/audio/741hz.mp3';
   document.addEventListener('keydown', e => { if (e.key === 'Escape' && closeNote()) e.stopImmediatePropagation(); }, true);
   paintCoins();
 
+  /* ================= GROWTH PANELS ================= */
+  let gpOpen = null;
+  function openGP(id) {
+    const p = $('#gp-' + id); if (!p) return;
+    gpOpen = p; p.classList.add('open'); p.setAttribute('aria-hidden', 'false'); document.body.classList.add('lock');
+    $('.gp-scroll', p).scrollTop = 0; setTimeout(() => $('.gp-close', p).focus(), 300);
+  }
+  function closeGP() {
+    if (!gpOpen) return false; $$('video', gpOpen).forEach(v => v.pause());
+    gpOpen.classList.remove('open'); gpOpen.setAttribute('aria-hidden', 'true'); gpOpen = null; document.body.classList.remove('lock'); return true;
+  }
+  $$('[data-gp]').forEach(c => { c.addEventListener('click', () => openGP(c.dataset.gp)); c.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openGP(c.dataset.gp); } }); });
+  $$('.gp-close').forEach(b => b.addEventListener('click', closeGP));
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && !$('#case').classList.contains('open') && !$('#note').classList.contains('open') && closeGP()) e.stopImmediatePropagation(); }, true);
+
+  $('#case-next').addEventListener('click', e => { const n = e.currentTarget.dataset.i; $('.case-scroll').scrollTop = 0; openCase(n); });
+  $$('[data-gp-next]').forEach(b => b.addEventListener('click', () => { const t = b.dataset.gpNext; closeGP(); if (t === 'branding') setTimeout(() => $('#branding').scrollIntoView({ behavior: 'smooth' }), 200); else setTimeout(() => openGP(t), 250); }));
+  const totop = $('#totop');
+  addEventListener('scroll', () => totop.classList.toggle('show', scrollY > innerHeight * 1.2), { passive: true });
+
+  /* ================= POLISH ================= */
+  const prog = $('#progress'), glow = $('#glow');
+  addEventListener('scroll', () => { const max = document.documentElement.scrollHeight - innerHeight; prog.style.transform = `scaleX(${max > 0 ? scrollY / max : 0})`; }, { passive: true });
+  if (FINE && !RM) addEventListener('pointermove', e => { glow.style.transform = `translate(${e.clientX - 200}px,${e.clientY - 200}px)`; }, { passive: true });
+  const rv = new IntersectionObserver(es => es.forEach(en => { if (en.isIntersecting) { en.target.classList.add('in'); rv.unobserve(en.target); } }), { threshold: .12 });
+  $$('.card, .gcard, .gate, .nudge, .logos').forEach((el, k) => { el.classList.add('rv'); el.style.transitionDelay = (k % 3) * 70 + 'ms'; rv.observe(el); });
+
   /* ================= WHERE AM I ================= */
-  const SECS = [['cosmos', 'The sky'], ['growth', 'Growth world'], ['branding', 'Branding world'], ['wall', 'The wall'], ['contact', 'Say hello']].map(([id, l]) => [$('#' + id), id, l]);
+  const SECS = [['top', 'Hello'], ['growth', 'Growth'], ['cosmos', 'Orbit'], ['branding', 'Branding'], ['contact', 'Say hello']].map(([id, l]) => [$('#' + id), id, l]);
   let curSec = '';
   function whereAmI() {
     const y = innerHeight * .45; let pick = SECS[0];
@@ -548,7 +611,7 @@ const MUSIC_FILE = '../assets/audio/741hz.mp3';
   function drawOrbits() { orbitsSvg.innerHTML = ORB.map(r => `<ellipse cx="${GW / 2}" cy="${GH / 2}" rx="${r}" ry="${r * K}"/>`).join(''); }
   const gauss = () => (Math.random() + Math.random() + Math.random() - 1.5) / 1.5;
   function gsize() {
-    const d = Math.min(devicePixelRatio || 1, 2); GW = gal.clientWidth; GH = gal.clientHeight;
+    const d = Math.min(devicePixelRatio || 1, gal.clientWidth < 760 ? 1.5 : 2); GW = gal.clientWidth; GH = gal.clientHeight;
     gal.width = GW * d; gal.height = GH * d; gx.setTransform(d, 0, 0, d, 0, 0);
     const N = GW < 760 ? 4200 : 9000; gstars = [];
     const cols = ['255,226,250', '244,206,255', '150,140,255', '112,124,255', '84,104,255', '186,150,255', '236,240,255'];
@@ -575,16 +638,27 @@ const MUSIC_FILE = '../assets/audio/741hz.mp3';
   slots.forEach(([r, n]) => { for (let s = 0; s < n; s++) { const id = brandIds[q++]; if (id) layout.push({ id, world: 'brand', ring: r, a: s * Math.PI * 2 / n + r * 1.3 + (r === 1 || r === 2 ? 1.6 : 0) }); } });
   const OB = layout.map(o => {
     const w = work[byId[o.id]], [type, c1, c2] = OBJ[o.id];
-    const b = document.createElement('button'); b.className = 'obj obj-' + type + ' w-' + o.world; b.innerHTML = icon(type) + `<span class="obj-ring"></span>`;
+    const b = document.createElement('button'); b.className = 'obj obj-' + type + ' w-' + o.world; b.innerHTML = dayIcon(type) + planetEl(o.id) + `<span class="obj-ring"></span>`;
     b.setAttribute('aria-label', 'Open ' + (w.full || w.name + ' ' + w.em));
     const lab = document.createElement('div'); lab.className = 'p-label w-' + o.world; lab.innerHTML = `${w.full || w.name + ' ' + w.em}<small>${w.chips[0]}</small>`;
     planetsEl.append(b, lab);
     const show = v => { lab.classList.toggle('show', v); hoverPause = v; };
     b.addEventListener('mouseenter', () => show(true)); b.addEventListener('mouseleave', () => show(false));
     b.addEventListener('focus', () => show(true)); b.addEventListener('blur', () => show(false));
-    b.addEventListener('click', e => openCase(byId[o.id], e));
+    b.addEventListener('click', e => openFromOrbit(o.id, b, e));
     return { ...o, el: b, lab, v: .00009 / Math.sqrt(o.ring + 1), size: o.world === 'growth' ? 74 : 60 };
   });
+  function openFromOrbit(id, el, e) {
+    const go = () => GROWTH.includes(id) ? openGP(id) : openCase(byId[id], e);
+    if (document.documentElement.dataset.theme === 'light' || RM) { go(); return; }
+    const r = el.getBoundingClientRect(), z = $('#zoomer'), pl = $('.planet3d', el);
+    z.setAttribute('style', pl.getAttribute('style') + `;left:${r.left}px;top:${r.top}px;width:${r.width}px;height:${r.height}px`);
+    z.className = 'zoomer go';
+    const scale = Math.hypot(innerWidth, innerHeight) / r.width * 2.4;
+    requestAnimationFrame(() => z.style.transform = `scale(${scale})`);
+    setTimeout(go, 650);
+    setTimeout(() => { z.className = 'zoomer'; z.removeAttribute('style'); }, 1500);
+  }
   let focusW = '';
   function setWorld(w) {
     focusW = focusW === w ? '' : w;
@@ -594,7 +668,7 @@ const MUSIC_FILE = '../assets/audio/741hz.mp3';
   legendEl.addEventListener('click', e => { const b = e.target.closest('button'); if (b) setWorld(b.dataset.w); });
   function closeCard() {}
   $('#sun').addEventListener('click', () => openJourney());
-  if (!FINE) cap.innerHTML = '<b>Tap a star</b> to open a project. Green is growth, lavender is branding.';
+  if (!FINE) cap.innerHTML = '<b>Tap a planet</b> to explore. Green is growth, lavender is branding.';
   gsize(); addEventListener('resize', gsize);
 
   let lastT = performance.now();

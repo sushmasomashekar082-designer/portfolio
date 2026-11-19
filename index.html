@@ -1,0 +1,266 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sushma Somashekar | Designer under the stars</title>
+  <meta name="description" content="Portfolio of Sushma Somashekar: designer, brand storyteller and digital marketer. A dreamer who loves colour, style and the question why.">
+  <meta property="og:title" content="Sushma Somashekar | Designer under the stars">
+  <meta property="og:description" content="Designer, brand storyteller and digital marketer. A dreamer who always asks why.">
+  <meta property="og:image" content="assets/img/portrait.webp">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%230a1230'/><path d='M16 5l2.6 7.9H27l-6.8 4.9 2.6 8L16 21l-6.8 4.8 2.6-8L5 12.9h8.4z' fill='%23dfe5f0'/></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,400;1,500&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <canvas id="sky" aria-hidden="true"></canvas>
+
+  <header class="nav" id="nav">
+    <a class="brand" href="#top" aria-label="Back to top">Sushma<span>✦</span></a>
+    <button class="nav-toggle" aria-expanded="false" aria-controls="menu" aria-label="Open menu"><span></span><span></span></button>
+    <nav id="menu">
+      <a href="#story">Story</a>
+      <a href="#traits">Traits</a>
+      <a href="#journey">Journey</a>
+      <a href="#work">Work</a>
+      <a href="#impact">Impact</a>
+      <a href="#contact" class="nav-cta">Say hello</a>
+    </nav>
+  </header>
+
+  <main id="top">
+    <!-- HERO -->
+    <section class="hero">
+      <p class="eyebrow reveal">Designer · Brand storyteller · Digital marketer</p>
+      <h1 class="reveal">Sushma <em>Somashekar</em></h1>
+      <p class="hero-line reveal">A dreamer who designs under the stars.<br>An Aquarius who has always asked <em>why</em>.</p>
+      <div class="hero-actions reveal">
+        <a class="btn btn-silver" href="#work">See my constellations</a>
+        <a class="btn btn-ghost" href="#contact">Let's work together</a>
+      </div>
+      <a class="scroll-hint" href="#story" aria-label="Scroll to story"><span></span></a>
+    </section>
+
+    <!-- STORY -->
+    <section class="section story" id="story">
+      <div class="story-grid">
+        <figure class="portrait reveal">
+          <div class="halo"></div>
+          <img src="assets/img/portrait.webp" alt="Sushma Somashekar in a teal shirt" width="583" height="674" loading="lazy">
+        </figure>
+        <div class="story-text">
+          <p class="kicker reveal">Chapter one</p>
+          <h2 class="reveal">The girl who always asked <em>why</em></h2>
+          <p class="reveal">Since childhood, I have loved art, colour and texture. Not randomly. I loved them in a certain way, when they were arranged through the principles of design. They made me feel something.</p>
+          <ul class="feelings reveal" aria-label="How colours make me feel">
+            <li style="--c:#d64545"><span class="sw"></span>Red makes me feel <em>powerful</em></li>
+            <li style="--c:#8fc3ec"><span class="sw"></span>Sky makes me feel like <em>a bird</em></li>
+            <li style="--c:#e9edf5"><span class="sw"></span>The moon makes me feel <em>calm</em></li>
+            <li style="--c:#4fae7c"><span class="sw"></span>Green makes me feel <em>fresh</em></li>
+          </ul>
+          <p class="reveal">Soon I realised this was colour theory, the same language brands use to speak to people. I wanted to help brands. Love for colour alone wouldn't cut it, so I studied marketing to understand the business side. Then I dived into design: a course that was 60% design and 40% fashion. I loved both.</p>
+          <p class="reveal">Since then, I have built a clothing brand from scratch, worked with brands across four countries and learned a whole new field in Health IT. Every chapter started the same way. I asked <em>why</em>.</p>
+          <ul class="facts reveal">
+            <li><strong>5+</strong><span>years in design and marketing</span></li>
+            <li><strong>10+</strong><span>brands across fashion, food, weddings and health tech</span></li>
+            <li><strong>4</strong><span>countries: India, Canada, USA, Australia</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- TRAITS -->
+    <section class="section traits" id="traits">
+      <p class="kicker reveal">Chapter two</p>
+      <h2 class="reveal">Written in the <em>stars</em></h2>
+      <p class="lead reveal">Aquarius, the water bearer. Independent, inventive and a little ahead of time. Touch a star to read it.</p>
+      <div class="constellation reveal" id="constellation">
+        <svg viewBox="0 0 1000 520" preserveAspectRatio="xMidYMid meet" aria-hidden="true" id="constellation-lines"></svg>
+        <!-- stars injected by js -->
+      </div>
+      <div class="trait-card" id="trait-card" aria-live="polite">
+        <h3 id="trait-title">Always asks why</h3>
+        <p id="trait-text">Every brief starts with a question. The answer shapes the idea, the words and the look.</p>
+      </div>
+    </section>
+
+    <!-- JOURNEY -->
+    <section class="section journey" id="journey">
+      <p class="kicker reveal">Chapter three</p>
+      <h2 class="reveal">The <em>journey</em> so far</h2>
+      <ol class="timeline">
+        <li class="reveal">
+          <span class="when">Apr 2025 to now · Chesterfield, USA</span>
+          <h3>Darena Health</h3>
+          <p class="role">Branding & Marketing Associate</p>
+          <p>Health IT was a whole new field, so I learned it from scratch. I rebuilt the website, refreshed the brand and grew newsletter open rates from 22% to 34% in 3 months. The wins came a little late. When they did, I was the most satisfied I have ever been.</p>
+        </li>
+        <li class="reveal">
+          <span class="when">Mar 2025 to Apr 2025 · Bangalore</span>
+          <h3>Credtech</h3>
+          <p class="role">Sales & Marketing Manager</p>
+          <p>An edtech role that added an event management badge to my career. I designed big-screen editorials, cue cards, IDs, panel posters, invites, newsletters, the floor plan, the food menu and the decor mood board.</p>
+        </li>
+        <li class="reveal">
+          <span class="when">2025 · Self-published</span>
+          <h3>Amazon KDP</h3>
+          <p class="role">Author & Designer</p>
+          <p>When one chapter in Canada closed, I saw a blank page, not an empty road. I couldn't let a day pass without creating, so I turned the pause into books, journals and colouring books on Amazon KDP. Five days of reaching out later, the next door opened.</p>
+        </li>
+        <li class="reveal">
+          <span class="when">Nov 2023 to Mar 2025 · Toronto, Canada · Remote</span>
+          <h3>Nexa Avenue</h3>
+          <p class="role">Digital Marketing Manager</p>
+          <p>A Canadian business consultant and change management expert hired me full time to build her dream company. It was my first time working overseas, with someone from a very different culture. Patience and the right mindset made it easy. Through her, I went on to work with more Canadian business owners on social content, presentations, mood boards, websites, documents and books.</p>
+        </li>
+        <li class="reveal">
+          <span class="when">Feb 2023 to Oct 2023 · Bangalore</span>
+          <h3>Creating Conversion</h3>
+          <p class="role">Social Media Manager & Content Writer</p>
+          <p>My first official job, at an agency led by two creatives from big marketing companies. I handled Fanzart, a luxury designer fan brand, and built roadmaps, creatives and campaigns for WHIMS, Holiday Tribe and Tasteable. Along the way I learned Illustrator, Photoshop, Lightroom and Premiere Pro.</p>
+        </li>
+        <li class="reveal">
+          <span class="when">Dec 2022 to Mar 2023 · Bangalore · Weekends</span>
+          <h3>Aira Wedding Planners</h3>
+          <p class="role">Social Media Manager & Design Assistant</p>
+          <p>My weekend project. Social media, content, mood boards and wedding themes. 2K+ new organic followers in 3 months.</p>
+        </li>
+        <li class="reveal">
+          <span class="when">Jan 2022 to Jan 2023 · Bangalore</span>
+          <h3>C CYUB Clothing</h3>
+          <p class="role">Co-Founder</p>
+          <p>I helped a friend build a sustainable clothing brand from scratch, as the main person running it: sourcing, R&D, investment calls and our digital presence. Celebrities reached out and featured us. Within 9 months, our clothing was on Bigg Boss Kannada, South India's biggest reality show.</p>
+        </li>
+        <li class="reveal">
+          <span class="when">Jun 2021 to Mar 2022 · Bangalore · Remote</span>
+          <h3>Freelance</h3>
+          <p class="role">Video Editor</p>
+          <p>Edited wedding films and VR content in Adobe Premiere Pro.</p>
+        </li>
+        <li class="reveal origin">
+          <span class="when">2020 to 2021 · Bangalore</span>
+          <h3>JD Institute of Fashion Technology</h3>
+          <p class="role">Advanced Diploma in Fashion Design</p>
+          <p>60% design and 40% fashion. The year I turned a childhood love for colour into a craft.</p>
+        </li>
+        <li class="reveal origin">
+          <span class="when">2016 to 2019 · Distance education</span>
+          <h3>IMTS Institute</h3>
+          <p class="role">BBA in Marketing · Grade A+</p>
+          <p>Love for colour wouldn't be enough on its own. I studied marketing first, to understand the business side of a brand.</p>
+        </li>
+      </ol>
+    </section>
+
+    <!-- WORK -->
+    <section class="section work" id="work">
+      <p class="kicker reveal">Chapter four</p>
+      <h2 class="reveal">My <em>constellations</em></h2>
+      <p class="lead reveal">Seven brands, each its own little sky. Open one to see the story.</p>
+      <div class="filters reveal" role="group" aria-label="Filter work">
+        <button class="chip active" data-filter="all">All</button>
+        <button class="chip" data-filter="branding">Branding</button>
+        <button class="chip" data-filter="social">Social media</button>
+        <button class="chip" data-filter="web">Web design</button>
+      </div>
+      <div class="work-grid" id="work-grid"><!-- cards injected by js --></div>
+    </section>
+
+    <!-- IMPACT -->
+    <section class="section impact" id="impact">
+      <p class="kicker reveal">Chapter five</p>
+      <h2 class="reveal">Dreams, <em>measured</em></h2>
+      <p class="lead reveal">Seven months of digital growth at Darena Health, April to October 2026.</p>
+      <div class="stats">
+        <div class="stat reveal"><span class="num" data-to="16" data-suffix="K">0</span><span class="label">website visitors</span></div>
+        <div class="stat reveal"><span class="num" data-from="59" data-to="91">59</span><span class="label">homepage speed score, up from 59</span></div>
+        <div class="stat reveal"><span class="num" data-to="46083">0</span><span class="label">emails sent across 62 campaigns</span></div>
+        <div class="stat reveal"><span class="num" data-to="64">0</span><span class="label">inquiries from website forms</span></div>
+        <div class="stat reveal"><span class="num" data-to="5" data-suffix="×">0</span><span class="label">longer reading time on the APMA page</span></div>
+        <div class="stat reveal"><span class="num" data-to="34" data-suffix="%">0</span><span class="label">newsletter open rate, up from 22%</span></div>
+      </div>
+      <p class="source reveal">Sources: GA4, Mailchimp, Google PageSpeed Insights, website form records.</p>
+    </section>
+
+    <!-- SKILLS -->
+    <section class="section skills" id="skills">
+      <p class="kicker reveal">Chapter six</p>
+      <h2 class="reveal">What I <em>bring</em></h2>
+      <div class="skill-grid">
+        <article class="skill reveal"><span class="glyph">✦</span><h3>Branding</h3><p>Brand stories, slogans, colour palettes and tone of voice.</p></article>
+        <article class="skill reveal"><span class="glyph">✧</span><h3>Copywriting</h3><p>Website content, newsletters, product descriptions and presentations.</p></article>
+        <article class="skill reveal"><span class="glyph">✦</span><h3>Web design</h3><p>WordPress and Squarespace sites, custom code, SEO and audits.</p></article>
+        <article class="skill reveal"><span class="glyph">✧</span><h3>Social media</h3><p>Content calendars, reels, creative campaigns and community.</p></article>
+        <article class="skill reveal"><span class="glyph">✦</span><h3>Graphic design</h3><p>Posters, invitations, logos, mockups and business cards.</p></article>
+        <article class="skill reveal"><span class="glyph">✧</span><h3>Performance marketing</h3><p>Research, analytics, ad copy and Meta and Google campaigns.</p></article>
+      </div>
+      <ul class="tools reveal" aria-label="Tools">
+        <li>Photoshop</li><li>Illustrator</li><li>Premiere Pro</li><li>Lightroom</li><li>Figma</li><li>Canva</li><li>WordPress</li><li>Squarespace</li><li>HTML & CSS</li><li>JavaScript</li><li>Google Analytics</li><li>Google Ads</li><li>Meta Ads</li><li>Mailchimp</li><li>SEMrush</li><li>ChatGPT</li>
+      </ul>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section class="section voices" id="voices">
+      <p class="kicker reveal">Chapter seven</p>
+      <h2 class="reveal">Words from the <em>sky</em></h2>
+      <div class="quotes" id="quotes">
+        <blockquote class="quote active">
+          <p>“Sushma played a key role in building our brand Nexa Avenue from the ground up. She created a strong brand identity, helping us establish a solid online presence.”</p>
+          <footer>Sabine MacDonald <span>CEO & Founder, Nexa Avenue · Toronto</span></footer>
+        </blockquote>
+        <blockquote class="quote">
+          <p>“The logo she created truly feels like <em>me</em> in every sense of the word. Sushma knows her clients and customizes her work based on their need, the sign of a true professional!”</p>
+          <footer>Gayle Charach <span>Life Coach · Winnipeg</span></footer>
+        </blockquote>
+        <blockquote class="quote">
+          <p>“She has an incredible ability to sense the essence of the music and translate it into compelling visuals that truly enhance the experience.”</p>
+          <footer>Peter MacDonald <span>Music Producer · Toronto</span></footer>
+        </blockquote>
+        <blockquote class="quote">
+          <p>“Sushma is an absolute expert when it comes to branding and design! She has the ability to translate abstract ideas into visually compelling designs.”</p>
+          <footer>Hadi Diallo <span>Business Coach · Toronto</span></footer>
+        </blockquote>
+      </div>
+      <div class="quote-dots" role="tablist" aria-label="Choose a testimonial"></div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="section contact" id="contact">
+      <img class="contact-illustration reveal" src="assets/img/illustration.webp" alt="" width="700" height="622" loading="lazy">
+      <p class="kicker reveal">The last chapter is yours</p>
+      <h2 class="reveal">Let's make something that <em>hits the heart</em></h2>
+      <p class="lead reveal">Hiring, collaborating or just curious? Send a message. I'll reply with ideas, and probably a question or two.</p>
+      <div class="contact-actions reveal">
+        <a class="btn btn-silver" href="mailto:sushma.somashekar082@gmail.com">sushma.somashekar082@gmail.com</a>
+        <a class="btn btn-ghost" href="https://www.linkedin.com/in/sushma-somashekar-digital-marketing/" target="_blank" rel="noopener">Connect on LinkedIn ↗</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>Made under a midnight sky by Sushma Somashekar · <span id="year"></span></p>
+  </footer>
+
+  <!-- WORK MODAL -->
+  <dialog id="modal" aria-labelledby="modal-title">
+    <button class="modal-close" aria-label="Close">×</button>
+    <div class="modal-body">
+      <div class="modal-gallery" id="modal-gallery"></div>
+      <div class="modal-text">
+        <p class="kicker" id="modal-kicker"></p>
+        <h3 id="modal-title"></h3>
+        <p id="modal-about"></p>
+        <h4>What I did</h4>
+        <p id="modal-role"></p>
+        <h4>The shine</h4>
+        <p id="modal-win"></p>
+        <p class="modal-link" id="modal-link"></p>
+      </div>
+    </div>
+  </dialog>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

@@ -566,3 +566,9 @@ em, .d-h em, .d-sub-head h3 em { font-family: var(--sans); font-style: normal; f
 .d-badge { top: 7px; left: auto; right: 14px; padding: 4px 12px; }
 @media (max-width: 760px) { .b-open, .b-click { grid-column: span 12; } }
 .hero-title, .hero-title .line, .hero-title span { text-transform: none; }
+.lay-q .pm:nth-child(1) { width: 46%; aspect-ratio: 1; left: 0; top: 4%; }
+.lay-q .pm:nth-child(2) { width: 40%; aspect-ratio: 1; right: 2%; top: 0; z-index: 2; }
+.lay-q .pm:nth-child(3) { width: 42%; aspect-ratio: 1; left: 30%; bottom: 0; z-index: 3; }
+.lay-q .pm:nth-child(1) { width: 56%; left: 0; top: 10%; }
+.lay-q .pm:nth-child(2) { width: 48%; right: 0; top: 0; }
+.lay-q .pm:nth-child(3) { width: 48%; left: 26%; top: auto; bottom: 2%; }

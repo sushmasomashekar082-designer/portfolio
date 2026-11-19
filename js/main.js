@@ -14,14 +14,14 @@ const MUSIC_FILE = null; // e.g. 'assets/audio/track.mp3'
 
   /* ================= DATA ================= */
   const work = [
-    { id: 'cyub', name: 'C CYUB', full: 'C CYUB Clothing', em: 'Clothing', lay: 'w', logo: 'cyub', chips: ['Co-Founder', 'Branding', 'eCommerce'],
+    { id: 'cyub', name: 'C CYUB', full: 'C CYUB Clothing', em: 'Clothing', lay: 'q', logo: 'cyub', chips: ['Co-Founder', 'Branding', 'eCommerce'],
       line: 'A sustainable clothing brand, built from scratch. Nine months later, it was on national TV.',
       about: 'A homegrown sustainable clothing brand based in Bangalore.',
       role: 'Co-founded and ran the brand: sourcing, R&D, investment calls, brand kit, photoshoots, social media, influencer marketing and the eCommerce website.',
       pts: ['Managed branding initiatives and digital campaigns to boost market reach.', 'Developed effective social media promotions and influencer marketing strategies.', 'Website optimization and product marketing for improved online sales.'],
       win: 'Celebrities reached out and featured us. Within 9 months, our clothing was on Bigg Boss Kannada, South India\'s biggest reality show.',
       reels: [['Instagram profile', 'https://www.instagram.com/c_cyubofficial/']],
-      media: [{ src: 'cyub-feed.webp', wide: true }] },
+      media: [{ src: 'cyub-p15.webp' }, { src: 'cyub-p03.webp' }, { src: 'cyub-p09.webp' }, { src: 'cyub-feed.webp', wide: true }, { src: 'cyub-p17.webp' }, { src: 'cyub-p01.webp' }, { src: 'cyub-p02.webp' }, { src: 'cyub-p04.webp' }, { src: 'cyub-p05.webp' }, { src: 'cyub-p06.webp' }, { src: 'cyub-p07.webp' }, { src: 'cyub-p08.webp' }, { src: 'cyub-p10.webp' }, { src: 'cyub-p11.webp' }, { src: 'cyub-p12.webp' }, { src: 'cyub-p13.webp' }, { src: 'cyub-p14.webp' }, { src: 'cyub-p16.webp' }, { src: 'cyub-p18.webp' }] },
     { id: 'fanzart', name: 'Fanzart', em: 'Luxury fans', lay: 'w', logo: 'fanzart', chips: ['Creating Conversion', 'Reels', 'Campaigns'],
       line: 'Luxury designer fans, a monsoon series and a Rakshabandhan campaign called #SilentPromises.',
       about: 'A luxury designer fan brand with over 130 models and a strong presence across India.',
@@ -66,7 +66,7 @@ const MUSIC_FILE = null; // e.g. 'assets/audio/track.mp3'
       pts: ['Increased organic engagement by 6.5%, driving community growth of 2K+ organic followers in 3 months.', 'Developed digital storytelling strategies, enhancing brand perception and audience retention.', 'Created mood boards and visual themes for weddings, ensuring cohesive and aesthetic event branding.'],
       link: ['airaweddingplanners.com', 'https://airaweddingplanners.com/'],
       reels: [['Reel 1', 'https://www.instagram.com/reel/CsEBOOvrtI6/'], ['Reel 2', 'https://www.instagram.com/reel/CsLxXHwMj_R/'], ['Reel 3', 'https://www.instagram.com/reel/Cp7j9p7D_dx/'], ['Stories set 1', 'https://www.instagram.com/stories/highlights/17986096486862581/'], ['Stories set 2', 'https://www.instagram.com/stories/highlights/17918990339610700/']],
-      media: [{ src: 'aira-theme.webp', wide: true }, { src: 'aira-theme-2.webp' }, { src: 'aira-moodboard.webp', wide: true }] },
+      media: [{ src: 'aira-theme.webp', wide: true }, { src: 'aira-theme-2.webp' }, { src: 'aira-moodboard.webp', wide: true }, { src: 'aira-posts.webp' }] },
     { id: 'nexa', name: 'Nexa', em: 'Avenue', lay: 'a', logo: 'nexa', chips: ['Canada', 'Brand identity', 'WordPress'],
       line: 'A Canadian consultancy brand built from the ground up, for teams that work across borders.',
       about: 'A Toronto business consultancy specialising in change management and intercultural coaching for multinational teams.',
@@ -75,7 +75,7 @@ const MUSIC_FILE = null; // e.g. 'assets/audio/track.mp3'
       pts: ['Increased Instagram engagement, reaching 5,600 organic users with content such as 184 Reels and 92 posts.', 'Boosted LinkedIn reach, achieving 21,404 impressions, 990 reactions, and a 10.98% engagement rate.', 'Executed high-impact content strategies, driving leadership recognition, optimized digital presence using analytics-driven insights.'],
       link: ['nexaavenue.com', 'https://www.nexaavenue.com/'],
       reels: [['Reel 2', 'https://www.instagram.com/reel/DEKw8RTRYl7/'], ['Reel 3', 'https://www.instagram.com/reel/C5ZzZD7Pror/']],
-      media: [{ src: 'nexa-web.webp', wide: true }, { src: 'nexa-posts.webp' }, { src: 'nexa-posts-2.webp' }] },
+      media: [{ src: 'nexa-web.webp', wide: true }, { src: 'nexa-posts.webp' }, { src: 'nexa-posts-2.webp' }, { src: 'nexa-may.webp' }] },
     { id: 'soundofc', name: 'Sound of C', em: 'Toronto', lay: 'w', logo: 'soundofc', chips: ['Canada', 'Print', 'Presentations'],
       line: 'A Canadian brand, in warm caramel and calm white. Social creatives, presentations and journals.',
       about: 'The Sound of C, a Canadian brand.',
@@ -184,7 +184,7 @@ const MUSIC_FILE = null; // e.g. 'assets/audio/track.mp3'
   /* ================= WORK ================= */
   const track = $('#work-track'), workSec = $('#work');
   track.innerHTML = work.map((w, i) => {
-    const media = w.media.slice(0, { a: 2, b: 3, c: 1, d: 2, w: 1, t: 0 }[w.lay]);
+    const media = w.media.slice(0, { a: 2, b: 3, c: 1, d: 2, w: 1, t: 0, q: 3 }[w.lay]);
     return `<article class="panel">
       <div class="panel-text">
         <span class="panel-num">${String(i + 1).padStart(2, '0')}</span>

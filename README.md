@@ -34,6 +34,7 @@ Unzip the folder and double-click `index.html`. It opens in your browser.
 
 - Projects live in `js/main.js` in the `work` list, in display order. Each has `media`, and optional `reels` (Instagram links) and `link`.
 - Add a video: put an MP4 (720p, under ~20 MB) in `assets/video/`, then add `{ type: 'video', src: 'assets/video/name.mp4', poster: 'assets/img/name-poster.webp' }` to a project's `media`.
+- Darena screen recordings: put the MP4 in `assets/video/` and add a line to `darenaFilms` in `js/main.js`.
 - Planets: the `chapters` list in `js/main.js` sets each planet's name, colour, size and brands.
 - Music: the site makes a soft ambient sound in the browser. To use your own track, add `assets/audio/track.mp3` and set `MUSIC_FILE = 'assets/audio/track.mp3'` at the top of `js/main.js`.
 

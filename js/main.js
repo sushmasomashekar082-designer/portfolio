@@ -18,6 +18,7 @@ const MUSIC_FILE = null; // e.g. 'assets/audio/track.mp3'
       line: 'A sustainable clothing brand, built from scratch. Nine months later, it was on national TV.',
       about: 'A homegrown sustainable clothing brand based in Bangalore.',
       role: 'Co-founded and ran the brand: sourcing, R&D, investment calls, brand kit, photoshoots, social media, influencer marketing and the eCommerce website.',
+      pts: ['Managed branding initiatives and digital campaigns to boost market reach.', 'Developed effective social media promotions and influencer marketing strategies.', 'Website optimization and product marketing for improved online sales.'],
       win: 'Celebrities reached out and featured us. Within 9 months, our clothing was on Bigg Boss Kannada, South India\'s biggest reality show.',
       reels: [['Instagram profile', 'https://www.instagram.com/c_cyubofficial/']],
       media: [{ src: 'cyub-feed.webp', wide: true }] },
@@ -26,6 +27,8 @@ const MUSIC_FILE = null; // e.g. 'assets/audio/track.mp3'
       about: 'A luxury designer fan brand with over 130 models and a strong presence across India.',
       role: 'Social media calendar, creative campaigns, reels, carousels and grid designs for product launches and Environment Day.',
       win: '#SilentPromises was well received by the Executive Director. Reels for the brand passed 70K views.',
+      pts: ['Created high-performing Reels for an international designer fan brand, achieving 70K+ collective views.', 'Managed and strategized for 6+ eCommerce & luxury brands, developing roadmaps, editorial calendars, and influencer marketing campaigns.', 'Executed creative marketing initiatives, enhancing brand storytelling and audience engagement.'],
+      link: ['creatingconversion.com', 'https://creatingconversion.com/'],
       reels: [['#SilentPromises reel 1', 'https://www.instagram.com/reel/Cwjl7lfyVvl/'], ['#SilentPromises reel 2', 'https://www.instagram.com/reel/CwktAaHSXoP/'], ['Environment Day reel', 'https://www.instagram.com/reel/CtHBtwmu0t8/'], ['Product reel', 'https://www.instagram.com/reel/Cwuv8NEyzGo/'], ['Launch reel', 'https://www.instagram.com/reel/Csqx2c2NbVI/'], ['Launch carousel', 'https://www.instagram.com/p/CstbLFfyRf_/']],
       media: [{ src: 'fanzart-feed.webp', wide: true }, { src: 'fanzart-grid.webp' }] },
     { id: 'whims', name: 'WHIMS', em: 'Slow fashion', lay: 'b', logo: 'whims', chips: ['Creating Conversion', 'Content', 'Launch'],
@@ -60,6 +63,8 @@ const MUSIC_FILE = null; // e.g. 'assets/audio/track.mp3'
       about: 'An end-to-end luxury wedding planning company based in Bangalore.',
       role: 'Theme presentations and mood boards. Content across Instagram, Meta, Pinterest and YouTube.',
       win: 'Organic engagement up 6.5%, with 2K+ new organic followers in 3 months.',
+      pts: ['Increased organic engagement by 6.5%, driving community growth of 2K+ organic followers in 3 months.', 'Developed digital storytelling strategies, enhancing brand perception and audience retention.', 'Created mood boards and visual themes for weddings, ensuring cohesive and aesthetic event branding.'],
+      link: ['airaweddingplanners.com', 'https://airaweddingplanners.com/'],
       reels: [['Reel 1', 'https://www.instagram.com/reel/CsEBOOvrtI6/'], ['Reel 2', 'https://www.instagram.com/reel/CsLxXHwMj_R/'], ['Reel 3', 'https://www.instagram.com/reel/Cp7j9p7D_dx/'], ['Stories set 1', 'https://www.instagram.com/stories/highlights/17986096486862581/'], ['Stories set 2', 'https://www.instagram.com/stories/highlights/17918990339610700/']],
       media: [{ src: 'aira-theme.webp', wide: true }, { src: 'aira-theme-2.webp' }, { src: 'aira-moodboard.webp', wide: true }] },
     { id: 'nexa', name: 'Nexa', em: 'Avenue', lay: 'a', logo: 'nexa', chips: ['Canada', 'Brand identity', 'WordPress'],
@@ -67,6 +72,7 @@ const MUSIC_FILE = null; // e.g. 'assets/audio/track.mp3'
       about: 'A Toronto business consultancy specialising in change management and intercultural coaching for multinational teams.',
       role: 'As the sole designer and content writer: branding, WordPress web design and copy, social media and company presentations.',
       win: 'LinkedIn reached 21,404 impressions, 990 reactions and a 10.98% engagement rate. Instagram reached 5,600 organic users.',
+      pts: ['Increased Instagram engagement, reaching 5,600 organic users with content such as 184 Reels and 92 posts.', 'Boosted LinkedIn reach, achieving 21,404 impressions, 990 reactions, and a 10.98% engagement rate.', 'Executed high-impact content strategies, driving leadership recognition, optimized digital presence using analytics-driven insights.'],
       link: ['nexaavenue.com', 'https://www.nexaavenue.com/'],
       reels: [['Reel 2', 'https://www.instagram.com/reel/DEKw8RTRYl7/'], ['Reel 3', 'https://www.instagram.com/reel/C5ZzZD7Pror/']],
       media: [{ src: 'nexa-web.webp', wide: true }, { src: 'nexa-posts.webp' }, { src: 'nexa-posts-2.webp' }] },
@@ -97,10 +103,10 @@ const MUSIC_FILE = null; // e.g. 'assets/audio/track.mp3'
     { id: 'darena', name: 'Darena', em: 'Health', lay: 'a', chips: ['USA', 'Website revamp', 'Email'],
       line: 'A full website revamp and newsletters people actually open. Health IT, made human.',
       about: 'A US health tech company focused on Health IT, MIPS compliance and simpler healthcare operations.',
-      role: 'As Branding & Marketing Associate: rebuilt the website on shared CSS and reusable HTML, redefined the brand, and wrote blogs and newsletters for two audiences.',
-      win: 'Homepage speed 59 → 91. 16K visitors, 46,083 emails and 64 inquiries in seven months. See the numbers below.',
+      role: 'As Branding & Marketing Associate: redesigned and hand-coded the homepage and product pages, rebuilt the site on shared CSS and reusable HTML, refreshed the brand, and wrote blogs and newsletters for two audiences.',
+      win: 'Homepage speed 59 → 91. 16K visitors, 46,083 emails and 64 inquiries in seven months. Full story in the Featured section.',
       link: ['darena.health', 'https://darena.health'],
-      media: [{ src: 'darena-web.webp', wide: true }, { src: 'darena-blog.webp' }, { src: 'darena-blog-2.webp' }, { src: 'darena-blog-3.webp' }] }
+      media: [{ type: 'video', src: 'assets/video/darena-pages.mp4', poster: 'assets/img/darena-pages-poster.webp', wide: true }, { type: 'video', src: 'assets/video/darena-mips10.mp4', poster: 'assets/img/darena-mips10-poster.webp', wide: true }, { src: 'darena-web.webp', wide: true }, { src: 'darena-blog.webp' }, { src: 'darena-blog-2.webp' }, { src: 'darena-blog-3.webp' }] }
   ];
   const byId = Object.fromEntries(work.map((w, i) => [w.id, i]));
 
@@ -212,6 +218,20 @@ const MUSIC_FILE = null; // e.g. 'assets/audio/track.mp3'
     `<div class="tile" data-i="${t.i}">${mediaEl(t, t.brand + ' work')}${t.type === 'video' ? '<span class="play">▶</span>' : ''}<span class="cap">${t.brand}</span></div>`).join('')}</div>`).join('');
   const wallColEls = $$('.wall-col'), wallSec = $('#wall');
 
+  /* ================= DARENA FILMS =================
+     Add a screen recording: put the MP4 in assets/video/ and add a line below.
+     slot 'top' shows it at the start of the Darena section; 'mips10-before' and 'mips10' sit side by side in the MIPS Guide comparison. */
+  const darenaFilms = [
+    { slot: 'top', src: 'assets/video/darena-pages.mp4', poster: 'assets/img/darena-pages-poster.webp', url: 'darena.health', title: 'Homepage and MyMipsScore page', note: 'Designed and hand-coded by me. Live since August 31.' },
+    { slot: 'mips10-before', badge: 'Before', src: 'assets/video/darena-mips10-before.mp4', poster: 'assets/img/darena-mips10-before-poster.webp', url: 'darena.health', title: 'The old guide', note: 'Text-heavy, no hierarchy, no visual interest.' },
+    { slot: 'mips10', badge: 'After', src: 'assets/video/darena-mips10.mp4', poster: 'assets/img/darena-mips10-poster.webp', url: 'darena.health', title: 'My redesign', note: 'Clear steps, visual structure and a faster page.' }
+  ];
+  darenaFilms.forEach(f => {
+    const host = f.slot === 'top' ? $('#d-films') : $(`[data-slot="${f.slot}"]`); if (!host) return;
+    host.insertAdjacentHTML('beforeend', `<figure class="d-film${f.badge ? ' has-badge ' + f.badge.toLowerCase() : ''}">${f.badge ? `<span class="d-badge">${f.badge}</span>` : ''}<div class="d-browser"><span class="dots"><i></i><i></i><i></i></span><span class="url">${f.url}</span></div><video src="${f.src}" poster="${f.poster}" muted loop playsinline preload="none" data-auto aria-label="${f.title} screen recording"></video><figcaption><b>${f.title}</b> ${f.note}</figcaption></figure>`);
+  });
+  $$('.cmp input').forEach(r => r.addEventListener('input', () => r.parentNode.style.setProperty('--p', r.value + '%')));
+
   const vio = new IntersectionObserver(es => es.forEach(en => {
     const v = en.target; if (en.isIntersecting) { if (v.preload === 'none') v.preload = 'auto'; v.play().catch(() => {}); } else v.pause();
   }), { threshold: .2 });
@@ -298,6 +318,7 @@ const MUSIC_FILE = null; // e.g. 'assets/audio/track.mp3'
     $('#case-kicker').textContent = `Project ${String(+i + 1).padStart(2, '0')} · ${w.chips.join(' · ')}`;
     $('#case-title').innerHTML = `${w.name} <em>${w.em}</em>`;
     $('#case-about').textContent = w.about; $('#case-role').textContent = w.role; $('#case-win').textContent = w.win;
+    $('#case-pts').innerHTML = w.pts ? `<h4>Highlights</h4><ul>${w.pts.map(p => `<li>${p}</li>`).join('')}</ul>` : '';
     $('#case-media').innerHTML = w.media.map(mm => mediaEl(mm, (w.full || w.name) + ' work', mm.wide ? 'class="wide"' : '', true)).join('');
     $('#case-link').innerHTML = w.link ? `<a href="${w.link[1]}" target="_blank" rel="noopener">Visit ${w.link[0]} ↗</a>` : '';
     $('#case-reels').innerHTML = (w.reels || []).map(r => `<a href="${r[1]}" target="_blank" rel="noopener">${r[0].startsWith('View') || r[0].startsWith('Instagram') ? r[0] : 'View on Instagram: ' + r[0]} ↗</a>`).join('');
@@ -535,17 +556,17 @@ const MUSIC_FILE = null; // e.g. 'assets/audio/track.mp3'
 
   /* ================= QUICK VIEW ================= */
   const exp = [
-    ['Darena Health', 'Branding & Marketing Associate · Chesterfield, USA', 'Website revamp, brand refresh, blogs and newsletters. Open rates 22% → 34%.', 'Apr 2025 to now'],
-    ['Credtech', 'Sales & Marketing Manager · Bangalore', 'Event design for Pune Chapter 2025: big screen, print and decor.', 'Mar to Apr 2025'],
-    ['Amazon KDP', 'Author & designer · Self-published', 'Books, journals and colouring books.', '2025'],
-    ['Nektar Homes', 'Brand identity · Freelance', 'Brand kit, logo, flyer and reels.', '2025'],
-    ['Nexa Avenue & Sound of C', 'Digital Marketing Manager · Toronto, Canada (remote)', 'Branding, WordPress web design, social media and presentations. LinkedIn engagement 10.98%.', 'Nov 2023 to Mar 2025'],
-    ['Creating Conversion', 'Social Media Manager & Content Writer · Bangalore', 'Fanzart, WHIMS, Tasteables, Holiday Tribe and crash.club. Reels passed 70K views.', 'Feb to Oct 2023'],
-    ['Aira Wedding Planners', 'Social Media Manager & Design Assistant · Freelance', 'Mood boards and themes. 2K+ organic followers in 3 months.', 'Dec 2022 to Mar 2023'],
-    ['C CYUB Clothing', 'Co-Founder · Bangalore', 'Built a sustainable clothing brand from scratch. Featured on Bigg Boss Kannada.', 'Jan 2022 to Jan 2023'],
-    ['Freelance', 'Video Editor · Bangalore (remote)', 'Wedding films and VR content in Premiere Pro.', 'Jun 2021 to Mar 2022']
+    ['Darena Health', 'Branding & Marketing Associate · USA', ['Redesigned and hand-coded the homepage and product pages. Homepage speed 59 → 91, MyMipsScore 57 → 94.', '16K website visitors and 64 inquiries from website forms, April to October 2026.', '46,083 emails across 62 campaigns. Open rate 22% → 34%.'], 'Apr 2025 to now'],
+    ['Credtech', 'Sales & Marketing Manager · Bangalore', ['Event design for Pune Chapter 2025: big screen, print and decor.'], 'Mar to Apr 2025'],
+    ['Amazon KDP', 'Author & designer · Self-published', ['Books, journals and colouring books.'], '2025'],
+    ['Nektar Homes', 'Brand identity · Freelance', ['Brand kit, logo, flyer and reels.'], '2025'],
+    ['Nexa Avenue & Sound of C', 'Digital Marketing Manager · Toronto, Canada', ['Increased Instagram engagement, reaching 5,600 organic users with content such as 184 Reels and 92 posts.', 'Boosted LinkedIn reach, achieving 21,404 impressions, 990 reactions, and a 10.98% engagement rate.', 'Executed high-impact content strategies, driving leadership recognition, optimized digital presence using analytics-driven insights.'], 'Nov 2023 to Mar 2025'],
+    ['Creating Conversion', 'Social Media Manager & Content Writer · Bangalore, remote', ['Created high-performing Reels for an international designer fan brand, achieving 70K+ collective views.', 'Managed and strategized for 6+ eCommerce & luxury brands, developing roadmaps, editorial calendars, and influencer marketing campaigns.', 'Executed creative marketing initiatives, enhancing brand storytelling and audience engagement.'], 'Feb to Oct 2023'],
+    ['Aira Wedding Planners', 'Social Media Manager & Design Assistant · Bangalore, freelance', ['Increased organic engagement by 6.5%, driving community growth of 2K+ organic followers in 3 months.', 'Developed digital storytelling strategies, enhancing brand perception and audience retention.', 'Created mood boards and visual themes for weddings, ensuring cohesive and aesthetic event branding.'], 'Dec 2022 to Mar 2023'],
+    ['C CYUB Clothing', 'Co-Founder · Bangalore', ['Managed branding initiatives and digital campaigns to boost market reach.', 'Developed effective social media promotions and influencer marketing strategies.', 'Website optimization and product marketing for improved online sales.'], 'Jan 2022 to Jan 2023'],
+    ['Freelance', 'Video Editor · Bangalore, remote', ['Edited wedding videos and VR content using Adobe Premiere Pro.'], 'Jun 2021 to Mar 2022']
   ];
-  $('#q-exp').innerHTML = exp.map(e => `<li><div><b>${e[0]}</b><span>${e[1]}</span><p>${e[2]}</p></div><time>${e[3]}</time></li>`).join('');
+  $('#q-exp').innerHTML = exp.map(e => `<li><div><b>${e[0]}</b><span>${e[1]}</span><ul>${e[2].map(p => `<li>${p}</li>`).join('')}</ul></div><time>${e[3]}</time></li>`).join('');
   const quick = $('#quick'), qBtn = $('#quick-btn');
   function openQuick() { quick.classList.add('open'); scrim.classList.add('on'); quick.setAttribute('aria-hidden', 'false'); qBtn.setAttribute('aria-expanded', 'true'); document.body.classList.add('lock'); setTimeout(() => $('.quick-close').focus(), 300); }
   function closeQuick() { if (!quick.classList.contains('open')) return; quick.classList.remove('open'); scrim.classList.remove('on'); quick.setAttribute('aria-hidden', 'true'); qBtn.setAttribute('aria-expanded', 'false'); document.body.classList.remove('lock'); }

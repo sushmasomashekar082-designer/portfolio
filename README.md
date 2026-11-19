@@ -30,6 +30,13 @@ Unzip the folder and double-click `index.html`. It opens in your browser.
    Under **Build and deployment**, set Source to **Deploy from a branch**, Branch to **main** and folder to **/ (root)**. Click **Save**.
 5. **Wait 1 to 2 minutes**, then refresh the Pages screen. Your live link appears at the top.
 
+## Adding work
+
+- Projects live in `js/main.js` in the `work` list, in display order. Each has `media`, and optional `reels` (Instagram links) and `link`.
+- Add a video: put an MP4 (720p, under ~20 MB) in `assets/video/`, then add `{ type: 'video', src: 'assets/video/name.mp4', poster: 'assets/img/name-poster.webp' }` to a project's `media`.
+- Planets: the `chapters` list in `js/main.js` sets each planet's name, colour, size and brands.
+- Music: the site makes a soft ambient sound in the browser. To use your own track, add `assets/audio/track.mp3` and set `MUSIC_FILE = 'assets/audio/track.mp3'` at the top of `js/main.js`.
+
 ## Making changes later
 
 - Open a file on GitHub, click the pencil icon, edit, and click **Commit changes**. The site updates in about a minute.

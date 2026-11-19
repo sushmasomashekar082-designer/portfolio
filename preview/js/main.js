@@ -184,7 +184,7 @@ const MUSIC_FILE = '../assets/audio/741hz.mp3';
     const d = Math.min(devicePixelRatio || 1, 2);
     W = innerWidth; H = innerHeight;
     cv.width = W * d; cv.height = H * d; ctx.setTransform(d, 0, 0, d, 0, 0);
-    stars = Array.from({ length: Math.round(W * H / 2600) }, () => ({
+    stars = Array.from({ length: Math.round(W * H / 6000) }, () => ({
       x: Math.random() * W, y: Math.random() * H, r: Math.random() * 1.3 + .2,
       z: Math.random() * .8 + .2, p: Math.random() * 6.3, s: Math.random() * .02 + .004
     }));
@@ -236,6 +236,20 @@ const MUSIC_FILE = '../assets/audio/741hz.mp3';
   }).join('');
   $('#work-total').textContent = String(work.length - GROWTH.length).padStart(2, '0');
   $$('[data-i="NEXA_I"]').forEach(b => b.dataset.i = byId.nexa);
+  const COVER = { cyub: 'cyub-p15.webp', fanzart: 'fanzart-feed-2.webp', aira: 'aira-mood-2.webp', kdp: 'kdp-5.webp', credtech: 'credtech-screen.webp' };
+  $('#cards-grid').innerHTML = work.map((w, i) => [w, i]).filter(([w]) => !GROWTH.includes(w.id)).map(([w, i], n) => {
+    const m = COVER[w.id] ? { src: COVER[w.id] } : (w.media.find(x => x.type !== 'video') || w.media[0]);
+    const img = !m ? '' : m.type === 'video' ? `<img src="${m.poster}" alt="${w.name} work" loading="lazy">` : `<img src="${IMG}${m.src}" alt="${w.name} work" loading="lazy">`;
+    return `<article class="card">
+      <div class="card-media" data-i="${i}" role="button" tabindex="0" aria-label="Open ${w.full || w.name + ' ' + w.em}">${img}</div>
+      <div class="card-body">
+        <span class="card-num">${String(n + 1).padStart(2, '0')} · ${w.chips[0]}</span>
+        <h3>${w.name} <em>${w.em}</em></h3>
+        <p>${w.line}</p>
+        <div class="card-foot"><button class="open-btn" data-i="${i}">View project <span>→</span></button><button class="coin-btn" data-coin="${w.id}" aria-label="Bonus coin: ${w.name}"><span class="c-ico"></span></button></div>
+      </div>
+    </article>`;
+  }).join('');
   const panels = $$('.panel', track), pms = $$('.pm', track), countEl = $('#work-count');
   function sizeWork() {
     if (isDesk()) workSec.style.height = (track.scrollWidth - innerWidth + innerHeight) + 'px';
@@ -287,14 +301,15 @@ const MUSIC_FILE = '../assets/audio/741hz.mp3';
     // stars
     ctx.clearRect(0, 0, W, H);
     for (const s of stars) {
-      const a = RM ? .8 : .55 + Math.sin(t * s.s * .1 + s.p) * .45;
+      if (document.documentElement.dataset.theme === 'light') break;
+      const a = (RM ? .8 : .55 + Math.sin(t * s.s * .1 + s.p) * .45) * .38;
       let y = (s.y - sy * s.z * .2) % H; if (y < 0) y += H;
       const x = s.x + m.x * s.z * 30;
       ctx.fillStyle = `rgba(228,233,243,${a})`;
       ctx.beginPath(); ctx.arc(x, y + m.y * s.z * 30, s.r, 0, 6.3); ctx.fill();
     }
     if (!RM) {
-      if (Math.random() < .005) shooters.push({ x: Math.random() * W * .8 + W * .2, y: Math.random() * H * .4, len: Math.random() * 120 + 80, v: Math.random() * 6 + 8, l: 1 });
+      if (Math.random() < .0015 && document.documentElement.dataset.theme !== 'light') shooters.push({ x: Math.random() * W * .8 + W * .2, y: Math.random() * H * .4, len: Math.random() * 120 + 80, v: Math.random() * 6 + 8, l: 1 });
       shooters = shooters.filter(s => s.l > 0);
       for (const s of shooters) {
         const g = ctx.createLinearGradient(s.x, s.y, s.x + s.len, s.y - s.len * .45);
@@ -367,7 +382,7 @@ const MUSIC_FILE = '../assets/audio/741hz.mp3';
   }
   function closeCase() { $$('#case-media video').forEach(v => v.pause()); cs.classList.remove('open'); cs.setAttribute('aria-hidden', 'true'); document.body.classList.remove('lock'); }
   document.addEventListener('click', e => {
-    const t = e.target.closest('.open-btn,.panel-media,.tile'); if (t) openCase(t.dataset.i, e);
+    const t = e.target.closest('.open-btn,.panel-media,.tile,.card-media'); if (t) openCase(t.dataset.i, e);
   });
   document.addEventListener('keydown', e => {
     if ((e.key === 'Enter' || e.key === ' ') && e.target.matches('.panel-media')) { e.preventDefault(); openCase(e.target.dataset.i); }
@@ -408,11 +423,18 @@ const MUSIC_FILE = '../assets/audio/741hz.mp3';
     if (e.target === noteEl || e.target.closest('.note-close')) closeNote();
   }, true);
   $('#coins').addEventListener('click', () => openNote('_help'));
+  const themeBtn = $('#theme-btn');
+  function setTheme(t) {
+    document.documentElement.dataset.theme = t; try { localStorage.setItem('theme', t); } catch (e) {}
+    themeBtn.setAttribute('aria-label', t === 'light' ? 'Switch to night sky' : 'Switch to day sky');
+  }
+  themeBtn.addEventListener('click', () => setTheme(document.documentElement.dataset.theme === 'light' ? 'dark' : 'light'));
+  if (document.documentElement.dataset.theme === 'light') themeBtn.setAttribute('aria-label', 'Switch to night sky');
   document.addEventListener('keydown', e => { if (e.key === 'Escape' && closeNote()) e.stopImmediatePropagation(); }, true);
   paintCoins();
 
   /* ================= WHERE AM I ================= */
-  const SECS = [['cosmos', 'The galaxy'], ['growth', 'Growth world'], ['branding', 'Branding world'], ['wall', 'The wall'], ['contact', 'Say hello']].map(([id, l]) => [$('#' + id), id, l]);
+  const SECS = [['cosmos', 'The sky'], ['growth', 'Growth world'], ['branding', 'Branding world'], ['wall', 'The wall'], ['contact', 'Say hello']].map(([id, l]) => [$('#' + id), id, l]);
   let curSec = '';
   function whereAmI() {
     const y = innerHeight * .45; let pick = SECS[0];

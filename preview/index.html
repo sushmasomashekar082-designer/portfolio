@@ -11,11 +11,13 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%230a1230'/><path d='M16 5l2.6 7.9H27l-6.8 4.9 2.6 8L16 21l-6.8 4.8 2.6-8L5 12.9h8.4z' fill='%23dfe5f0'/></svg>">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../css/style.css">
   <link rel="stylesheet" href="css/preview.css">
+  <script>try { var t = localStorage.getItem("theme"); if (t) document.documentElement.dataset.theme = t; } catch (e) {}</script>
 </head>
 <body class="is-loading">
+  <div class="clouds" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></div>
   <canvas id="sky" aria-hidden="true"></canvas>
   <div class="cursor" aria-hidden="true"><span class="cursor-label">View</span></div>
 
@@ -29,18 +31,19 @@
 
   <header class="nav">
     <a href="#cosmos" class="logo cat-home" aria-label="Back to the galaxy"><svg viewBox="0 0 40 40" aria-hidden="true"><path d="M20 4 L23.5 15.5 L36 16 L26 23.5 L29.5 36 L20 28.5 L10.5 36 L14 23.5 L4 16 L16.5 15.5 Z" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/></svg><span>Sushma<i>S.</i></span></a>
-    <span class="here" id="here">The galaxy</span>
+    <span class="here" id="here">The sky</span>
     <nav>
       <a href="#growth" data-sec="growth">Growth</a>
       <a href="#branding" data-sec="branding">Branding</a>
       <a href="#wall" data-sec="wall">Wall</a>
       <a href="#contact" data-sec="contact">Contact</a>
+      <button class="theme-btn" id="theme-btn" aria-label="Switch to day sky"><svg class="i-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6"/></svg><svg class="i-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M19.5 14.8A8 8 0 0 1 9.2 4.5a8 8 0 1 0 10.3 10.3z"/></svg></button>
       <button class="coins" id="coins" aria-label="Bonus coins collected"><span class="c-ico"></span><b id="coin-n">0</b>/<span id="coin-t">13</span></button>
       <button class="quick-btn" id="quick-btn" aria-controls="quick" aria-expanded="false">Quick view</button>
     </nav>
   </header>
   <nav class="rail" id="rail" aria-label="Sections">
-    <a href="#cosmos" data-sec="cosmos"><span>The galaxy</span></a>
+    <a href="#cosmos" data-sec="cosmos"><span>The sky</span></a>
     <a href="#growth" data-sec="growth"><span>Growth world</span></a>
     <a href="#branding" data-sec="branding"><span>Branding world</span></a>
     <a href="#wall" data-sec="wall"><span>The wall</span></a>
@@ -59,7 +62,7 @@
             <span class="line"><span>Every star is a story</span></span>
             <span class="line"><span><em>I've built.</em></span></span>
           </h1>
-          <p class="cosmos-hint">Scroll to fly into my galaxy <span>↓</span></p>
+          <p class="cosmos-hint">Scroll to explore my universe <span>↓</span></p>
         </div>
         <div class="legend" id="legend" aria-label="Highlight a world">
           <button data-w="growth"><i></i>Growth strategist</button>
@@ -318,9 +321,14 @@
       <p>Colour, style and a little subtle chaos. Nine brands, from a clothing label I co-founded to wedding mood boards and books.</p>
     </header>
 
-    <p class="nudge">Keep scrolling to slide through the brands. Click any image to open it, and look for the gold coin <span>→</span></p>
+    <p class="nudge">Pick a card to open the project. There is a gold coin hidden inside each one <span>↓</span></p>
 
-    <!-- WORK: pinned horizontal -->
+    <!-- BRANDING: card grid -->
+    <section class="cards" id="cards" aria-label="Branding projects">
+      <div class="cards-grid" id="cards-grid"></div>
+    </section>
+
+    <!-- WORK: pinned horizontal (hidden in this preview) -->
     <section class="work" id="work">
       <div class="work-sticky">
         <div class="work-head">

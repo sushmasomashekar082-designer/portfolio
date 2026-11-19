@@ -28,8 +28,8 @@
   </div>
 
   <header class="nav">
-    <a href="#cosmos" class="logo cat-home" aria-label="Back to the tree"><svg viewBox="0 0 40 40" aria-hidden="true"><path d="M8 34 C8 22 12 16 12 9 L16 15 C18 14.4 22 14.4 24 15 L28 9 C28 16 32 22 32 34 Z" fill="currentColor"/></svg><span>Sushma<i>S.</i></span></a>
-    <span class="here" id="here">The tree</span>
+    <a href="#cosmos" class="logo cat-home" aria-label="Back to the galaxy"><svg viewBox="0 0 40 40" aria-hidden="true"><path d="M20 4 L23.5 15.5 L36 16 L26 23.5 L29.5 36 L20 28.5 L10.5 36 L14 23.5 L4 16 L16.5 15.5 Z" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/></svg><span>Sushma<i>S.</i></span></a>
+    <span class="here" id="here">The galaxy</span>
     <nav>
       <a href="#growth" data-sec="growth">Growth</a>
       <a href="#branding" data-sec="branding">Branding</a>
@@ -40,7 +40,7 @@
     </nav>
   </header>
   <nav class="rail" id="rail" aria-label="Sections">
-    <a href="#cosmos" data-sec="cosmos"><span>The tree</span></a>
+    <a href="#cosmos" data-sec="cosmos"><span>The galaxy</span></a>
     <a href="#growth" data-sec="growth"><span>Growth world</span></a>
     <a href="#branding" data-sec="branding"><span>Branding world</span></a>
     <a href="#wall" data-sec="wall"><span>The wall</span></a>
@@ -52,58 +52,30 @@
     <section class="cosmos" id="cosmos">
       <div class="cosmos-sticky">
         <canvas id="galaxy" aria-hidden="true"></canvas>
-        <div class="perch" id="perch" aria-hidden="true">
-          <svg viewBox="0 0 600 420">
-            <defs>
-              <linearGradient id="branchG" x1="0" x2="1"><stop offset="0" stop-color="#0b1235"/><stop offset="1" stop-color="#18224f"/></linearGradient>
-            <radialGradient id="moonG"><stop offset="0" stop-color="#fdf6e3"/><stop offset=".55" stop-color="#e9e4d4"/><stop offset=".72" stop-color="#cfd6ea" stop-opacity=".35"/><stop offset="1" stop-color="#cfd6ea" stop-opacity="0"/></radialGradient>
-            </defs>
-            <circle class="moon-bg" cx="262" cy="170" r="150" fill="url(#moonG)"/>
-            <g class="leaves">
-              <ellipse cx="40" cy="250" rx="70" ry="40"/><ellipse cx="110" cy="232" rx="48" ry="26"/><ellipse cx="20" cy="300" rx="60" ry="34"/>
-              <ellipse cx="420" cy="318" rx="44" ry="18"/><ellipse cx="470" cy="300" rx="30" ry="14"/>
-            </g>
-            <path class="branch" d="M-20 330 C120 300 230 292 330 300 C410 306 470 300 540 270 L548 282 C480 316 420 322 330 318 C230 312 120 322 -20 360 Z"/>
-            <path class="branch" d="M300 304 C330 330 360 352 400 360 L398 368 C352 362 322 344 292 316 Z"/>
-            <g class="cat">
-              <path class="tail" d="M262 300 C300 312 318 350 290 372 C276 382 262 376 266 366 C286 352 288 326 256 312 Z"/>
-              <path class="body" d="M188 302 C176 252 196 208 236 198 C268 192 286 222 284 258 C282 282 276 296 270 304 Z"/>
-              <g class="head-g">
-                <path class="head" d="M204 196 C196 166 210 140 236 136 L240 112 L254 132 C262 132 268 134 274 138 L288 118 L290 146 C302 160 300 186 284 198 C266 212 220 214 204 196 Z"/>
-                <g class="bino" id="bino">
-                  <rect x="268" y="150" width="44" height="18" rx="9"/><rect x="268" y="172" width="44" height="18" rx="9"/>
-                  <rect x="306" y="146" width="14" height="26" rx="5" class="lens"/><rect x="306" y="168" width="14" height="26" rx="5" class="lens"/>
-                  <path class="paw" d="M262 196 C270 186 282 186 288 194 C286 204 272 208 262 204 Z"/>
-                </g>
-              </g>
-            </g>
-          </svg>
-        </div>
-        <svg class="scope" id="scope" aria-hidden="true">
-          <defs><mask id="scopeM"><rect width="100%" height="100%" fill="#fff"/><circle id="sc1" fill="#000"/><circle id="sc2" fill="#000"/></mask></defs>
-          <rect width="100%" height="100%" fill="#03051a" mask="url(#scopeM)"/>
-        </svg>
+        
         <div class="cosmos-intro">
           <p class="tag">Sushma Somashekar · Designer, brand storyteller, growth strategist</p>
           <h1 class="hero-title">
             <span class="line"><span>Every star is a story</span></span>
             <span class="line"><span><em>I've built.</em></span></span>
           </h1>
-          <p class="cosmos-hint">Scroll to look through her binoculars <span>↓</span></p>
+          <p class="cosmos-hint">Scroll to fly into my galaxy <span>↓</span></p>
         </div>
-        <div class="worlds" id="worlds" role="tablist" aria-label="Choose a world">
-          <button role="tab" data-w="growth" aria-selected="true">World 01 · Growth strategist</button>
-          <button role="tab" data-w="brand" aria-selected="false">World 02 · Branding &amp; social</button>
+        <div class="legend" id="legend" aria-label="Highlight a world">
+          <button data-w="growth"><i></i>Growth strategist</button>
+          <button data-w="brand"><i></i>Branding &amp; social</button>
         </div>
         <div class="system" id="system">
           <svg class="orbits" id="orbits" aria-hidden="true"></svg>
           <button class="sun" id="sun" aria-label="About me: open my journey"><span>S</span></button>
           <div id="planets"></div>
         </div>
-        <p class="system-caption" id="system-caption"><b>Hover an object</b> to see the brand. Click to open it.</p>
+        <p class="system-caption" id="system-caption"><b>Tap a star</b> to open a project. Green rings are growth stories, lavender rings are brand stories.</p>
         
       </div>
     </section>
+
+    <p class="nudge">Results first. Scroll to see what my work changed <span>↓</span></p>
 
     <!-- MARQUEE -->
     <div class="marquee" aria-hidden="true">
@@ -321,6 +293,8 @@
     </section>
 
 
+    <p class="nudge">Next: growing a brand across an ocean <span>↓</span></p>
+
     <!-- NEXA: growth -->
     <section class="nexa-f" id="nexa-f">
       <div class="nexa-text">
@@ -341,8 +315,10 @@
     <header class="gate" id="branding">
       <p class="tag">World 02</p>
       <h2>Branding &amp; <em>social media.</em></h2>
-      <p>Colour, style and a little subtle chaos. Eleven brands, from a clothing label I co-founded to wedding mood boards and books.</p>
+      <p>Colour, style and a little subtle chaos. Nine brands, from a clothing label I co-founded to wedding mood boards and books.</p>
     </header>
+
+    <p class="nudge">Keep scrolling to slide through the brands. Click any image to open it, and look for the gold coin <span>→</span></p>
 
     <!-- WORK: pinned horizontal -->
     <section class="work" id="work">
@@ -354,6 +330,8 @@
         <div class="work-track" id="work-track"><!-- panels by js --></div>
       </div>
     </section>
+
+    <p class="nudge">Short on time? <button class="nudge-btn" data-quick>Open Quick view</button> or keep scrolling through the wall <span>↓</span></p>
 
     <!-- WALL -->
     <section class="wall" id="wall">
@@ -378,6 +356,8 @@
         <!-- quotes by js -->
       </div>
     </section>
+
+    <p class="nudge">Liked a story? Let us write the next one together <span>↓</span></p>
 
     <!-- CONTACT -->
     <section class="contact" id="contact">

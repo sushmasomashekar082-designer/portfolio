@@ -2,7 +2,7 @@
    To add a video to a project, add to its media list:
    { type: 'video', src: '../assets/video/your-file.mp4', poster: '../assets/img/your-poster.webp' }
    To use your own music, put an mp3 at assets/audio/track.mp3 and set MUSIC_FILE below. */
-const MUSIC_FILE = null; // e.g. '../assets/audio/track.mp3'
+const MUSIC_FILE = '../assets/audio/741hz.mp3';
 
 (() => {
   const RM = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -108,26 +108,27 @@ const MUSIC_FILE = null; // e.g. '../assets/audio/track.mp3'
       link: ['darena.health', 'https://darena.health'],
       media: [{ type: 'video', src: '../assets/video/darena-pages.mp4', poster: '../assets/img/darena-pages-poster.webp', wide: true }, { type: 'video', src: '../assets/video/darena-mips10.mp4', poster: '../assets/img/darena-mips10-poster.webp', wide: true }, { src: 'darena-web.webp', wide: true }, { src: 'darena-blog.webp' }, { src: 'darena-blog-2.webp' }, { src: 'darena-blog-3.webp' }] }
   ];
+  for (let k = work.length - 1; k >= 0; k--) if (['ckc', 'soundofc'].includes(work[k].id)) work.splice(k, 1);
+  const BLURRY = ['whims-1.webp', 'whims-2.webp', 'whims-3.webp', 'tasteable-1.webp', 'tasteable-2.webp', 'tasteable-3.webp', 'kdp-8.webp', 'darena-blog.webp', 'darena-blog-2.webp', 'darena-blog-3.webp', 'cyub-feed.webp'];
+  work.forEach(w => { w.media = w.media.filter(m => !BLURRY.includes(m.src)); });
   const byId = Object.fromEntries(work.map((w, i) => [w.id, i]));
   const GROWTH = ['darena', 'nexa'];
   const OBJ = { darena: ['butterfly', '#ff8a5b', '#ffd36e'], nexa: ['globe', '#b49bff', '#5a37c9'], cyub: ['button', '#ff7a7a', '#b8324a'], fanzart: ['fan', '#ffb547', '#c4581f'], whims: ['hanger', '#ff6b6b', '#e4e9f3'], tasteables: ['cupcake', '#ff9ad5', '#ffd9a0'], holidaytribe: ['suitcase', '#4fd1c5', '#1f7a8c'], ckc: ['plane', '#e4e9f3', '#8fa3d9'], aira: ['flower', '#ff9ad5', '#ffe27a'], soundofc: ['note', '#e3b78a', '#8a5a3b'], kdp: ['book', '#7ec8ff', '#2c5fa8'], credtech: ['mic', '#c3cde6', '#56607a'], nektar: ['bee', '#ffcf4a', '#3a2a10'] };
-  function icon(t, a, b) {
+  function icon(t) {
     const s = {
-      butterfly: `<ellipse cx="15" cy="17" rx="11" ry="12" fill="${a}"/><ellipse cx="33" cy="17" rx="11" ry="12" fill="${a}"/><ellipse cx="16" cy="33" rx="9" ry="9" fill="${b}"/><ellipse cx="32" cy="33" rx="9" ry="9" fill="${b}"/><rect x="22.5" y="10" width="3" height="30" rx="1.5" fill="#2a2440"/>`,
-      globe: `<circle cx="24" cy="24" r="19" fill="${b}"/><circle cx="24" cy="24" r="19" fill="none" stroke="${a}" stroke-width="2"/><ellipse cx="24" cy="24" rx="8" ry="19" fill="none" stroke="${a}" stroke-width="1.6"/><path d="M5 24h38M8 14h32M8 34h32" stroke="${a}" stroke-width="1.4"/>`,
-      button: `<circle cx="24" cy="24" r="19" fill="${a}"/><circle cx="24" cy="24" r="14" fill="none" stroke="${b}" stroke-width="2"/><circle cx="19" cy="19" r="2.6" fill="${b}"/><circle cx="29" cy="19" r="2.6" fill="${b}"/><circle cx="19" cy="29" r="2.6" fill="${b}"/><circle cx="29" cy="29" r="2.6" fill="${b}"/>`,
-      fan: `<g class="spin"><path d="M24 24 C20 12 26 3 32 6 C36 9 32 18 24 24Z" fill="${a}"/><path d="M24 24 C36 24 42 32 37 37 C33 40 26 34 24 24Z" fill="${a}"/><path d="M24 24 C17 34 7 34 7 28 C8 23 17 22 24 24Z" fill="${a}"/></g><circle cx="24" cy="24" r="4.5" fill="${b}"/>`,
-      hanger: `<path d="M24 8 a4 4 0 1 1 4 4 c-2 0-4 1-4 4 v2" fill="none" stroke="${b}" stroke-width="2.4" stroke-linecap="round"/><path d="M24 18 L5 34 h38 Z" fill="none" stroke="${a}" stroke-width="3" stroke-linejoin="round"/>`,
-      cupcake: `<path d="M12 26 h24 l-4 16 h-16 Z" fill="${b}"/><path d="M15 28v12M21 28v13M27 28v13M33 28v12" stroke="#00000022" stroke-width="1.4"/><path d="M10 27 C8 18 16 12 24 12 C32 12 40 18 38 27 Z" fill="${a}"/><circle cx="24" cy="10" r="4" fill="#ff4d6d"/>`,
-      suitcase: `<rect x="16" y="9" width="16" height="8" rx="3" fill="none" stroke="${b}" stroke-width="2.6"/><rect x="7" y="15" width="34" height="25" rx="5" fill="${a}"/><path d="M17 15v25M31 15v25" stroke="${b}" stroke-width="2"/><circle cx="35" cy="22" r="3" fill="#ffd36e"/>`,
-      plane: `<path d="M5 25 L43 8 L33 41 L24 30 Z" fill="${a}"/><path d="M24 30 L43 8 L20 27 Z" fill="${b}"/><path d="M20 27 L22 38 L24 30 Z" fill="${b}"/>`,
-      flower: `<g fill="${a}"><ellipse cx="24" cy="12" rx="7" ry="10"/><ellipse cx="24" cy="36" rx="7" ry="10"/><ellipse cx="12" cy="24" rx="10" ry="7"/><ellipse cx="36" cy="24" rx="10" ry="7"/></g><g fill="${a}" opacity=".7" transform="rotate(45 24 24)"><ellipse cx="24" cy="12" rx="6" ry="9"/><ellipse cx="24" cy="36" rx="6" ry="9"/><ellipse cx="12" cy="24" rx="9" ry="6"/><ellipse cx="36" cy="24" rx="9" ry="6"/></g><circle cx="24" cy="24" r="6" fill="${b}"/>`,
-      note: `<path d="M19 34 V10 l18 -4 v24" fill="none" stroke="${a}" stroke-width="3.2" stroke-linejoin="round"/><ellipse cx="14" cy="35" rx="6.5" ry="5" fill="${a}"/><ellipse cx="32" cy="31" rx="6.5" ry="5" fill="${a}"/><path d="M19 15 l18 -4" stroke="${b}" stroke-width="3"/>`,
-      book: `<path d="M24 12 C18 8 10 8 5 10 V38 C10 36 18 36 24 40 Z" fill="${a}"/><path d="M24 12 C30 8 38 8 43 10 V38 C38 36 30 36 24 40 Z" fill="${b}"/><path d="M9 16c4-1 8-1 11 1M9 21c4-1 8-1 11 1M28 17c3-2 7-2 11-1" stroke="#ffffff66" stroke-width="1.4" fill="none"/>`,
-      mic: `<rect x="17" y="5" width="14" height="24" rx="7" fill="${a}"/><path d="M12 22 a12 12 0 0 0 24 0" fill="none" stroke="${b}" stroke-width="2.6"/><path d="M24 34v7M17 42h14" stroke="${b}" stroke-width="2.6" stroke-linecap="round"/><path d="M19 12h10M19 17h10" stroke="${b}" stroke-width="1.4"/>`,
-      bee: `<ellipse cx="17" cy="15" rx="8" ry="6" fill="#ffffffcc" transform="rotate(-25 17 15)"/><ellipse cx="29" cy="14" rx="8" ry="6" fill="#ffffffaa" transform="rotate(25 29 14)"/><ellipse cx="24" cy="28" rx="15" ry="11" fill="${a}"/><path d="M18 18v20M26 17v22" stroke="${b}" stroke-width="3.4"/><circle cx="36" cy="26" r="1.8" fill="${b}"/>`
+      butterfly: '<path d="M24 14 v22"/><path d="M24 18 C19 8 8 7 7 13 C6 19 13 23 23 23"/><path d="M24 18 C29 8 40 7 41 13 C42 19 35 23 25 23"/><path d="M23 25 C15 26 11 31 14 35 C17 38 22 33 24 28"/><path d="M25 25 C33 26 37 31 34 35 C31 38 26 33 24 28"/><path d="M24 14 l-3 -5 M24 14 l3 -5"/>',
+      globe: '<circle cx="24" cy="24" r="16"/><ellipse cx="24" cy="24" rx="7" ry="16"/><path d="M8 24 h32 M10.5 16 h27 M10.5 32 h27"/><path d="M38 8 l1 2.6 2.6 1 -2.6 1 -1 2.6 -1 -2.6 -2.6 -1 2.6 -1z"/>',
+      button: '<circle cx="24" cy="24" r="15"/><circle cx="24" cy="24" r="11" stroke-dasharray="2 3"/><circle cx="20" cy="20" r="1.8"/><circle cx="28" cy="20" r="1.8"/><circle cx="20" cy="28" r="1.8"/><circle cx="28" cy="28" r="1.8"/><path d="M20 20 L28 28 M28 20 L20 28" stroke-width="1"/>',
+      fan: '<circle cx="24" cy="24" r="3"/><path d="M26 21.5 C27 13 34 9 37 12.5 C39.5 15.5 33 21 26.5 23"/><path d="M25 27 C31 32 32 40 27.5 41 C23.5 42 21.5 34 23 27.5"/><path d="M21 23.5 C13 22 8 16 11 13 C14 10 20 16 21.5 21.5"/><circle cx="24" cy="24" r="19" stroke-dasharray="1 5" stroke-width="1.1"/>',
+      hanger: '<path d="M24 14 v-1.5 a3.5 3.5 0 1 1 3.5 -3.5"/><path d="M24 14 L7 30 Q5 33 9 33 H39 Q43 33 41 30 Z"/><path d="M12 33 v3 M36 33 v3" stroke-width="1.2"/>',
+      cupcake: '<path d="M13 26 L16 40 H32 L35 26"/><path d="M19 26 L20.5 40 M24 26 V40 M29 26 L27.5 40" stroke-width="1.2"/><path d="M11 26 C9 21 13 17 17 18 C17 13 22 11 24 13 C26 11 31 13 31 18 C35 17 39 21 37 26 Z"/><circle cx="24" cy="9.5" r="2.4"/>',
+      suitcase: '<rect x="8" y="16" width="32" height="22" rx="4"/><path d="M18 16 v-4 a2 2 0 0 1 2 -2 h8 a2 2 0 0 1 2 2 v4"/><path d="M8 25 h32" stroke-width="1.2"/><path d="M15 38 v3 M33 38 v3"/><circle cx="33" cy="31" r="2.5" stroke-width="1.2"/>',
+      flower: '<circle cx="24" cy="20" r="3.5"/><path d="M24 16.5 C21 9 27 9 24 16.5 Z"/><path d="M24 16.5 C20 6 28 6 24 16.5"/><path d="M27.5 20 C35 17 35 23 27.5 20"/><path d="M20.5 20 C13 17 13 23 20.5 20"/><path d="M26.5 22.5 C32 29 27 31 25 23.5"/><path d="M21.5 22.5 C16 29 21 31 23 23.5"/><path d="M24 23.5 C24 30 23 36 24 42"/><path d="M24 34 C28 32 31 33 32 30 C28 29 26 31 24 34"/>',
+      book: '<path d="M24 13 C19 9 12 9 7 11 V37 C12 35 19 35 24 39 Z"/><path d="M24 13 C29 9 36 9 41 11 V37 C36 35 29 35 24 39 Z"/><path d="M11 17 C14 16 17 16 20 17.5 M11 22 C14 21 17 21 20 22.5 M28 17.5 C31 16 34 16 37 17 M28 22.5 C31 21 34 21 37 22" stroke-width="1.1"/>',
+      mic: '<rect x="18" y="6" width="12" height="20" rx="6"/><path d="M13 21 a11 11 0 0 0 22 0"/><path d="M24 32 v7 M18 40 h12"/><path d="M18 13 h4 M18 18 h4" stroke-width="1.1"/>',
+      bee: '<ellipse cx="24" cy="28" rx="10" ry="8"/><path d="M20 20.5 v15 M26 20.3 v15.4" stroke-width="1.3"/><path d="M21 21 C14 10 7 15 12 20 C14 22 18 21.5 21 21"/><path d="M27 21 C34 10 41 15 36 20 C34 22 30 21.5 27 21"/><path d="M14 28 h-4 M38 28 l3 0"/><path d="M41 8 l.8 2 2 .8 -2 .8 -.8 2 -.8 -2 -2 -.8 2 -.8z"/>'
     };
-    return `<svg viewBox="0 0 48 48" aria-hidden="true">${s[t]}</svg>`;
+    return `<svg viewBox="0 0 48 48" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">${s[t]}</svg>`;
   }
   // Bonus coin notes. DRAFTS for Sushma to edit: why I chose it, what I learnt, a fun fact.
   const notes = {
@@ -138,9 +139,7 @@ const MUSIC_FILE = null; // e.g. '../assets/audio/track.mp3'
     whims: ['Slow fashion and capsule wardrobes. A cause I already believed in.', 'For a young, conscious audience, say less and mean more.', 'I wrote the launch roadmap before the brand had even launched.'],
     tasteables: ['An Australian home chef app. Food, stories and a new market.', 'Every dish should feel like an invitation, not a menu.', 'Writing about food on an empty stomach is a real job hazard.'],
     holidaytribe: ['Travel content is pure feeling. I wanted to capture that.', 'Show the moment, not the itinerary.', 'Bali, in 24 seconds. Proof you can travel through an editing timeline.'],
-    ckc: ['A brand before launch is a blank canvas. My favourite kind.', 'A good roadmap is a story with dates.', 'The plan came before the noise.'],
     aira: ['Weddings are colour, style and emotion in one day. I did this on weekends, for joy.', 'A mood board is a promise of how a day will feel.', '2K+ new organic followers in 3 months.'],
-    soundofc: ['A Canadian brand that trusted me with creatives, decks and journals.', 'Not every good piece of work needs an audience.', 'The brochure is the only piece I can show you. The rest is a secret.'],
     kdp: ['After a layoff, I wanted to make something fully mine.', 'When one door closes, design a new cover.', 'I am a published author of journals and colouring books.'],
     credtech: ['One big event, every touchpoint, two months.', 'Print has no undo button. Check the file five times.', 'Pune Chapter 2025 ran on my designs, from invites to the big screen.'],
     nektar: ['A home stay brand that needed a face from scratch.', 'A brand kit is a promise of consistency.', 'Logo, flyer and reels: a whole brand that hums like a bee.']
@@ -413,7 +412,7 @@ const MUSIC_FILE = null; // e.g. '../assets/audio/track.mp3'
   paintCoins();
 
   /* ================= WHERE AM I ================= */
-  const SECS = [['cosmos', 'The tree'], ['growth', 'Growth world'], ['branding', 'Branding world'], ['wall', 'The wall'], ['contact', 'Say hello']].map(([id, l]) => [$('#' + id), id, l]);
+  const SECS = [['cosmos', 'The galaxy'], ['growth', 'Growth world'], ['branding', 'Branding world'], ['wall', 'The wall'], ['contact', 'Say hello']].map(([id, l]) => [$('#' + id), id, l]);
   let curSec = '';
   function whereAmI() {
     const y = innerHeight * .45; let pick = SECS[0];
@@ -520,18 +519,17 @@ const MUSIC_FILE = null; // e.g. '../assets/audio/track.mp3'
 
   /* ================= COSMOS ================= */
   const gal = $('#galaxy'), gx = gal.getContext('2d'), cosSec = $('#cosmos'), intro = $('.cosmos-intro'), sys = $('#system'), cap = $('#system-caption');
-  const orbitsSvg = $('#orbits'), planetsEl = $('#planets'), perch = $('#perch'), bino = $('#bino'), scope = $('#scope'), sc1 = $('#sc1'), sc2 = $('#sc2'), worldsEl = $('#worlds');
+  const orbitsSvg = $('#orbits'), planetsEl = $('#planets'), legendEl = $('#legend');
   const clamp01 = v => Math.min(Math.max(v, 0), 1);
   const smooth = (a, b, v) => { const t = clamp01((v - a) / (b - a)); return t * t * (3 - 2 * t); };
-  let GW, GH, gstars = [], ORB = [], K = .38, pScale = 1, hoverPause = false, WORLD = 'growth';
-  const ringsFor = w => w === 'growth' ? [1, 3] : [0, 1, 2, 3];
-  function drawOrbits() { orbitsSvg.innerHTML = ringsFor(WORLD).map(k => `<ellipse cx="${GW / 2}" cy="${GH / 2}" rx="${ORB[k]}" ry="${ORB[k] * K}"/>`).join(''); }
+  let GW, GH, gstars = [], ORB = [], K = .38, pScale = 1, hoverPause = false;
+  function drawOrbits() { orbitsSvg.innerHTML = ORB.map(r => `<ellipse cx="${GW / 2}" cy="${GH / 2}" rx="${r}" ry="${r * K}"/>`).join(''); }
   const gauss = () => (Math.random() + Math.random() + Math.random() - 1.5) / 1.5;
   function gsize() {
     const d = Math.min(devicePixelRatio || 1, 2); GW = gal.clientWidth; GH = gal.clientHeight;
     gal.width = GW * d; gal.height = GH * d; gx.setTransform(d, 0, 0, d, 0, 0);
     const N = GW < 760 ? 4200 : 9000; gstars = [];
-    const cols = ['255,236,214', '255,224,190', '214,200,255', '190,205,255', '150,185,255', '255,160,215', '255,255,255'];
+    const cols = ['255,226,250', '244,206,255', '150,140,255', '112,124,255', '84,104,255', '186,150,255', '236,240,255'];
     for (let i = 0; i < N; i++) {
       const arm = i % 3, r = Math.pow(Math.random(), 1.5) * 1.05;
       const ang = r * 5.2 + arm * (Math.PI * 2 / 3) + gauss() * (.45 - r * .2);
@@ -550,30 +548,32 @@ const MUSIC_FILE = null; // e.g. '../assets/audio/track.mp3'
 
   // brand objects on orbits, in two worlds
   const brandIds = work.filter(w => !GROWTH.includes(w.id)).map(w => w.id);
-  const layout = [{ id: 'darena', world: 'growth', ring: 1, a: .8 }, { id: 'nexa', world: 'growth', ring: 3, a: 3.9 }];
-  let q = 0; [2, 3, 3, 3].forEach((n, r) => { for (let s = 0; s < n; s++) { const id = brandIds[q++]; if (id) layout.push({ id, world: 'brand', ring: r, a: s * Math.PI * 2 / n + r * .9 }); } });
+  const layout = [{ id: 'darena', world: 'growth', ring: 1, a: .7 }, { id: 'nexa', world: 'growth', ring: 2, a: 3.6 }];
+  const slots = [[0, 2], [1, 2], [2, 2], [3, 3]]; let q = 0;
+  slots.forEach(([r, n]) => { for (let s = 0; s < n; s++) { const id = brandIds[q++]; if (id) layout.push({ id, world: 'brand', ring: r, a: s * Math.PI * 2 / n + r * 1.3 + (r === 1 || r === 2 ? 1.6 : 0) }); } });
   const OB = layout.map(o => {
     const w = work[byId[o.id]], [type, c1, c2] = OBJ[o.id];
-    const b = document.createElement('button'); b.className = 'obj obj-' + type; b.innerHTML = icon(type, c1, c2);
+    const b = document.createElement('button'); b.className = 'obj obj-' + type + ' w-' + o.world; b.innerHTML = icon(type) + `<span class="obj-ring"></span>`;
     b.setAttribute('aria-label', 'Open ' + (w.full || w.name + ' ' + w.em));
-    const lab = document.createElement('div'); lab.className = 'p-label'; lab.innerHTML = `${w.full || w.name + ' ' + w.em}<small>${w.chips[0]}</small>`;
+    const lab = document.createElement('div'); lab.className = 'p-label w-' + o.world; lab.innerHTML = `${w.full || w.name + ' ' + w.em}<small>${w.chips[0]}</small>`;
     planetsEl.append(b, lab);
     const show = v => { lab.classList.toggle('show', v); hoverPause = v; };
     b.addEventListener('mouseenter', () => show(true)); b.addEventListener('mouseleave', () => show(false));
     b.addEventListener('focus', () => show(true)); b.addEventListener('blur', () => show(false));
     b.addEventListener('click', e => openCase(byId[o.id], e));
-    return { ...o, el: b, lab, v: .00009 / Math.sqrt(o.ring + 1), size: o.world === 'growth' ? 66 : 48 };
+    return { ...o, el: b, lab, v: .00009 / Math.sqrt(o.ring + 1), size: o.world === 'growth' ? 74 : 60 };
   });
+  let focusW = '';
   function setWorld(w) {
-    WORLD = w; worldsEl.querySelectorAll('button').forEach(b => b.setAttribute('aria-selected', b.dataset.w === w));
-    OB.forEach(o => { const off = o.world !== w; o.el.classList.toggle('off', off); o.el.tabIndex = off ? -1 : 0; if (off) o.lab.classList.remove('show'); });
-    sys.dataset.world = w; drawOrbits();
+    focusW = focusW === w ? '' : w;
+    legendEl.querySelectorAll('button').forEach(b => b.classList.toggle('on', b.dataset.w === focusW));
+    OB.forEach(o => o.el.classList.toggle('dim', !!focusW && o.world !== focusW));
   }
-  worldsEl.addEventListener('click', e => { const b = e.target.closest('button'); if (b) setWorld(b.dataset.w); });
+  legendEl.addEventListener('click', e => { const b = e.target.closest('button'); if (b) setWorld(b.dataset.w); });
   function closeCard() {}
   $('#sun').addEventListener('click', () => openJourney());
-  if (!FINE) cap.innerHTML = '<b>Tap an object</b> to open the brand.';
-  gsize(); setWorld('growth'); addEventListener('resize', gsize);
+  if (!FINE) cap.innerHTML = '<b>Tap a star</b> to open a project. Green is growth, lavender is branding.';
+  gsize(); addEventListener('resize', gsize);
 
   let lastT = performance.now();
   function cosmos(t) {
@@ -589,7 +589,7 @@ const MUSIC_FILE = null; // e.g. '../assets/audio/track.mp3'
         const R = Math.max(GW * .62, GH * .9) * zoom, rot = RM ? 0 : t * .000025, cx = GW / 2, cy = GH / 2;
         const tilt = -.35, ct = Math.cos(tilt), st = Math.sin(tilt), cr = Math.cos(rot), sr = Math.sin(rot);
         const core = gx.createRadialGradient(cx, cy, 0, cx, cy, Math.min(R * .35, Math.max(GW, GH)));
-        const cf = ga / Math.sqrt(zoom); core.addColorStop(0, `rgba(255,236,214,${.6 * cf})`); core.addColorStop(.3, `rgba(190,170,255,${.2 * cf})`); core.addColorStop(1, 'rgba(0,0,0,0)');
+        const cf = ga / Math.sqrt(zoom); core.addColorStop(0, `rgba(255,222,252,${.7 * cf})`); core.addColorStop(.3, `rgba(110,100,255,${.26 * cf})`); core.addColorStop(1, 'rgba(0,0,0,0)');
         gx.fillStyle = core; gx.fillRect(0, 0, GW, GH);
         for (const s of gstars) {
           let x = s.x * cr - s.y * sr, y = (s.x * sr + s.y * cr) * .42;
@@ -600,26 +600,14 @@ const MUSIC_FILE = null; // e.g. '../assets/audio/track.mp3'
         }
       }
       // intro
-      const io_ = 1 - smooth(.09, .19, p);
-      intro.style.opacity = io_; intro.style.transform = `translateY(${-p * 60}px)`; intro.style.visibility = io_ < .01 ? 'hidden' : '';
-      // the cat lifts her binoculars, then we look through them
-      const lift = smooth(.04, .16, p);
-      bino.style.transform = `rotate(${-24 * lift}deg)`;
-      perch.style.opacity = 1 - smooth(.2, .3, p); perch.style.transform = `translateY(${smooth(.16, .32, p) * 30}%)`;
-      perch.style.visibility = p > .31 ? 'hidden' : '';
-      const so = smooth(.17, .23, p) * (1 - smooth(.5, .58, p));
-      scope.style.opacity = so; scope.style.visibility = so < .01 ? 'hidden' : '';
-      if (so > 0) {
-        const base = Math.min(GW, GH), r = base * (.2 + Math.pow(smooth(.22, .56, p), 2) * 1.5), off = r * .62;
-        sc1.setAttribute('cx', GW / 2 - off); sc2.setAttribute('cx', GW / 2 + off); sc1.setAttribute('cy', GH / 2); sc2.setAttribute('cy', GH / 2);
-        sc1.setAttribute('r', r); sc2.setAttribute('r', r);
-      }
+      const io_ = 1 - smooth(.04, .24, p);
+      intro.style.opacity = io_; intro.style.transform = `scale(${1 + p * 1.1})`; intro.style.visibility = io_ < .01 ? 'hidden' : '';
       // system
       const sv = smooth(.5, .86, p);
       sys.style.opacity = sv; sys.style.transform = `scale(${.25 + .75 * sv}) rotate(${(1 - sv) * -25}deg)`;
       sys.classList.toggle('live', sv > .9);
       cap.style.opacity = smooth(.86, .95, p);
-      worldsEl.style.opacity = smooth(.8, .92, p); worldsEl.style.pointerEvents = sv > .9 ? '' : 'none';
+      legendEl.style.opacity = smooth(.8, .92, p); legendEl.style.pointerEvents = sv > .9 ? '' : 'none';
       if (sv > 0) {
         const cx = GW / 2, cy = GH / 2;
         OB.forEach(o => {
@@ -643,7 +631,7 @@ const MUSIC_FILE = null; // e.g. '../assets/audio/track.mp3'
     ['Credtech', 'Sales & Marketing Manager · Bangalore', ['Event design for Pune Chapter 2025: big screen, print and decor.'], 'Mar to Apr 2025'],
     ['Amazon KDP', 'Author & designer · Self-published', ['Books, journals and colouring books.'], '2025'],
     ['Nektar Homes', 'Brand identity · Freelance', ['Brand kit, logo, flyer and reels.'], '2025'],
-    ['Nexa Avenue & Sound of C', 'Digital Marketing Manager · Toronto, Canada', ['Increased Instagram engagement, reaching 5,600 organic users with content such as 184 Reels and 92 posts.', 'Boosted LinkedIn reach, achieving 21,404 impressions, 990 reactions, and a 10.98% engagement rate.', 'Executed high-impact content strategies, driving leadership recognition, optimized digital presence using analytics-driven insights.'], 'Nov 2023 to Mar 2025'],
+    ['Nexa Avenue', 'Digital Marketing Manager · Toronto, Canada', ['Increased Instagram engagement, reaching 5,600 organic users with content such as 184 Reels and 92 posts.', 'Boosted LinkedIn reach, achieving 21,404 impressions, 990 reactions, and a 10.98% engagement rate.', 'Executed high-impact content strategies, driving leadership recognition, optimized digital presence using analytics-driven insights.'], 'Nov 2023 to Mar 2025'],
     ['Creating Conversion', 'Social Media Manager & Content Writer · Bangalore, remote', ['Created high-performing Reels for an international designer fan brand, achieving 70K+ collective views.', 'Managed and strategized for 6+ eCommerce & luxury brands, developing roadmaps, editorial calendars, and influencer marketing campaigns.', 'Executed creative marketing initiatives, enhancing brand storytelling and audience engagement.'], 'Feb to Oct 2023'],
     ['Aira Wedding Planners', 'Social Media Manager & Design Assistant · Bangalore, freelance', ['Increased organic engagement by 6.5%, driving community growth of 2K+ organic followers in 3 months.', 'Developed digital storytelling strategies, enhancing brand perception and audience retention.', 'Created mood boards and visual themes for weddings, ensuring cohesive and aesthetic event branding.'], 'Dec 2022 to Mar 2023'],
     ['C CYUB Clothing', 'Co-Founder · Bangalore', ['Managed branding initiatives and digital campaigns to boost market reach.', 'Developed effective social media promotions and influencer marketing strategies.', 'Website optimization and product marketing for improved online sales.'], 'Jan 2022 to Jan 2023'],
@@ -653,12 +641,12 @@ const MUSIC_FILE = null; // e.g. '../assets/audio/track.mp3'
   const quick = $('#quick'), qBtn = $('#quick-btn');
   function openQuick() { quick.classList.add('open'); scrim.classList.add('on'); quick.setAttribute('aria-hidden', 'false'); qBtn.setAttribute('aria-expanded', 'true'); document.body.classList.add('lock'); setTimeout(() => $('.quick-close').focus(), 300); }
   function closeQuick() { if (!quick.classList.contains('open')) return; quick.classList.remove('open'); scrim.classList.remove('on'); quick.setAttribute('aria-hidden', 'true'); qBtn.setAttribute('aria-expanded', 'false'); document.body.classList.remove('lock'); }
-  qBtn.addEventListener('click', openQuick); $('.quick-close').addEventListener('click', closeQuick); scrim.addEventListener('click', closeQuick);
+  qBtn.addEventListener('click', openQuick); $$('[data-quick]').forEach(b => b.addEventListener('click', openQuick)); $('.quick-close').addEventListener('click', closeQuick); scrim.addEventListener('click', closeQuick);
   document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeQuick(); closeCard(); } });
 
   /* ================= LOGOS ================= */
-  const logos = ['cyub', 'fanzart', 'whims', 'tasteable', 'holidaytribe', 'aira', 'nexa', 'soundofc', 'gayle-charach', 'hd-impact'];
-  const lHTML = logos.map(l => `<img src="../assets/img/logos/${l}.webp" alt="${l.replace('-', ' ')} logo" class="${['cyub', 'tasteable', 'soundofc', 'aira'].includes(l) ? 'sq' : ''}">`).join('');
+  const logos = ['cyub', 'fanzart', 'whims', 'tasteable', 'holidaytribe', 'aira', 'nexa', 'gayle-charach', 'hd-impact'];
+  const lHTML = logos.map(l => `<img src="../assets/img/logos/${l}.webp" alt="${l.replace('-', ' ')} logo" class="${['cyub', 'tasteable', 'aira'].includes(l) ? 'sq' : ''}">`).join('');
   $('#logos-track').innerHTML = lHTML + lHTML;
 
   initMarquees();

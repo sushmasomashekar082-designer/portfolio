@@ -69,13 +69,13 @@ window.SITE = (() => {
       role: 'Social media creatives, presentations and journals. The tri-fold brochure is shown here; the rest is private.',
       win: '"I would definitely recommend Sushma for any visual or branding." Meryl Schroyen, Entrepreneur',
       media: [{ src: 'soundofc-1.webp', wide: true }, { src: 'soundofc-2.webp', wide: true }] },
-    { id: 'kdp', name: 'KDP', em: 'Books & journals', lay: 'a', chips: ['Self-published', 'Covers', 'Illustration'],
+    { id: 'kdp', name: 'KDP', em: 'Books & journals', lay: 'a', logo: 'kdp', chips: ['Self-published', 'Covers', 'Illustration'],
       line: 'A blank page, turned into books. Journals, colouring books and covers, published on Amazon.',
       about: 'My own studio of books, journals and colouring books on Amazon KDP.',
       role: 'Concept, covers, interiors, illustration and mockups.',
       win: 'A shelf of my own: adventure journals, mindset journals and colouring books for kids.',
       media: [{ src: 'kdp-5.webp', wide: true }, { src: 'kdp-1a.webp' }, { src: 'kdp-3a.webp' }, { src: 'kdp-2a.webp' }, { src: 'kdp-7.webp' }, { src: 'kdp-4.webp' }, { src: 'kdp-1b.webp', wide: true }, { src: 'kdp-2b.webp' }, { src: 'kdp-3.webp' }, { src: 'kdp-8.webp' }] },
-    { id: 'credtech', name: 'Credtech', em: 'Pune Chapter', lay: 'a', chips: ['Events', 'Print', 'Big screen'],
+    { id: 'credtech', name: 'Credtech', em: 'Pune Chapter', lay: 'a', logo: 'credtech', chips: ['Events', 'Print', 'Big screen'],
       line: 'One event, every touchpoint. From invites to the big screen, all in two months.',
       about: 'An edtech company in Bangalore. Pune Chapter 2025, on April 4, was one of its flagship events.',
       role: 'Big-screen editorials, speaker cards, invites, certificates, cue cards, wrappers, the floor plan and decor mood boards.',
@@ -87,13 +87,13 @@ window.SITE = (() => {
       role: 'Brand kit (logo, colours and fonts), a one-page flyer and reels.',
       win: 'A warm, memorable identity built around a playful bee and a gold-and-earth palette.',
       media: [{ src: 'nektar-kit-3.webp', wide: true }, { type: 'video', src: '../assets/video/nektar-reel.mp4', poster: '../assets/img/nektar-reel-poster.webp' }, { src: 'nektar-logo-3.webp' }, { src: 'nektar-kit-2.webp' }, { src: 'nektar-kit-4.webp', wide: true }, { src: 'nektar-kit-5.webp' }, { src: 'nektar-kit-6.webp' }, { src: 'nektar-flyer.webp' }, { type: 'video', src: '../assets/video/nektar-clip.mp4', poster: '../assets/img/nektar-clip-poster.webp' }, { src: 'nektar-kit-7.webp' }] },
-    { id: 'darena', name: 'Darena', em: 'Health', lay: 'a', chips: ['USA', 'Website revamp', 'Email'],
+    { id: 'darena', name: 'Darena', em: 'Health', lay: 'a', logo: 'darena', chips: ['USA', 'Website revamp', 'Email'],
       line: 'A full website revamp and newsletters people actually open. Health IT, made human.',
       about: 'A US health tech company focused on Health IT, MIPS compliance and simpler healthcare operations.',
       role: 'As Branding & Marketing Associate: redesigned and hand-coded the homepage and product pages, rebuilt the site on shared CSS and reusable HTML, refreshed the brand, and wrote blogs and newsletters for two audiences.',
       win: 'Homepage speed 59 → 91. 16K visitors, 46,083 emails and 64 inquiries in seven months. Full story in the Featured section.',
       link: ['darena.health', 'https://darena.health'],
-      media: [{ type: 'video', src: '../assets/video/darena-pages.mp4', poster: '../assets/img/darena-pages-poster.webp', wide: true }, { type: 'video', src: '../assets/video/darena-mips10.mp4', poster: '../assets/img/darena-mips10-poster.webp', wide: true }, { src: 'darena-web.webp', wide: true }, { src: 'darena-blog.webp' }, { src: 'darena-blog-2.webp' }, { src: 'darena-blog-3.webp' }] }
+      media: [{ type: 'video', src: '../assets/video/darena-pages.mp4', poster: '../assets/img/darena-pages-poster.webp', wide: true }, { type: 'video', src: '../assets/video/darena-mips10.mp4', poster: '../assets/img/darena-mips10-poster.webp', wide: true }, { src: 'darena-cover-1.webp' }, { src: 'darena-cover-2.webp' }, { src: 'darena-web.webp', wide: true }, { src: 'darena-cover-3.webp' }, { src: 'darena-cover-4.webp' }] }
   ];
   for (let k = work.length - 1; k >= 0; k--) if (['ckc', 'soundofc'].includes(work[k].id)) work.splice(k, 1);
   const BLURRY = ['whims-1.webp', 'whims-2.webp', 'whims-3.webp', 'tasteable-1.webp', 'tasteable-2.webp', 'tasteable-3.webp', 'kdp-8.webp', 'darena-blog.webp', 'darena-blog-2.webp', 'darena-blog-3.webp', 'cyub-feed.webp'];

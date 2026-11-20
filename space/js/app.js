@@ -28,7 +28,7 @@
     const ang = -0.38, cx = w / 2, cy = h / 2, ca = Math.cos(ang), sa = Math.sin(ang), L = Math.hypot(w, h);
     const along = (t, d) => [cx + ca * t - sa * d, cy + sa * t + ca * d];
     // nebula clouds along the band
-    const neb = [['rgba(120,80,200,', .16], ['rgba(70,90,170,', .09], ['rgba(240,130,180,', .09], ['rgba(150,90,220,', .12]];
+    const neb = [['rgba(120,80,200,', .16], ['rgba(70,90,170,', .09], ['rgba(240,190,140,', .07], ['rgba(150,90,220,', .12]];
     for (let i = 0; i < 26; i++) { const [x, y] = along((Math.random() - .5) * L * .9, gauss() * h * .07); const r = (.12 + Math.random() * .22) * Math.max(w, h); const [c, a] = neb[i % neb.length]; const gr = o.createRadialGradient(x, y, 0, x, y, r); gr.addColorStop(0, c + a + ')'); gr.addColorStop(1, c + '0)'); o.fillStyle = gr; o.fillRect(0, 0, w, h); }
     // glowing core
     for (let i = 0; i < 14; i++) { const [x, y] = along((Math.random() - .5) * L * .7, gauss() * h * .025); const r = (.05 + Math.random() * .1) * Math.max(w, h); const gr = o.createRadialGradient(x, y, 0, x, y, r); gr.addColorStop(0, 'rgba(255,236,240,.16)'); gr.addColorStop(1, 'rgba(255,236,240,0)'); o.fillStyle = gr; o.fillRect(0, 0, w, h); }
@@ -68,7 +68,7 @@
       mets = mets.filter(m => {
         const k = (t - m.t0) / 900; if (k > 1) return false;
         const hx = m.x + Math.cos(m.a) * 520 * k, hy = m.y + Math.sin(m.a) * 520 * k, tx = hx - Math.cos(m.a) * m.len, ty = hy - Math.sin(m.a) * m.len;
-        const gr = g.createLinearGradient(tx, ty, hx, hy); gr.addColorStop(0, 'rgba(255,230,240,0)'); gr.addColorStop(1, `rgba(255,240,246,${(.85 * Math.sin(k * Math.PI)).toFixed(2)})`);
+        const gr = g.createLinearGradient(tx, ty, hx, hy); gr.addColorStop(0, 'rgba(255,236,210,0)'); gr.addColorStop(1, `rgba(255,246,230,${(.85 * Math.sin(k * Math.PI)).toFixed(2)})`);
         g.strokeStyle = gr; g.lineWidth = 1.6; g.lineCap = 'round'; g.beginPath(); g.moveTo(tx, ty); g.lineTo(hx, hy); g.stroke(); return true;
       });
     }
@@ -76,6 +76,10 @@
   }
   buildGalaxy(); requestAnimationFrame(drawGalaxy);
   let rT; addEventListener('resize', () => { clearTimeout(rT); rT = setTimeout(() => { buildGalaxy(); if (RM) drawGalaxy(0); buildSky(); }, 200); });
+
+  /* ================= ROTATING TITLE WORD ================= */
+  const rw = $$('.rot i'); let ri = 0;
+  if (rw.length && !RM) setInterval(() => { if (document.hidden) return; const cur = rw[ri]; cur.classList.replace('on', 'out'); setTimeout(() => cur.classList.remove('out'), 700); ri = (ri + 1) % rw.length; rw[ri].classList.add('on'); }, 2400);
 
   /* ================= COMET CURSOR ================= */
   const cc = $('#comet'), cx = cc.getContext('2d'), trail = [];
@@ -86,8 +90,8 @@
     (function comet() {
       const now = performance.now(); while (trail.length && now - trail[0].t > 260) trail.shift();
       cx.clearRect(0, 0, innerWidth, innerHeight);
-      for (let i = 1; i < trail.length; i++) { const a = trail[i - 1], b = trail[i], k = i / trail.length; cx.strokeStyle = `rgba(255,214,228,${k * .55})`; cx.lineWidth = k * 3; cx.lineCap = 'round'; cx.beginPath(); cx.moveTo(a.x, a.y); cx.lineTo(b.x, b.y); cx.stroke(); }
-      if (trail.length) { const h = trail[trail.length - 1], gr = cx.createRadialGradient(h.x, h.y, 0, h.x, h.y, 10); gr.addColorStop(0, 'rgba(255,240,245,.9)'); gr.addColorStop(1, 'rgba(255,240,245,0)'); cx.fillStyle = gr; cx.beginPath(); cx.arc(h.x, h.y, 10, 0, 6.283); cx.fill(); }
+      for (let i = 1; i < trail.length; i++) { const a = trail[i - 1], b = trail[i], k = i / trail.length; cx.strokeStyle = `rgba(255,234,200,${k * .55})`; cx.lineWidth = k * 3; cx.lineCap = 'round'; cx.beginPath(); cx.moveTo(a.x, a.y); cx.lineTo(b.x, b.y); cx.stroke(); }
+      if (trail.length) { const h = trail[trail.length - 1], gr = cx.createRadialGradient(h.x, h.y, 0, h.x, h.y, 10); gr.addColorStop(0, 'rgba(255,244,226,.9)'); gr.addColorStop(1, 'rgba(255,240,245,0)'); cx.fillStyle = gr; cx.beginPath(); cx.arc(h.x, h.y, 10, 0, 6.283); cx.fill(); }
       requestAnimationFrame(comet);
     })();
   } else cc.remove();
@@ -119,8 +123,9 @@
   $$('[data-count]').forEach(el => cObs.observe(el));
 
   /* ================= LOGOS ================= */
-  const LOGOS = ['darena-logo', 'nexa', 'cyub', 'fanzart', 'whims', 'tasteable', 'holidaytribe', 'aira', 'soundofc', 'hd-impact', 'gayle-charach'];
-  const lHTML = LOGOS.filter(l => l !== 'darena-logo').map(l => `<img src="${IMG}logos/${l}.webp" alt="${l.replace(/-/g, ' ')}" loading="lazy">`).join('') + `<img src="${IMG}nektar-logo-3.webp" alt="Nektar Homes" loading="lazy">`;
+  const LOGOS = ['darena', 'creating-conversion', 'nexa', 'credtech', 'kdp', 'cyub', 'fanzart', 'whims', 'tasteable', 'holidaytribe', 'aira', 'soundofc', 'hd-impact', 'gayle-charach'];
+  const LOGO_ALT = { darena: 'Darena Health', 'creating-conversion': 'Creating Conversion', credtech: 'Credtech', kdp: 'Amazon KDP' };
+  const lHTML = LOGOS.map(l => `<img src="${IMG}logos/${l}.webp" alt="${LOGO_ALT[l] || l.replace(/-/g, ' ')}" loading="lazy">`).join('') + `<img src="${IMG}nektar-logo-3.webp" alt="Nektar Homes" loading="lazy">`;
   $('#logos').innerHTML = lHTML + lHTML.replace(/alt="[^"]*"/g, 'alt="" aria-hidden="true"');
 
   /* ================= CONSTELLATIONS ================= */
@@ -132,7 +137,7 @@
   function buildSky() {
     const phone = innerWidth <= 900, VW = phone ? 900 : 1600, VH = phone ? 1900 : 1000;
     svgEl.setAttribute('viewBox', `0 0 ${VW} ${VH}`);
-    let o = `<defs><radialGradient id="starGlow"><stop offset="0" stop-color="#fff" stop-opacity=".9"/><stop offset=".35" stop-color="#ffd6e2" stop-opacity=".35"/><stop offset="1" stop-color="#ffd6e2" stop-opacity="0"/></radialGradient></defs>`;
+    let o = `<defs><radialGradient id="starGlow"><stop offset="0" stop-color="#fff" stop-opacity=".9"/><stop offset=".35" stop-color="#ffeac4" stop-opacity=".35"/><stop offset="1" stop-color="#ffd6e2" stop-opacity="0"/></radialGradient></defs>`;
     // faint background stars in the sky box
     for (let i = 0; i < (phone ? 120 : 220); i++) o += `<circle cx="${(Math.random() * VW).toFixed(0)}" cy="${(Math.random() * VH).toFixed(0)}" r="${(Math.random() * 1.4 + .4).toFixed(1)}" fill="#fff" opacity="${(Math.random() * .4 + .1).toFixed(2)}"/>`;
     SKYMAP.forEach(([id, shape, label, x, y, s, mx, my, ms], i) => {
@@ -256,7 +261,7 @@
 
   /* ================= CONTENT WALL ================= */
   const wall = [];
-  ['cyub', 'fanzart', 'aira', 'nexa', 'nektar', 'kdp', 'credtech', 'holidaytribe', 'whims', 'tasteables'].forEach(id => {
+  ['darena', 'cyub', 'fanzart', 'aira', 'nexa', 'nektar', 'kdp', 'credtech', 'holidaytribe', 'whims', 'tasteables'].forEach(id => {
     const m = W[id].media; let imgs = 0;
     m.forEach(x => { if (x.type === 'video' && !wall.some(v => v.m.type === 'video' && v.id === id)) wall.push({ id, m: x }); else if (x.type !== 'video' && imgs < 2) { wall.push({ id, m: x }); imgs++; } });
   });

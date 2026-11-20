@@ -21,14 +21,14 @@
     DPR = Math.min(devicePixelRatio || 1, innerWidth < 760 ? 1.5 : 2);
     GW = hero.clientWidth; GH = hero.clientHeight;
     gc.width = GW * DPR; gc.height = GH * DPR;
-    const pad = 1.25, w = GW * pad * DPR, h = GH * pad * DPR;
+    const pad = 1.4, w = GW * pad * DPR, h = GH * pad * DPR;
     off = document.createElement('canvas'); off.width = w; off.height = h;
     const o = off.getContext('2d');
-    o.fillStyle = '#05061a'; o.fillRect(0, 0, w, h);
+    o.fillStyle = '#030306'; o.fillRect(0, 0, w, h);
     const ang = -0.38, cx = w / 2, cy = h / 2, ca = Math.cos(ang), sa = Math.sin(ang), L = Math.hypot(w, h);
     const along = (t, d) => [cx + ca * t - sa * d, cy + sa * t + ca * d];
     // nebula clouds along the band
-    const neb = [['rgba(110,80,220,', .22], ['rgba(60,110,230,', .18], ['rgba(240,130,180,', .1], ['rgba(140,90,240,', .16]];
+    const neb = [['rgba(120,80,200,', .16], ['rgba(70,90,170,', .09], ['rgba(240,130,180,', .09], ['rgba(150,90,220,', .12]];
     for (let i = 0; i < 26; i++) { const [x, y] = along((Math.random() - .5) * L * .9, gauss() * h * .07); const r = (.12 + Math.random() * .22) * Math.max(w, h); const [c, a] = neb[i % neb.length]; const gr = o.createRadialGradient(x, y, 0, x, y, r); gr.addColorStop(0, c + a + ')'); gr.addColorStop(1, c + '0)'); o.fillStyle = gr; o.fillRect(0, 0, w, h); }
     // glowing core
     for (let i = 0; i < 14; i++) { const [x, y] = along((Math.random() - .5) * L * .7, gauss() * h * .025); const r = (.05 + Math.random() * .1) * Math.max(w, h); const gr = o.createRadialGradient(x, y, 0, x, y, r); gr.addColorStop(0, 'rgba(255,236,240,.16)'); gr.addColorStop(1, 'rgba(255,236,240,0)'); o.fillStyle = gr; o.fillRect(0, 0, w, h); }
@@ -42,25 +42,35 @@
       o.fillStyle = `rgba(${COL[(Math.random() * 4) | 0]},${(Math.random() * .7 + .25).toFixed(2)})`; o.beginPath(); o.arc(x, y, r, 0, 6.283); o.fill();
     }
     // dust lanes
-    if ('filter' in o) { o.filter = `blur(${14 * DPR}px)`; for (let i = 0; i < 22; i++) { const [x, y] = along((Math.random() - .5) * L * .85, gauss() * h * .018); o.fillStyle = 'rgba(5,6,26,.55)'; o.beginPath(); o.ellipse(x, y, (40 + Math.random() * 140) * DPR, (6 + Math.random() * 16) * DPR, ang + (Math.random() - .5) * .3, 0, 6.283); o.fill(); } o.filter = 'none'; }
-    twinkles = Array.from({ length: innerWidth < 760 ? 70 : 160 }, () => ({ x: Math.random() * GW, y: Math.random() * GH, r: Math.random() * 1.3 + .5, p: Math.random() * 6.28, s: .6 + Math.random() * 1.6 }));
+    if ('filter' in o) { o.filter = `blur(${14 * DPR}px)`; for (let i = 0; i < 22; i++) { const [x, y] = along((Math.random() - .5) * L * .85, gauss() * h * .018); o.fillStyle = 'rgba(3,3,6,.6)'; o.beginPath(); o.ellipse(x, y, (40 + Math.random() * 140) * DPR, (6 + Math.random() * 16) * DPR, ang + (Math.random() - .5) * .3, 0, 6.283); o.fill(); } o.filter = 'none'; }
+    twinkles = Array.from({ length: innerWidth < 760 ? 70 : 160 }, () => ({ x: Math.random() * GW, y: Math.random() * GH, r: Math.random() * 1.3 + .5, p: Math.random() * 6.28, s: .6 + Math.random() * 1.6, v: (.15 + Math.random() * .5) * (Math.random() < .5 ? 1 : .6) }));
   }
-  let heroP = 0, heroVisible = true;
+  let heroP = 0, heroVisible = true, mets = [], nextMet = 1500;
   function drawGalaxy(t) {
     if (heroVisible) {
       const ox = (off.width - GW * DPR) / 2, oy = (off.height - GH * DPR) / 2;
-      const px = RM ? 0 : mouse.nx * 40 * DPR, py = RM ? 0 : mouse.ny * 30 * DPR, sc = 1 + heroP * .7;
+      const T = RM ? 0 : t / 1000, px = RM ? 0 : mouse.nx * 40 * DPR, py = RM ? 0 : mouse.ny * 30 * DPR;
+      const sc = 1.03 + .03 * Math.sin(T / 9) + heroP * .7, rot = .05 * Math.sin(T / 23), dx = 50 * DPR * Math.sin(T / 31), dy = 18 * DPR * Math.cos(T / 27);
       g.setTransform(1, 0, 0, 1, 0, 0); g.globalAlpha = 1;
-      g.fillStyle = '#05061a'; g.fillRect(0, 0, gc.width, gc.height);
-      g.translate(gc.width / 2, gc.height / 2); g.scale(sc, sc); g.translate(-gc.width / 2 - ox - px, -gc.height / 2 - oy - py);
-      g.drawImage(off, 0, 0); g.setTransform(DPR, 0, 0, DPR, 0, 0);
+      g.fillStyle = '#030306'; g.fillRect(0, 0, gc.width, gc.height);
+      g.translate(gc.width / 2, gc.height / 2); g.rotate(rot); g.scale(sc, sc); g.translate(-gc.width / 2 - ox - px + dx, -gc.height / 2 - oy - py + dy);
+      g.globalAlpha = .88 + .12 * Math.sin(T / 5); g.drawImage(off, 0, 0); g.globalAlpha = 1; g.setTransform(DPR, 0, 0, DPR, 0, 0);
       const hr = hero.getBoundingClientRect();
       twinkles.forEach(s => {
-        const a = .35 + .65 * Math.abs(Math.sin(t / 1000 * s.s + s.p)), sx = s.x + mouse.nx * 70, sy = s.y + mouse.ny * 50;
+        if (!RM) { s.x += s.v * .35; s.y -= s.v * .12; if (s.x > GW + 4) s.x = -4; if (s.y < -4) s.y = GH + 4; }
+        const a = .35 + .65 * Math.abs(Math.sin(t / 1000 * s.s + s.p)), sx = s.x + mouse.nx * 70 * s.v, sy = s.y + mouse.ny * 50 * s.v;
         const d = Math.hypot(sx - mouse.x, sy - (mouse.y - hr.top)), near = FINE ? clamp(1 - d / 140) : 0;
         g.globalAlpha = clamp((RM ? .7 : a) + near * .6); g.fillStyle = '#fff'; g.beginPath(); g.arc(sx, sy, s.r * (1 + near * 1.3), 0, 6.283); g.fill();
       });
       g.globalAlpha = 1;
+      // decorative meteors in the hero
+      if (!RM && t > nextMet) { mets.push({ x: Math.random() * GW * .8, y: Math.random() * GH * .45, a: .35 + Math.random() * .35, t0: t, len: 120 + Math.random() * 140 }); nextMet = t + 2200 + Math.random() * 3800; }
+      mets = mets.filter(m => {
+        const k = (t - m.t0) / 900; if (k > 1) return false;
+        const hx = m.x + Math.cos(m.a) * 520 * k, hy = m.y + Math.sin(m.a) * 520 * k, tx = hx - Math.cos(m.a) * m.len, ty = hy - Math.sin(m.a) * m.len;
+        const gr = g.createLinearGradient(tx, ty, hx, hy); gr.addColorStop(0, 'rgba(255,230,240,0)'); gr.addColorStop(1, `rgba(255,240,246,${(.85 * Math.sin(k * Math.PI)).toFixed(2)})`);
+        g.strokeStyle = gr; g.lineWidth = 1.6; g.lineCap = 'round'; g.beginPath(); g.moveTo(tx, ty); g.lineTo(hx, hy); g.stroke(); return true;
+      });
     }
     if (!RM) requestAnimationFrame(drawGalaxy);
   }
@@ -97,14 +107,15 @@
   /* ================= NUMBERS WITH A SPARK ================= */
   function sparks(el) {
     if (RM) return; const r = el.getBoundingClientRect(), host = el.parentElement, hr = host.getBoundingClientRect();
-    for (let i = 0; i < 12; i++) { const s = document.createElement('i'); s.className = 'spark'; const a = Math.random() * 6.28, d = 30 + Math.random() * 40; s.style.left = (r.right - hr.left - 6) + 'px'; s.style.top = (r.top - hr.top + 10) + 'px'; s.style.setProperty('--dx', Math.cos(a) * d + 'px'); s.style.setProperty('--dy', Math.sin(a) * d + 'px'); host.appendChild(s); setTimeout(() => s.remove(), 1000); }
+    for (let i = 0; i < 12; i++) { const s = document.createElement('i'); s.className = 'sparkle'; const a = Math.random() * 6.28, d = 30 + Math.random() * 40; s.style.left = (r.right - hr.left - 6) + 'px'; s.style.top = (r.top - hr.top + 10) + 'px'; s.style.setProperty('--dx', Math.cos(a) * d + 'px'); s.style.setProperty('--dy', Math.sin(a) * d + 'px'); host.appendChild(s); setTimeout(() => s.remove(), 1000); }
   }
-  const cObs = new IntersectionObserver(es => es.forEach(e => {
-    if (!e.isIntersecting) return; cObs.unobserve(e.target);
-    const el = e.target, to = +el.dataset.count, from = +(el.dataset.from || 0), suf = el.dataset.suf || '', t0 = performance.now();
-    if (RM) { el.textContent = to + suf; return; }
-    (function step(t) { const k = clamp((t - t0) / 1500); el.textContent = Math.round(from + (to - from) * (1 - Math.pow(1 - k, 3))) + suf; if (k < 1) requestAnimationFrame(step); else sparks(el); })(t0);
-  }), { threshold: .6 });
+  function countUp(el, spark) {
+    const to = +el.dataset.count, from = +(el.dataset.from || 0), dec = +(el.dataset.dec || 0), pre = el.dataset.prefix || '', suf = el.dataset.suf || el.dataset.suffix || '', t0 = performance.now();
+    const fmt = v => pre + (dec ? v.toFixed(dec) : Math.round(v).toLocaleString('en-US')) + suf;
+    if (RM) { el.textContent = fmt(to); return; }
+    (function step(t) { const k = clamp((t - t0) / 1500); el.textContent = fmt(from + (to - from) * (1 - Math.pow(1 - k, 3))); if (k < 1) requestAnimationFrame(step); else if (spark) sparks(el); })(t0);
+  }
+  const cObs = new IntersectionObserver(es => es.forEach(e => { if (!e.isIntersecting) return; cObs.unobserve(e.target); countUp(e.target, true); }), { threshold: .6 });
   $$('[data-count]').forEach(el => cObs.observe(el));
 
   /* ================= LOGOS ================= */
@@ -118,7 +129,6 @@
   const litCount = () => ORDER.filter(id => lit.has(id)).length;
   const paintLit = () => { $('#lit-n').textContent = litCount(); };
   paintLit();
-  let catEyes = null;
   function buildSky() {
     const phone = innerWidth <= 900, VW = phone ? 900 : 1600, VH = phone ? 1900 : 1000;
     svgEl.setAttribute('viewBox', `0 0 ${VW} ${VH}`);
@@ -129,13 +139,12 @@
       const S = SHAPES[shape], px = (phone ? mx : x) / 100 * VW, py = (phone ? my : y) / 100 * VH, size = (phone ? ms : s) / 100 * VW, k = size / 200;
       const lines = S.ln.map(([a, b]) => { const [x1, y1] = S.st[a], [x2, y2] = S.st[b], len = Math.hypot(x2 - x1, y2 - y1).toFixed(1); return `<path class="ln" style="--len:${len}" d="M${x1} ${y1} L${x2} ${y2}" vector-effect="non-scaling-stroke"/>`; }).join('');
       const stars = S.st.map(([sx, sy], j) => `<circle class="glow" cx="${sx}" cy="${sy}" r="${(14 / Math.sqrt(k)).toFixed(1)}"/><circle class="st" cx="${sx}" cy="${sy}" r="${((j % 3 ? 2.2 : 3) / Math.sqrt(k)).toFixed(2)}"/>`).join('');
-      const cat = shape === 'cat' ? `<path class="sil stroke tail" d="${S.tail}"/><g class="eyes"><circle cx="88" cy="96" r="7" fill="#0b0d2a" opacity=".6"/><circle cx="112" cy="96" r="7" fill="#0b0d2a" opacity=".6"/><circle class="pupil" cx="88" cy="96" r="3.4" fill="#ffe6ee"/><circle class="pupil" cx="112" cy="96" r="3.4" fill="#ffe6ee"/><ellipse class="lid r" cx="112" cy="96" rx="8" ry="8" fill="#2a2d5a"/></g>` : '';
+      const cat = S.flap ? `<path class="sil thin" d="${S.flap}"/><path class="sil stroke sig" d="${S.arcs}"/>` : '';
       const nm = `<text class="name" x="${px}" y="${(py + size * .58).toFixed(0)}" style="font-size:${phone ? 22 : 13}px">${label}</text>`;
-      o += `<g class="cst${GROWTH.includes(id) ? ' big' : ''}${shape === 'cat' ? ' cat' : ''}${lit.has(id) ? ' lit' : ''}" data-id="${id}" tabindex="0" role="button" aria-label="${label}: open project">
+      o += `<g class="cst${GROWTH.includes(id) ? ' big' : ''}${S.flap ? ' env' : ''}${lit.has(id) ? ' lit' : ''}" data-id="${id}" tabindex="0" role="button" aria-label="${label}: open project">
         <g transform="translate(${(px - size / 2).toFixed(1)} ${(py - size / 2).toFixed(1)}) scale(${k.toFixed(4)})"><rect x="-10" y="-10" width="220" height="230" fill="transparent" style="pointer-events:all"/><g class="float" style="--dur:${(10 + i % 5 * 2)}s;--del:${-i * 1.7}s"><path class="sil${S.stroke ? ' stroke' : ''}" d="${S.sil}"/>${cat}${lines}${stars}</g></g>${nm}</g>`;
     });
     svgEl.innerHTML = o;
-    catEyes = $$('.cat .pupil', svgEl);
     $$('.cst', svgEl).forEach(el => {
       el.addEventListener('pointerenter', e => { if (e.pointerType === 'mouse') activate(el.dataset.id); });
       el.addEventListener('click', () => activate(el.dataset.id));
@@ -157,25 +166,21 @@
     paintList();
   }
   function allLit() {
-    const c = $('.cat', svgEl); c?.classList.add('wink'); setTimeout(() => c?.classList.remove('wink'), 3000);
+    const c = $('.env', svgEl); c?.classList.add('ping'); setTimeout(() => c?.classList.remove('ping'), 4000);
     $('#n-body').innerHTML = `<p class="label">All 11 lit</p><h3 class="p-title">You lit up my whole sky.</h3><p class="note-txt">Thank you for exploring every corner. That curiosity is exactly what I bring to every brief. Shall we make something together?</p><div class="ctas"><a class="btn" href="#contact" data-close>Let's talk</a></div>`;
     setTimeout(() => openModal('m-note'), 1200);
   }
-  // the cat watches the cursor
-  addEventListener('pointermove', () => {
-    if (!catEyes || RM) return;
-    catEyes.forEach(p => { const r = p.getBoundingClientRect(), dx = mouse.x - (r.left + r.width / 2), dy = mouse.y - (r.top + r.height / 2), d = Math.hypot(dx, dy) || 1; p.setAttribute('transform', `translate(${(dx / d * 3).toFixed(2)} ${(dy / d * 3).toFixed(2)})`); });
-  }, { passive: true });
   buildSky();
 
   /* ---- project tab ---- */
   const tab = $('#tab');
+  const STARB = '<span class="star-badge">★ Star project</span>';
   function openTab(id) {
     let html;
-    if (id === 'me') html = `<p class="where">Hello, it's me</p><h3>Sushma Somashekar</h3><p>Designer, brand storyteller and growth strategist with 5+ years in design and marketing. I've worked across health tech, agencies, eCommerce, luxury and wedding brands, in India, Canada and the US.</p><ul><li>Branding, content and social media</li><li>Website design, hand-coded when needed</li><li>SEO, analytics and growth</li></ul><p style="margin-top:14px;font-style:italic">Aquarius by stars, curious by nature. This cat is my constellation.</p><div class="ctas"><a class="btn" href="#contact">Say hello</a><a class="btn ghost" href="../assets/Sushma-Somashekar-Resume.pdf" download>Résumé ↓</a></div>`;
+    if (id === 'me') html = `<p class="where">Send a signal</p><h3>Sushma Somashekar</h3><p>Designer, brand storyteller and growth strategist with 5+ years in design and marketing. I've worked across health tech, agencies, eCommerce, luxury and wedding brands, in India, Canada and the US.</p><ul><li>Branding, content and social media</li><li>Website design, hand-coded when needed</li><li>SEO, analytics and growth</li></ul><p style="margin-top:14px">Open to roles and projects in branding, content and growth. I reply within a day.</p><div class="ctas"><a class="btn" href="mailto:${EMAIL}">Email me</a><a class="btn ghost" href="https://www.linkedin.com/in/sushma-somashekar-digital-marketing/" target="_blank" rel="noopener">LinkedIn ↗</a><a class="btn ghost" href="../assets/Sushma-Somashekar-Resume.pdf" download>Résumé ↓</a></div>`;
     else {
       const w = W[id], res = winText(id).split(/(?<=\.)\s+/).filter(Boolean).slice(0, 3);
-      html = `${w.logo ? `<img class="logo" src="${IMG}logos/${w.logo}.webp" alt="">` : ''}<p class="where">${GROWTH.includes(id) ? 'Growth strategy' : 'Branding & content'}</p><h3>${NAME[id]}</h3><p>${short(id)}</p><ul>${res.map(r => `<li>${r}</li>`).join('')}</ul><div class="ctas"><button class="btn" data-full="${id}">View project</button><button class="btn ghost" data-quick="${id}">Quick look</button></div>`;
+      html = `${w.logo ? `<img class="logo" src="${IMG}logos/${w.logo}.webp" alt="">` : ''}${id === 'darena' ? STARB : ''}<p class="where">${GROWTH.includes(id) ? 'Growth strategy' : 'Branding & content'}</p><h3>${NAME[id]}</h3><p>${short(id)}</p><ul>${res.map(r => `<li>${r}</li>`).join('')}</ul><div class="ctas"><button class="btn" data-full="${id}">View project</button><button class="btn ghost" data-quick="${id}">Quick look</button></div>`;
     }
     $('#tab-body').innerHTML = html; tab.classList.add('open'); tab.scrollTop = 0;
   }
@@ -186,7 +191,7 @@
 
   /* ---- list view ---- */
   function paintList() {
-    $('#list').innerHTML = ORDER.map(id => `<button class="li" data-full="${id}"><small>${GROWTH.includes(id) ? 'Growth strategy' : 'Branding & content'}${lit.has(id) ? ' · lit ✦' : ''}</small><span class="h3">${NAME[id]}</span><p>${short(id)}</p></button>`).join('');
+    $('#list').innerHTML = ORDER.map(id => `<button class="li" data-full="${id}">${id === 'darena' ? STARB : ''}<small>${GROWTH.includes(id) ? 'Growth strategy' : 'Branding & content'}${lit.has(id) ? ' · lit ✦' : ''}</small><span class="h3">${NAME[id]}</span><p>${short(id)}</p></button>`).join('');
   }
   paintList();
   $('#as-list').addEventListener('click', e => { const b = e.currentTarget, on = b.getAttribute('aria-pressed') !== 'true'; b.setAttribute('aria-pressed', on); b.textContent = on ? 'View as sky' : 'View as list'; $('#list').hidden = !on; skyEl.hidden = on; closeTab(); });
@@ -215,13 +220,11 @@
     openModal('m-quick');
   }
   const media = (m, alt) => m.type === 'video' ? `<video src="${m.src}" ${m.poster ? `poster="${m.poster}"` : ''} controls muted playsinline preload="none"></video>` : `<img src="${IMG + m.src}" alt="${alt}" loading="lazy">`;
-  const PS = [['ps-home-after.webp', 'Homepage, after my rebuild', ''], ['ps-mymips-before.webp', 'MyMipsScore page', 'Before'], ['ps-mymips-after.webp', 'MyMipsScore page: 57 → 94', 'After'], ['ps-mips10-before.webp', 'MIPS 10-step guide', 'Before'], ['ps-mips10-after.webp', 'MIPS 10-step guide', 'After']];
   function openFull(id) {
     const w = W[id], i = ORDER.indexOf(id), nx = ORDER[(i + 1) % ORDER.length];
     const links = [...(w.link ? [[w.link[0], w.link[1]]] : []), ...(w.reels || [])];
-    const extra = id === 'darena' ? `<h4 class="p-sec">Screen recordings</h4><div class="films">${darenaFilms.map(f => `<figure class="${f.slot === 'top' ? 'wide' : ''}"><video src="${f.src}" poster="${f.poster}" controls muted playsinline preload="none"></video><figcaption>${f.badge ? `<span class="badge">${f.badge}</span>` : ''}${f.title}. ${f.note}</figcaption></figure>`).join('')}</div>
-      <h4 class="p-sec">PageSpeed proof</h4><div class="films">${PS.map(([s, c, b]) => `<figure class="${b ? '' : 'wide'}"><img src="${IMG + s}" alt="PageSpeed: ${c}" loading="lazy"><figcaption>${b ? `<span class="badge">${b}</span>` : ''}${c}</figcaption></figure>`).join('')}</div>` : '';
-    $('#f-body').innerHTML = `<p class="label">${GROWTH.includes(id) ? 'Growth strategy' : 'Branding & content'}</p><h2 class="p-title">${NAME[id]}</h2><p class="p-line">${w.line}</p><div class="chips">${(w.chips || []).map(c => `<span>${c}</span>`).join('')}</div>
+    const extra = id === 'darena' ? `<h4 class="p-sec">The case, by the numbers</h4><div class="dc">${window.DARENA_CASE || ''}</div>` : '';
+    $('#f-body').innerHTML = `<div class="f-head">${id === 'darena' ? STARB : ''}<p class="label">${GROWTH.includes(id) ? 'Growth strategy' : 'Branding & content'}</p></div><h2 class="p-title">${NAME[id]}</h2><p class="p-line">${w.line}</p><div class="chips">${(w.chips || []).map(c => `<span>${c}</span>`).join('')}</div>
       <p class="res">${winText(id)}</p>
       <div class="two-col"><div><p class="k">The brand</p><p>${w.about}</p></div><div><p class="k">What I did</p><p>${w.role}</p></div></div>
       ${w.pts ? `<p class="k">Highlights</p><ul class="pts">${w.pts.map(p => `<li>${p}</li>`).join('')}</ul>` : ''}
@@ -229,6 +232,26 @@
       ${extra}<h4 class="p-sec">The work</h4><div class="gallery">${w.media.map(m => media(m, NAME[id])).join('')}</div>
       <div class="p-next"><button class="btn ghost" data-close>Back to the sky</button><button class="btn" data-full="${nx}">Next: ${NAME[nx]} →</button></div>`;
     openModal('m-full'); $('#m-full .sheet').scrollTop = 0;
+    if (id === 'darena') initDarena($('#f-body'), $('#m-full .sheet'));
+  }
+  function initDarena(root, sheet) {
+    const film = f => `<figure><video src="${f.src}" poster="${f.poster}" controls muted playsinline preload="none"></video><figcaption>${f.badge ? `<span class="badge">${f.badge}</span>` : ''}${f.title}. ${f.note}</figcaption></figure>`;
+    const top = darenaFilms.find(f => f.slot === 'top'), dfs = $('.d-films', root);
+    if (dfs && top) dfs.innerHTML = film(top);
+    $$('.d-film-slot', root).forEach(el => { const f = darenaFilms.find(x => x.slot === el.dataset.slot); if (f) el.innerHTML = film(f); });
+    $$('.ring', root).forEach(r => { r.style.setProperty('--v', r.dataset.from); r.classList.toggle('low', +r.dataset.from < 90); });
+    $$('.cmp input', root).forEach(i => i.addEventListener('input', () => i.closest('.cmp').style.setProperty('--p', i.value + '%')));
+    const io = new IntersectionObserver(es => es.forEach(e => {
+      if (!e.isIntersecting) return; io.unobserve(e.target); const b = e.target; b.classList.add('in');
+      $$('[data-count]', b).forEach(el => countUp(el, false));
+      $$('.ring', b).forEach(r => {
+        const from = +r.dataset.from, to = +r.dataset.to, el = $('b', r), t0 = performance.now();
+        r.style.setProperty('--v', to);
+        if (RM) { el.textContent = to; r.classList.toggle('low', to < 90); return; }
+        (function step(t) { const k = clamp((t - t0) / 1800), v = Math.round(from + (to - from) * (1 - Math.pow(1 - k, 3))); el.textContent = v; r.classList.toggle('low', v < 90); if (k < 1) requestAnimationFrame(step); })(t0);
+      });
+    }), { root: sheet, threshold: .25 });
+    $$('.b', root).forEach(b => io.observe(b));
   }
 
   /* ================= CONTENT WALL ================= */
@@ -237,14 +260,16 @@
     const m = W[id].media; let imgs = 0;
     m.forEach(x => { if (x.type === 'video' && !wall.some(v => v.m.type === 'video' && v.id === id)) wall.push({ id, m: x }); else if (x.type !== 'video' && imgs < 2) { wall.push({ id, m: x }); imgs++; } });
   });
-  $('#wall-grid').innerHTML = wall.map((t, i) => `<figure class="tile" data-i="${i}">${t.m.type === 'video' ? `<video src="${t.m.src}" ${t.m.poster ? `poster="${t.m.poster}"` : ''} muted loop playsinline preload="none"></video><span class="play">▶ Reel</span>` : `<img src="${IMG + t.m.src}" alt="${NAME[t.id]}" loading="lazy">`}<figcaption>${NAME[t.id]}</figcaption></figure>`).join('');
+  $('#wall-grid').innerHTML = wall.map((t, i) => `<figure class="tile" data-i="${i}">${t.m.type === 'video' ? `<video src="${t.m.src}" ${t.m.poster ? `poster="${t.m.poster}"` : ''} muted loop playsinline autoplay preload="metadata"></video><span class="play">▶ Reel</span>` : `<img src="${IMG + t.m.src}" alt="${NAME[t.id]}" loading="lazy">`}<figcaption>${NAME[t.id]}</figcaption></figure>`).join('');
   $$('.tile').forEach(el => {
     const v = $('video', el);
     el.addEventListener('pointermove', e => { if (!FINE || RM) return; const r = el.getBoundingClientRect(), x = (e.clientX - r.left) / r.width - .5, y = (e.clientY - r.top) / r.height - .5; el.style.transform = `perspective(700px) rotateY(${x * 8}deg) rotateX(${-y * 8}deg) translateY(-3px)`; });
-    el.addEventListener('pointerenter', () => v && v.play().catch(() => {}));
-    el.addEventListener('pointerleave', () => { el.style.transform = ''; v && v.pause(); });
+    el.addEventListener('pointerleave', () => { el.style.transform = ''; });
     el.addEventListener('click', () => { const t = wall[+el.dataset.i]; $('#v-body').innerHTML = t.m.type === 'video' ? `<video src="${t.m.src}" controls autoplay playsinline></video>` : `<img src="${IMG + t.m.src}" alt="${NAME[t.id]}">`; openModal('m-view'); });
   });
+
+  const vObs = new IntersectionObserver(es => es.forEach(e => { const v = e.target; v.muted = true; if (e.isIntersecting && !RM) v.play().catch(() => {}); else v.pause(); }), { threshold: .25 });
+  $$('.tile video').forEach(v => vObs.observe(v));
 
   /* ================= STAR NOTES ================= */
   const star = '<svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l2.2 6.8H21l-5.5 4 2.1 6.7L12 15.4l-5.6 4.1 2.1-6.7-5.5-4h6.8z"/></svg>';

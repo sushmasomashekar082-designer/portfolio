@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en" data-time="night">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sushma Somashekar · Brands, meet your people</title>
+<meta name="description" content="Sushma Somashekar: designer, brand storyteller and growth strategist. A ride through a reimagined Bangalore, one billboard per brand.">
+<meta name="theme-color" content="#14123a">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath d='M32 34v26' stroke='%235f8a5a' stroke-width='4' stroke-linecap='round'/%3E%3Cpath d='M32 54c-8-4-14-12-14-20 8 2 12 8 14 16z' fill='%236f9a66'/%3E%3Cpath d='M16 14c0 14 6 22 16 22s16-8 16-22l-8 6-8-12-8 12z' fill='%23e5768f'/%3E%3Cpath d='M32 8l-8 12c2 10 6 16 8 16s6-6 8-16z' fill='%23f4a3b8'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Inter:wght@400;500;600;700&family=Noto+Sans+Kannada:wght@600&display=swap" rel="stylesheet">
+<style>
+  :root { --serif: 'Playfair Display', Georgia, serif; --sans: Inter, system-ui, sans-serif; --rose: #f4a3b8; --ink: #2a1f3d; }
+  html[data-time="night"] { --sk1: #0b0d2e; --sk2: #241c55; --sk3: #4a2f6e; --far: #2a2650; --mid: #1d1a3c; --near: #141230; --road: #1a1828; --win: #ffd98a; --winop: .9; --lamp: 1; --aur: .85; --sunop: 0; --cloud: .0; --stars: 1; --tree: #12241f; --txt: #fff; }
+  html[data-time="day"] { --sk1: #6fa8e8; --sk2: #bcd6f2; --sk3: #ffc9a0; --far: #a59bc4; --mid: #8a7aa6; --near: #6d5d86; --road: #5d566e; --win: #ffe9c4; --winop: .25; --lamp: 0; --aur: 0; --sunop: 1; --cloud: .9; --stars: 0; --tree: #3f5e46; --txt: #2a1f3d; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: #0b0d2e; color: #fff; font-family: var(--sans); overflow-x: hidden; }
+  button { font: inherit; cursor: pointer; border: 0; background: none; color: inherit; }
+  .bar { position: fixed; inset: 0 0 auto; z-index: 30; display: flex; align-items: center; gap: 10px; padding: 14px clamp(14px, 3vw, 28px); }
+  .mark { font-family: var(--serif); font-style: italic; font-size: 24px; color: var(--txt); text-decoration: none; transition: color .8s; }
+  .bar-r { margin-left: auto; display: flex; gap: 8px; }
+  .pill { font-size: 13px; padding: 9px 15px; border-radius: 99px; background: rgba(255, 255, 255, .14); color: var(--txt); backdrop-filter: blur(10px); text-decoration: none; display: inline-flex; align-items: center; gap: 6px; transition: color .8s, background .3s; }
+  .pill:hover { background: rgba(255, 255, 255, .26); }
+  .pill svg { width: 16px; height: 16px; }
+  .scene { position: relative; height: 520vh; }
+  .stage { position: sticky; top: 0; height: 100vh; height: 100svh; overflow: hidden; }
+  .sky { position: absolute; inset: 0; background: linear-gradient(180deg, var(--sk1) 0%, var(--sk2) 55%, var(--sk3) 100%); transition: background 1s; }
+  .ly { position: absolute; inset: 0; width: 100%; height: 100%; transform-origin: 0 0; will-change: transform; overflow: visible; }
+  svg .fill-far { fill: var(--far); transition: fill 1s; } svg .fill-mid { fill: var(--mid); transition: fill 1s; } svg .fill-near { fill: var(--near); transition: fill 1s; } svg .fill-road { fill: var(--road); transition: fill 1s; } svg .fill-tree { fill: var(--tree); transition: fill 1s; }
+  svg .win { fill: var(--win); opacity: var(--winop); transition: opacity 1s; }
+  svg .lampglow { opacity: var(--lamp); transition: opacity 1s; }
+  svg .stars { opacity: var(--stars); transition: opacity 1s; }
+  svg .sun { opacity: var(--sunop); transition: opacity 1s; }
+  svg .clouds { opacity: var(--cloud); transition: opacity 1s; }
+  svg .aurora { opacity: var(--aur); transition: opacity 1.2s; mix-blend-mode: screen; }
+  .aurora path { animation: sway 14s ease-in-out infinite alternate; transform-box: fill-box; transform-origin: center; }
+  .aurora path:nth-child(2) { animation-duration: 18s; animation-delay: -6s; } .aurora path:nth-child(3) { animation-duration: 11s; animation-delay: -3s; }
+  @keyframes sway { from { transform: translateX(-40px) skewX(-6deg) scaleY(.92); } to { transform: translateX(60px) skewX(8deg) scaleY(1.08); } }
+  .tw { animation: tw 3.4s ease-in-out infinite; } .tw:nth-child(3n) { animation-delay: -1.2s; } .tw:nth-child(5n) { animation-delay: -2.3s; }
+  @keyframes tw { 50% { opacity: .2; } }
+  .train { animation: train 16s linear infinite; }
+  @keyframes train { from { transform: translateX(-900px); } to { transform: translateX(1900px); } }
+  .car { animation: drive var(--d, 7s) linear infinite; animation-delay: var(--dl, 0s); }
+  @keyframes drive { from { transform: translateX(-120px); } to { transform: translateX(1560px); } }
+  .car.back { animation-name: driveb; } @keyframes driveb { from { transform: translateX(1560px); } to { transform: translateX(-120px); } }
+  .auto { animation: rumble .35s ease-in-out infinite alternate; transform-box: fill-box; }
+  @keyframes rumble { to { transform: translateY(-1.5px); } }
+  .bb { cursor: pointer; }
+  .bb .bblight { opacity: var(--lamp); transition: opacity 1s; }
+  html[data-time="night"] .bb .panel { filter: drop-shadow(0 0 22px rgba(255, 220, 160, .35)); }
+  .bb:hover .panel, .bb.focus .panel { filter: drop-shadow(0 0 30px rgba(255, 220, 160, .7)); }
+  .intro { position: absolute; inset: 14vh 0 auto; text-shadow: 0 2px 24px rgba(10, 8, 40, .45); text-align: center; padding: 0 16px; z-index: 5; pointer-events: none; color: var(--txt); transition: color .8s; }
+  .intro .tag { font-size: 11.5px; letter-spacing: .26em; text-transform: uppercase; opacity: .8; }
+  .intro h1 { font-family: var(--serif); font-weight: 400; font-size: clamp(42px, 7.4vw, 100px); line-height: 1.02; margin: 18px 0; }
+  .intro h1 em { color: var(--rose); }
+  .intro p.line { font-family: var(--serif); font-style: italic; font-size: clamp(17px, 2vw, 22px); max-width: 36ch; margin: 0 auto; opacity: .9; }
+  .hint { position: absolute; bottom: 22px; left: 50%; transform: translateX(-50%); font-size: 11.5px; letter-spacing: .22em; text-transform: uppercase; color: #fff; z-index: 6; text-shadow: 0 1px 8px rgba(0, 0, 0, .5); white-space: nowrap; }
+  .card { position: absolute; left: 50%; bottom: 5vh; transform: translate(-50%, 16px); width: min(440px, calc(100vw - 32px)); z-index: 8; background: rgba(255, 250, 243, .94); color: var(--ink); border-radius: 20px; padding: 18px 20px; box-shadow: 0 20px 60px rgba(0, 0, 0, .35); opacity: 0; pointer-events: none; transition: opacity .4s, transform .4s; }
+  .card.on { opacity: 1; transform: translate(-50%, 0); pointer-events: auto; }
+  .card .where { font-size: 11px; letter-spacing: .2em; text-transform: uppercase; color: #b5476d; }
+  .card h3 { font-family: var(--serif); font-weight: 400; font-size: 28px; line-height: 1.1; margin: 4px 0 6px; }
+  .card p { font-size: 14px; color: #5a4a62; line-height: 1.5; }
+  .card .two { display: flex; gap: 8px; margin-top: 14px; }
+  .card .two button { flex: 1; padding: 11px; border-radius: 99px; background: #f3e4ea; font-size: 14px; font-weight: 500; }
+  .card .two button.main { background: var(--ink); color: #fff; }
+  .route { position: fixed; left: clamp(14px, 3vw, 28px); bottom: 22px; z-index: 20; display: flex; align-items: center; gap: 0; padding: 10px 14px; border-radius: 99px; background: rgba(20, 18, 48, .55); backdrop-filter: blur(10px); }
+  .route button { position: relative; width: 14px; height: 14px; border-radius: 50%; background: #6f5fa8; box-shadow: 0 0 0 3px rgba(255, 255, 255, .15); }
+  .route button.on { background: var(--rose); box-shadow: 0 0 0 4px rgba(244, 163, 184, .35); }
+  .route button span { position: absolute; bottom: 22px; left: 50%; transform: translateX(-50%); white-space: nowrap; font-size: 11px; background: rgba(20, 18, 48, .85); padding: 3px 8px; border-radius: 6px; opacity: 0; transition: opacity .2s; pointer-events: none; }
+  .route button:hover span, .route button.on span { opacity: 1; }
+  .route i { width: 22px; height: 3px; background: #6f5fa8; }
+  .next { height: 100vh; display: grid; place-content: center; text-align: center; padding: 0 16px; background: #0b0d2e; color: #d9d3f0; font-family: var(--serif); font-size: 24px; }
+  .modal { position: fixed; inset: 0; z-index: 50; display: grid; place-items: center; padding: 16px; background: rgba(10, 8, 30, .55); backdrop-filter: blur(6px); opacity: 0; pointer-events: none; transition: opacity .3s; }
+  .modal.open { opacity: 1; pointer-events: auto; }
+  .sheet { position: relative; width: min(1100px, 100%); max-height: calc(100svh - 32px); overflow: auto; background: #fffaf3; color: var(--ink); border-radius: 22px; padding: clamp(26px, 5vw, 52px) clamp(18px, 5vw, 56px); }
+  .sheet.small { width: min(540px, 100%); }
+  .x { position: absolute; top: 12px; right: 14px; width: 38px; height: 38px; border-radius: 50%; font-size: 24px; background: #f3e4ea; }
+  .k { font-size: 11px; letter-spacing: .22em; text-transform: uppercase; color: #b5476d; margin-top: 16px; }
+  .nm { font-family: var(--serif); font-weight: 400; font-size: clamp(32px, 5vw, 60px); line-height: 1.02; }
+  .sheet p, .sheet li { line-height: 1.6; }
+  .chips { display: flex; flex-wrap: wrap; gap: 6px; margin: 12px 0; } .chips span { font-size: 12px; padding: 4px 11px; border-radius: 99px; background: #f3e4ea; }
+  .win { font-family: var(--serif); font-size: clamp(19px, 2.2vw, 24px); padding: 18px 22px; border-radius: 16px; background: linear-gradient(120deg, #fde7ec, #fff1dc); margin: 18px 0; }
+  .gallery { columns: 3 240px; column-gap: 12px; margin-top: 14px; } .gallery > * { width: 100%; border-radius: 12px; margin-bottom: 12px; display: block; break-inside: avoid; background: #eee; }
+  .films { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 12px; } .films video, .films img { width: 100%; border-radius: 12px; display: block; } .films .wide { grid-column: 1 / -1; } .films figcaption { font-size: 13px; margin-top: 4px; color: #6a5a72; }
+  .links { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; } .links a { font-size: 13px; padding: 6px 13px; border-radius: 99px; box-shadow: inset 0 0 0 1px #e5d5dd; color: inherit; text-decoration: none; }
+  .btn { display: inline-block; padding: 11px 20px; border-radius: 99px; background: var(--ink); color: #fff; font-size: 14px; font-weight: 500; margin-top: 18px; }
+  .h4 { font-family: var(--serif); font-size: 24px; font-weight: 400; margin: 28px 0 6px; }
+  @media (max-width: 700px) { .films { grid-template-columns: 1fr; } .pill .lbl { display: none; } .route { bottom: auto; top: 64px; left: 50%; transform: translateX(-50%); } .card { bottom: 3vh; } }
+  @media (prefers-reduced-motion: reduce) { .aurora path, .tw, .train, .car, .auto { animation: none !important; } }
+</style>
+</head>
+<body>
+<header class="bar">
+  <a class="mark" href="#top">Sushma</a>
+  <nav class="bar-r">
+    <button class="pill" id="time" aria-label="Switch to day"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="5" fill="currentColor"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M4.9 19.1 7 17M17 7l2.1-2.1" stroke="currentColor" stroke-width="1.6"/></svg><span class="lbl">Day</span></button>
+    <a class="pill" href="../assets/Sushma-Somashekar-Resume.pdf" download><span class="lbl">Résumé</span> ↓</a>
+  </nav>
+</header>
+
+<section class="scene" id="top">
+  <div class="stage" id="stage">
+    <div class="sky"></div>
+    <div id="layers"></div>
+    <div class="intro" id="intro"><p class="tag">Sushma Somashekar · Designer, brand storyteller &amp; growth strategist</p><h1>Brands, meet <em>your people.</em></h1><p class="line">I help brands speak to the right people, and make the right people look at the brand.</p></div>
+    <p class="hint" id="hint">Scroll to ride into MG Road ↓</p>
+    <div class="card" id="card"></div>
+  </div>
+</section>
+<section class="next">Next stop: Church Street. The rest of the ride is on its way.</section>
+
+<nav class="route" aria-label="Route">
+  <button class="on" data-stop="mg"><span>MG Road</span></button><i></i>
+  <button data-stop="church"><span>Church Street · soon</span></button><i></i>
+  <button data-stop="indira"><span>Indiranagar · soon</span></button><i></i>
+  <button data-stop="kora"><span>Koramangala · soon</span></button><i></i>
+  <button data-stop="kamma"><span>Kammanahalli · soon</span></button><i></i>
+  <button data-stop="post"><span>Post box · soon</span></button>
+</nav>
+
+<div class="modal" id="quick"><div class="sheet small"><button class="x" data-close aria-label="Close">×</button><div id="q"></div></div></div>
+<div class="modal" id="full"><div class="sheet"><button class="x" data-close aria-label="Close">×</button><div id="f"></div></div></div>
+
+<script src="js/data.js"></script>
+<script src="js/mgroad.js"></script>
+</body>
+</html>

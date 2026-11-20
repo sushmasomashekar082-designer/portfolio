@@ -326,6 +326,32 @@
   });
   if (!RM) setTimeout(shoot, 6000);
 
+  /* ================= SATELLITES: mission logs ================= */
+  let logI = 0;
+  function missionLog() {
+    const id = ORDER[logI % ORDER.length], n = String(logI % ORDER.length + 1).padStart(2, '0'), logs = (notes[id] || []).slice(1);
+    $('#n-body').innerHTML = `<p class="label">Mission log ${n} of ${ORDER.length}</p><h3 class="p-title" style="font-size:24px">${NAME[id]}</h3><ol class="mlog">${logs.map((t, i) => `<li><span>Entry ${i + 1}</span>${t}</li>`).join('')}</ol><div class="ctas"><button class="btn" data-full="${id}">See the project</button><button class="btn ghost" id="next-log">Next transmission →</button></div>`;
+    logI++; openModal('m-note');
+  }
+  $$('.sat').forEach(s => s.addEventListener('click', e => { e.stopPropagation(); missionLog(); }));
+  document.addEventListener('click', e => { if (e.target.closest('#next-log')) missionLog(); });
+
+  /* ================= BLACK HOLE RESUME ================= */
+  const bh = $('#bh');
+  bh.addEventListener('click', e => {
+    if (RM || bh.classList.contains('eat')) return;
+    e.preventDefault(); bh.classList.add('eat');
+    const r = $('.bh-core', bh).getBoundingClientRect(), cxp = r.left + r.width / 2, cyp = r.top + r.height / 2;
+    for (let i = 0; i < 26; i++) {
+      const p = document.createElement('i'); p.className = 'bh-p'; const a = Math.random() * 6.28, d = 140 + Math.random() * 260;
+      p.style.left = cxp + Math.cos(a) * d + 'px'; p.style.top = cyp + Math.sin(a) * d + 'px'; document.body.appendChild(p);
+      requestAnimationFrame(() => requestAnimationFrame(() => { p.style.transform = `translate(${-Math.cos(a) * d}px, ${-Math.sin(a) * d}px) rotate(${360 + Math.random() * 360}deg) scale(.1)`; p.style.opacity = 0; }));
+      setTimeout(() => p.remove(), 1300);
+    }
+    setTimeout(() => { const a = document.createElement('a'); a.href = bh.href; a.download = ''; document.body.appendChild(a); a.click(); a.remove(); toast('Résumé incoming ✨'); }, 1000);
+    setTimeout(() => bh.classList.remove('eat'), 1800);
+  });
+
   /* ================= MUSIC ================= */
   const audio = $('#audio'), mb = $('#music');
   mb.addEventListener('click', () => {

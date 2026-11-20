@@ -162,7 +162,7 @@ const MUSIC_FILE = '../assets/audio/741hz.mp3';
     tasteables: ['An Australian home chef app. Food, stories and a new market.', 'Every dish should feel like an invitation, not a menu.', 'Writing about food on an empty stomach is a real job hazard.'],
     holidaytribe: ['Travel content is pure feeling. I wanted to capture that.', 'Show the moment, not the itinerary.', 'Bali, in 24 seconds. Proof you can travel through an editing timeline.'],
     aira: ['Weddings are colour, style and emotion in one day. I did this on weekends, for joy.', 'A mood board is a promise of how a day will feel.', '2K+ new organic followers in 3 months.'],
-    kdp: ['After a layoff, I wanted to make something fully mine.', 'When one door closes, design a new cover.', 'I am a published author of journals and colouring books.'],
+    kdp: ['I wanted to make something fully mine.', 'Making something fully yours is the best brief there is.', 'I am a published author of journals and colouring books.'],
     credtech: ['One big event, every touchpoint, two months.', 'Print has no undo button. Check the file five times.', 'Pune Chapter 2025 ran on my designs, from invites to the big screen.'],
     nektar: ['A home stay brand that needed a face from scratch.', 'A brand kit is a promise of consistency.', 'Logo, flyer and reels: a whole brand that hums like a bee.']
   };

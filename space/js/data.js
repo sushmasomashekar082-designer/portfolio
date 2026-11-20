@@ -107,7 +107,7 @@ window.SITE = (() => {
     tasteables: ['An Australian home chef app. Food, stories and a new market.', 'Every dish should feel like an invitation, not a menu.', 'Writing about home-cooked food on an empty stomach is a genuine occupational hazard.'],
     holidaytribe: ['Travel content is pure feeling. I wanted to capture that.', 'Sell the moment, not the itinerary.', 'Bali, in 24 seconds. The cheapest trip I have ever taken was on an editing timeline.'],
     aira: ['Weddings are colour, style and emotion in one day. I did this on weekends, for joy.', 'A mood board is a promise of how a day will feel.', 'I designed weddings on weekends, just for joy. 2K+ new organic followers in 3 months says the joy showed.'],
-    kdp: ['After a layoff, I wanted to make something fully mine.', 'Making something fully yours is the best brief there is.', 'When one door closed, I designed a new cover. Now I am a published author of journals and colouring books.'],
+    kdp: ['I wanted to make something fully mine.', 'Making something fully yours is the best brief there is.', 'I wanted a brief that was fully mine, so I wrote one. Now I am a published author of journals and colouring books.'],
     credtech: ['One big event, every touchpoint, two months.', 'From invites to the big screen, every touchpoint should feel like one voice.', 'Print has no undo button. So I checked every file five times. Pune Chapter 2025 ran on my designs.'],
     nektar: ['A home stay brand that needed a face from scratch.', 'A brand kit is a promise of consistency, made before the first guest checks in.', 'Logo, flyer and reels: a whole brand that hums like a bee.'],
   };

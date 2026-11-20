@@ -16,7 +16,7 @@
   /* ================= HERO: one spiral galaxy, then an eclipse ================= */
   const gc = $('#galaxy'), g = gc.getContext('2d'), hero = $('#hero-pin'), heroSec = $('.hero'), heroIn = $('#hero-in');
   let GW = 0, GH = 0, DPR = 1, spiral = null, neb = null, bgStars = [];
-  let heroP = 0, heroVisible = true;
+  let heroP = 0, heroVisible = true, ovP = 0;
   function gauss() { let u = 0, v = 0; while (!u) u = Math.random(); while (!v) v = Math.random(); return Math.sqrt(-2 * Math.log(u)) * Math.cos(2 * Math.PI * v); }
   const smooth = (a, b, x) => { const k = clamp((x - a) / (b - a)); return k * k * (3 - 2 * k); };
 
@@ -74,8 +74,8 @@
       // scene 2: the arrival, an eclipse against a nebula
       if (a2 > 0) {
         const sc = 1.18 - .18 * smooth(.4, 1, p);
-        g.globalAlpha = a2; g.save(); g.translate(W / 2 - mx * 14 * DPR, H / 2 - my * 10 * DPR); g.scale(sc, sc); g.drawImage(neb, -neb.width / 2, -neb.height / 2); g.restore();
-        const pr = Math.min(W, H) * .085, px = W * .5, py = H * .5, fx = px + pr * .62, fy = py - pr * .1;
+        g.globalAlpha = a2 * (1 - .55 * ovP); g.save(); g.translate(W / 2 - mx * 14 * DPR, H / 2 - my * 10 * DPR); g.scale(sc, sc); g.drawImage(neb, -neb.width / 2, -neb.height / 2); g.restore();
+        const pr = Math.min(W, H) * .085 * (1 - .3 * ovP), px = W * .5, py = H * .5, fx = px + pr * .62, fy = py - pr * .1;
         // the star behind the planet, with a horizontal flare
         let gr = g.createRadialGradient(fx, fy, 0, fx, fy, pr * 3.2); gr.addColorStop(0, 'rgba(255,252,244,.95)'); gr.addColorStop(.12, 'rgba(230,242,250,.5)'); gr.addColorStop(1, 'rgba(120,170,190,0)'); g.fillStyle = gr; g.fillRect(fx - pr * 4, fy - pr * 4, pr * 8, pr * 8);
         gr = g.createLinearGradient(fx - W * .3, 0, fx + W * .3, 0); gr.addColorStop(0, 'rgba(220,240,250,0)'); gr.addColorStop(.5, 'rgba(240,248,255,.7)'); gr.addColorStop(1, 'rgba(220,240,250,0)'); g.fillStyle = gr; g.fillRect(fx - W * .3, fy - 1 * DPR, W * .6, 2 * DPR);
@@ -100,10 +100,6 @@
   buildGalaxy(); requestAnimationFrame(drawGalaxy);
   let rT; addEventListener('resize', () => { clearTimeout(rT); rT = setTimeout(() => { buildGalaxy(); if (RM) drawGalaxy(0); buildSky(); }, 200); });
 
-  /* ================= ROTATING TITLE WORD ================= */
-  const rw = $$('.rot i'); let ri = 0;
-  if (rw.length && !RM) setInterval(() => { if (document.hidden) return; const cur = rw[ri]; cur.classList.replace('on', 'out'); setTimeout(() => cur.classList.remove('out'), 700); ri = (ri + 1) % rw.length; rw[ri].classList.add('on'); }, 2400);
-
   /* ================= COMET CURSOR ================= */
   const cc = $('#comet'), cx = cc.getContext('2d'), trail = [];
   function sizeComet() { const d = Math.min(devicePixelRatio || 1, 2); cc.width = innerWidth * d; cc.height = innerHeight * d; cx.setTransform(d, 0, 0, d, 0, 0); }
@@ -119,11 +115,32 @@
     })();
   } else cc.remove();
 
+
+  /* ================= OVERVIEW: stats rise out of the planet and line up ================= */
+  const ovEl = $('#ov'), ovLis = $$('.ov-stats li'), ovTxt = $$('.ov-t');
+  function measureOv() {
+    const pin = hero.getBoundingClientRect(), cx = pin.left + pin.width / 2, cy = pin.top + pin.height / 2;
+    ovLis.forEach(li => { const t = li.style.transform; li.style.transform = 'none'; const r = li.getBoundingClientRect(); li.style.transform = t; li.style.setProperty('--dx', (cx - (r.left + r.width / 2)).toFixed(0) + 'px'); li.style.setProperty('--dy', (cy - (r.top + r.height / 2)).toFixed(0) + 'px'); });
+  }
+  function paintOv() {
+    const v = ovP;
+    ovEl.style.setProperty('--ov', v.toFixed(3));
+    ovEl.classList.toggle('live', v > .02);
+    ovLis.forEach((li, i) => {
+      const e = smooth(.04 + i * .1, .4 + i * .1, v);
+      li.style.setProperty('--e', e.toFixed(3));
+      const b = $('b', li); if (e > .55 && !b.dataset.done) { b.dataset.done = 1; countUp(b, true); }
+    });
+    ovTxt.forEach((t, i) => { const k = smooth(.42 + i * .1, .72 + i * .1, v); t.style.opacity = k; t.style.transform = `translateY(${((1 - k) * 24).toFixed(1)}px)`; });
+  }
+  measureOv(); addEventListener('resize', () => setTimeout(measureOv, 220)); addEventListener('load', measureOv);
+
   /* ================= SCROLL: nav, hero fly-in, back to top ================= */
   const nav = $('#nav'), totop = $('.totop');
   function onScroll() {
     const y = scrollY, h = heroSec.offsetHeight, run = Math.max(1, h - innerHeight);
-    heroP = clamp(y / run); heroVisible = y < h;
+    heroP = clamp(y / (run * .5)); ovP = RM ? 1 : clamp((y / run - .5) / .38); heroVisible = y < h;
+    paintOv();
     // pinned hero: the words separate and fly past the camera
     const p = RM ? 0 : heroP, e = p * p;
     $('#h-a').style.transform = `translate3d(${-e * 34}vw, ${-e * 8}vh, 0) scale(${1 + e * 1.6})`;
@@ -153,7 +170,7 @@
     (function step(t) { const k = clamp((t - t0) / 1500); el.textContent = fmt(from + (to - from) * (1 - Math.pow(1 - k, 3))); if (k < 1) requestAnimationFrame(step); else if (spark) sparks(el); })(t0);
   }
   const cObs = new IntersectionObserver(es => es.forEach(e => { if (!e.isIntersecting) return; cObs.unobserve(e.target); countUp(e.target, true); }), { threshold: .6 });
-  $$('[data-count]').forEach(el => cObs.observe(el));
+  $$('[data-count]').forEach(el => { if (!el.closest('.ov')) cObs.observe(el); });
 
   /* ================= LOGOS ================= */
   const LOGOS = ['darena', 'creating-conversion', 'nexa', 'credtech', 'kdp', 'cyub', 'fanzart', 'whims', 'tasteable', 'aira', 'soundofc', 'hd-impact', 'gayle-charach'];

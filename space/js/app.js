@@ -14,7 +14,7 @@
   addEventListener('pointermove', e => { mouse.x = e.clientX; mouse.y = e.clientY; mouse.nx = e.clientX / innerWidth - .5; mouse.ny = e.clientY / innerHeight - .5; }, { passive: true });
 
   /* ================= GALAXY ================= */
-  const gc = $('#galaxy'), g = gc.getContext('2d'), hero = $('.hero'), heroIn = $('#hero-in');
+  const gc = $('#galaxy'), g = gc.getContext('2d'), hero = $('#hero-pin'), heroSec = $('.hero'), heroIn = $('#hero-in');
   let off, twinkles = [], GW = 0, GH = 0, DPR = 1;
   function gauss() { let u = 0, v = 0; while (!u) u = Math.random(); while (!v) v = Math.random(); return Math.sqrt(-2 * Math.log(u)) * Math.cos(2 * Math.PI * v); }
   function buildGalaxy() {
@@ -99,10 +99,20 @@
   /* ================= SCROLL: nav, hero fly-in, back to top ================= */
   const nav = $('#nav'), totop = $('.totop');
   function onScroll() {
-    const y = scrollY, h = hero.offsetHeight;
-    heroP = clamp(y / h); heroVisible = y < h;
-    heroIn.style.opacity = 1 - clamp(heroP * 1.6); heroIn.style.transform = `translateY(${-heroP * 120}px) scale(${1 + heroP * .08})`;
-    nav.classList.toggle('solid', y > h * .6); totop.classList.toggle('show', y > h * 1.2);
+    const y = scrollY, h = heroSec.offsetHeight, run = Math.max(1, h - innerHeight);
+    heroP = clamp(y / run); heroVisible = y < h;
+    // pinned hero: the words separate and fly past the camera
+    const p = RM ? 0 : heroP, e = p * p;
+    $('#h-a').style.transform = `translate3d(${-e * 34}vw, ${-e * 8}vh, 0) scale(${1 + e * 1.6})`;
+    $('#h-b').style.transform = `translate3d(${e * 34}vw, ${e * 10}vh, 0) scale(${1 + e * 2.2})`;
+    $('#h-a').style.opacity = $('#h-b').style.opacity = 1 - clamp(p * 1.25);
+    $('#h-a').style.filter = $('#h-b').style.filter = `blur(${(e * 10).toFixed(1)}px)`;
+    $('#h-label').style.transform = `translateY(${-p * 30}vh)`; $('#h-label').style.opacity = 1 - clamp(p * 2.2);
+    $('#h-lede').style.transform = `translateY(${p * 22}vh)`; $('#h-lede').style.opacity = 1 - clamp(p * 2);
+    $('#h-ctas').style.transform = `translateY(${p * 30}vh)`; $('#h-ctas').style.opacity = 1 - clamp(p * 2.4);
+    $('#h-ctas').style.pointerEvents = p > .3 ? 'none' : '';
+    $('.scroll-cue').style.opacity = 1 - clamp(p * 4);
+    nav.classList.toggle('solid', y > run * .8); totop.classList.toggle('show', y > h);
   }
   addEventListener('scroll', onScroll, { passive: true }); onScroll();
   const secObs = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) $$('.links a').forEach(a => a.classList.toggle('on', a.getAttribute('href') === '#' + e.target.id)); }), { rootMargin: '-45% 0px -50% 0px' });
@@ -217,7 +227,7 @@
   addEventListener('keydown', e => { if (e.key === 'Escape') { $$('.modal.open').forEach(closeModal); closeTab(); } });
   document.addEventListener('click', e => {
     const f = e.target.closest('[data-full]'), q = e.target.closest('[data-quick]');
-    if (f) { e.preventDefault(); openFull(f.dataset.full); } else if (q) { e.preventDefault(); openQuick(q.dataset.quick); }
+    if (f) { e.preventDefault(); const id = f.dataset.full; if ($('#m-full').classList.contains('open')) openFull(id); else warp(e.clientX, e.clientY, () => openFull(id)); } else if (q) { e.preventDefault(); openQuick(q.dataset.quick); }
   });
   function openQuick(id) {
     const w = W[id], n = (notes[id] || [])[0];
@@ -236,7 +246,7 @@
       ${links.length ? `<div class="plinks">${links.map(([t, u]) => `<a href="${u}" target="_blank" rel="noopener">${t} ↗</a>`).join('')}</div>` : ''}
       ${extra}<h4 class="p-sec">The work</h4><div class="gallery">${w.media.map(m => media(m, NAME[id])).join('')}</div>
       <div class="p-next"><button class="btn ghost" data-close>Back to the sky</button><button class="btn" data-full="${nx}">Next: ${NAME[nx]} →</button></div>`;
-    openModal('m-full'); $('#m-full .sheet').scrollTop = 0;
+    $('#m-full .sheet').onscroll = null; openModal('m-full'); $('#m-full .sheet').scrollTop = 0;
     if (id === 'darena') initDarena($('#f-body'), $('#m-full .sheet'));
   }
   function initDarena(root, sheet) {
@@ -257,7 +267,63 @@
       });
     }), { root: sheet, threshold: .25 });
     $$('.b', root).forEach(b => io.observe(b));
+    if (RM) return;
+    // living charts: lines and bars draw with your scroll, and cards drift into place
+    const bs = $$('.b', root); bs.forEach(b => b.classList.add('live'));
+    const live = () => { const sh = sheet.getBoundingClientRect(); bs.forEach(b => { const r = b.getBoundingClientRect(); b.style.setProperty('--sp', clamp((sh.bottom - r.top) / Math.min(r.height + 160, sh.height * .85)).toFixed(3)); }); };
+    sheet.onscroll = live; live();
   }
+
+  /* ================= WARP into a project ================= */
+  const wc = $('#warp'), wx = wc.getContext('2d');
+  function warp(x, y, done) {
+    if (RM) return done();
+    const d = Math.min(devicePixelRatio || 1, 2); wc.width = innerWidth * d; wc.height = innerHeight * d; wx.setTransform(d, 0, 0, d, 0, 0);
+    if (!x && !y) { x = innerWidth / 2; y = innerHeight / 2; }
+    const N = innerWidth < 760 ? 140 : 260, st = Array.from({ length: N }, () => ({ a: Math.random() * 6.283, r: 4 + Math.random() * 60, v: .6 + Math.random() * 1.4 }));
+    const t0 = performance.now(); let opened = false; wc.classList.add('on');
+    (function fr(t) {
+      const k = (t - t0) / 820, sp = k * k * 2600;
+      wx.fillStyle = `rgba(3,3,6,${Math.min(.9, .25 + k)})`; wx.fillRect(0, 0, innerWidth, innerHeight);
+      st.forEach(s => {
+        const r1 = s.r + sp * s.v * .9, r0 = s.r + sp * s.v * .55;
+        wx.strokeStyle = `rgba(255,${236 - (s.v * 20 | 0)},${200 + (s.v * 30 | 0)},${Math.min(1, .3 + k)})`; wx.lineWidth = 1 + s.v * k * 1.6;
+        wx.beginPath(); wx.moveTo(x + Math.cos(s.a) * r0, y + Math.sin(s.a) * r0); wx.lineTo(x + Math.cos(s.a) * r1, y + Math.sin(s.a) * r1); wx.stroke();
+      });
+      if (k > .78 && !opened) { opened = true; done(); }
+      if (k < 1) requestAnimationFrame(fr); else { wc.classList.remove('on'); setTimeout(() => wx.clearRect(0, 0, innerWidth, innerHeight), 400); }
+    })(t0);
+  }
+
+  /* ================= DEEP SPACE: depth layers + fly-through camera ================= */
+  const dc = $('#deep'), dx = dc.getContext('2d');
+  let deep = [], DW = 0, DH = 0, lastY = scrollY, vel = 0;
+  function sizeDeep() {
+    const d = Math.min(devicePixelRatio || 1, 2); DW = innerWidth; DH = innerHeight; dc.width = DW * d; dc.height = DH * d; dx.setTransform(d, 0, 0, d, 0, 0);
+    deep = Array.from({ length: innerWidth < 760 ? 220 : 420 }, () => ({ x: (Math.random() - .5) * 2.4, y: (Math.random() - .5) * 2.4, z: Math.random(), w: Math.random() < .12 }));
+  }
+  const DEPTH = 2600; // pixels of scroll per full trip through the field
+  function drawDeep() {
+    const y = scrollY; vel += ((y - lastY) - vel) * .2; lastY = y;
+    if (y > innerHeight * .5) {
+      dx.clearRect(0, 0, DW, DH);
+      const cam = (y / DEPTH) % 1, cx = DW / 2 + mouse.nx * -30, cy = DH / 2 + mouse.ny * -20, f = Math.max(DW, DH) * .5, streak = clamp(Math.abs(vel) / 60, 0, 1);
+      // soft nebula layers, each at its own scroll speed
+      [[.08, 'rgba(120,80,200,.07)', .3], [.16, 'rgba(240,190,140,.04)', .7], [.05, 'rgba(70,90,170,.05)', .5]].forEach(([k, c, ox]) => {
+        const ny = (DH * 1.5 - (y * k) % (DH * 3)), nx = DW * ox, gr = dx.createRadialGradient(nx, ny, 0, nx, ny, DW * .55);
+        gr.addColorStop(0, c); gr.addColorStop(1, 'rgba(0,0,0,0)'); dx.fillStyle = gr; dx.fillRect(0, 0, DW, DH);
+      });
+      deep.forEach(s => {
+        let z = s.z - cam; z = z - Math.floor(z); z = .04 + z * .96; // fly-through: stars come toward the camera as you scroll
+        const px = cx + s.x / z * f * .5, py = cy + s.y / z * f * .5; if (px < -20 || px > DW + 20 || py < -20 || py > DH + 20) return;
+        const near = 1 - z, r = (.3 + near * 1.9) * (s.w ? 1.4 : 1), a = clamp(.15 + near * .9);
+        if (streak > .05 && !RM) { const z2 = z + .02 * streak * Math.sign(vel || 1), qx = cx + s.x / z2 * f * .5, qy = cy + s.y / z2 * f * .5; dx.strokeStyle = `rgba(255,246,230,${a * .8})`; dx.lineWidth = r; dx.beginPath(); dx.moveTo(qx, qy); dx.lineTo(px, py); dx.stroke(); }
+        dx.globalAlpha = a; dx.fillStyle = s.w ? '#ffe9c4' : '#fff'; dx.beginPath(); dx.arc(px, py, r, 0, 6.283); dx.fill(); dx.globalAlpha = 1;
+      });
+    }
+    if (!RM) requestAnimationFrame(drawDeep);
+  }
+  sizeDeep(); addEventListener('resize', sizeDeep); requestAnimationFrame(drawDeep);
 
   /* ================= CONTENT WALL ================= */
   const wall = [];

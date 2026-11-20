@@ -18,7 +18,9 @@
 </head>
 <body>
 <a class="skip" href="#work">Skip to projects</a>
+<canvas id="deep" aria-hidden="true"></canvas>
 <canvas id="comet" aria-hidden="true"></canvas>
+<canvas id="warp" aria-hidden="true"></canvas>
 
 <header class="nav" id="nav">
   <a class="brand" href="#top">Sushma</a>
@@ -35,14 +37,16 @@
 <main>
   <!-- 1. OPENING -->
   <section class="hero" id="top">
+    <div class="hero-pin" id="hero-pin">
     <canvas id="galaxy" aria-hidden="true"></canvas>
     <div class="hero-in" id="hero-in">
-      <p class="label">Sushma Somashekar · Designer, brand storyteller &amp; growth strategist</p>
-      <h1 class="title" aria-label="I make brands seen, heard, chosen, and grow."><span aria-hidden="true">I make brands</span><span class="rot" aria-hidden="true"><i class="on">seen.</i><i>heard.</i><i>chosen.</i><i>grow.</i></span></h1>
-      <p class="lede">I help brands find their voice, reach the people who matter, and turn attention into action.</p>
-      <div class="ctas"><a class="btn" href="#work">See my work</a><a class="btn ghost" href="#contact">Let's talk</a></div>
+      <p class="label" id="h-label">Sushma Somashekar · Designer, brand storyteller &amp; growth strategist</p>
+      <h1 class="title" aria-label="I make brands seen, heard, chosen, and grow."><span aria-hidden="true" id="h-a">I make brands</span><span class="rot" aria-hidden="true" id="h-b"><i class="on">seen.</i><i>heard.</i><i>chosen.</i><i>grow.</i></span></h1>
+      <p class="lede" id="h-lede">I help brands find their voice, reach the people who matter, and turn attention into action.</p>
+      <div class="ctas" id="h-ctas"><a class="btn" href="#work">See my work</a><a class="btn ghost" href="#contact">Let's talk</a></div>
     </div>
     <p class="scroll-cue">Scroll to fly in</p>
+    </div>
   </section>
 
   <!-- 2. PROOF -->

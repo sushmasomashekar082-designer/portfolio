@@ -477,3 +477,14 @@ main, .foot { position: relative; z-index: 1; }
 .dc .b.live .bar .track i { transition: width .2s linear; width: calc(var(--w) * var(--sp, 0)); }
 .dc .b.live .pin { opacity: calc((var(--sp, 0) - .7) * 3.4); transition: opacity .2s; }
 @media (prefers-reduced-motion: reduce) { .hero { height: auto; min-height: 0; } .hero-pin { position: relative; } #deep { display: none; } }
+
+/* ===== Constellation focus: card beside it, others dim ===== */
+.cst { transition: opacity .35s; }
+.sky.focus .cst:not(.on) { opacity: .18; pointer-events: none; }
+.sky.focus .orbit { opacity: .2; pointer-events: none; }
+.orbit { transition: opacity .35s; }
+@media (min-width: 901px) {
+  .tab { right: auto; left: 0; top: 0; width: 360px; transform: translateY(10px) scale(.98); opacity: 0; pointer-events: none; transition: opacity .3s, transform .35s cubic-bezier(.2, .8, .2, 1); }
+  .tab.open { transform: none; opacity: 1; pointer-events: auto; }
+}
+.sky.focus .cst:not(.on) * { pointer-events: none !important; }

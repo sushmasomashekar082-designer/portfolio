@@ -133,7 +133,7 @@
   $$('[data-count]').forEach(el => cObs.observe(el));
 
   /* ================= LOGOS ================= */
-  const LOGOS = ['darena', 'creating-conversion', 'nexa', 'credtech', 'kdp', 'cyub', 'fanzart', 'whims', 'tasteable', 'holidaytribe', 'aira', 'soundofc', 'hd-impact', 'gayle-charach'];
+  const LOGOS = ['darena', 'creating-conversion', 'nexa', 'credtech', 'kdp', 'cyub', 'fanzart', 'whims', 'tasteable', 'aira', 'soundofc', 'hd-impact', 'gayle-charach'];
   const LOGO_ALT = { darena: 'Darena Health', 'creating-conversion': 'Creating Conversion', credtech: 'Credtech', kdp: 'Amazon KDP' };
   const lHTML = LOGOS.map(l => `<img src="${IMG}logos/${l}.webp" alt="${LOGO_ALT[l] || l.replace(/-/g, ' ')}" loading="lazy">`).join('') + `<img src="${IMG}nektar-logo-3.webp" alt="Nektar Homes" loading="lazy">`;
   $('#logos').innerHTML = lHTML + lHTML.replace(/alt="[^"]*"/g, 'alt="" aria-hidden="true"');
@@ -161,17 +161,28 @@
     });
     svgEl.innerHTML = o;
     $$('.cst', svgEl).forEach(el => {
-      el.addEventListener('pointerenter', e => { if (e.pointerType === 'mouse') activate(el.dataset.id); });
+      el.addEventListener('pointerenter', e => { if (e.pointerType !== 'mouse') return; clearTimeout(leaveT); if (current !== el.dataset.id && !skyEl.classList.contains('focus')) activate(el.dataset.id); });
+      el.addEventListener('pointerleave', e => { if (e.pointerType === 'mouse' && el.dataset.id === current) queueLeave(); });
       el.addEventListener('click', () => activate(el.dataset.id));
       el.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); activate(el.dataset.id); } });
     });
     $$('.cst', svgEl).forEach(c => c.classList.toggle('on', c.dataset.id === current));
   }
-  let current = null;
+  let current = null, leaveT;
+  const queueLeave = () => { clearTimeout(leaveT); leaveT = setTimeout(closeTab, 450); };
+  function placeTab() {
+    if (!current || innerWidth <= 900) { tab.style.left = tab.style.top = ''; return; }
+    const c = $(`.cst[data-id="${current}"] .float`, svgEl); if (!c) return;
+    const r = c.getBoundingClientRect(), w = tab.offsetWidth, h = tab.offsetHeight, gap = 20;
+    let x = r.right + gap; if (x + w > innerWidth - 16) x = r.left - gap - w; x = clamp(x, 16, innerWidth - w - 16);
+    const y = clamp(r.top + r.height / 2 - h / 2, 76, Math.max(76, innerHeight - h - 16));
+    tab.style.left = x + 'px'; tab.style.top = y + 'px';
+  }
   function activate(id) {
     current = id;
     $$('.cst', svgEl).forEach(c => c.classList.toggle('on', c.dataset.id === id));
-    openTab(id);
+    skyEl.classList.add('focus');
+    openTab(id); placeTab();
     if (id === 'me' || lit.has(id)) return;
     lit.add(id); try { localStorage.setItem('lit', JSON.stringify([...lit])); } catch (e) {}
     $(`.cst[data-id="${id}"]`, svgEl)?.classList.add('lit'); paintLit();
@@ -192,14 +203,17 @@
   const STARB = '<span class="star-badge">★ Star project</span>';
   function openTab(id) {
     let html;
-    if (id === 'me') html = `<p class="where">Send a signal</p><h3>Sushma Somashekar</h3><p>Designer, brand storyteller and growth strategist with 5+ years in design and marketing. I've worked remotely with health tech, agency, eCommerce, luxury and wedding brands across India, Canada and the US.</p><ul><li>Branding, content and social media</li><li>Website design, hand-coded when needed</li><li>SEO, analytics and growth</li></ul><p style="margin-top:14px">Open to roles and projects in branding, content and growth. I reply within a day.</p><div class="ctas"><a class="btn" href="mailto:${EMAIL}">Email me</a><a class="btn ghost" href="https://www.linkedin.com/in/sushma-somashekar-digital-marketing/" target="_blank" rel="noopener">LinkedIn ↗</a><a class="btn ghost" href="../assets/Sushma-Somashekar-Resume.pdf" download>Résumé ↓</a></div>`;
+    if (id === 'me') html = `<p class="where">Send a signal</p><h3>Sushma Somashekar</h3><p>Designer, brand storyteller and growth strategist with 5+ years in design and marketing. I've worked remotely with health tech, agency, eCommerce, luxury and wedding brands across India, Canada and the US.</p><ul><li>Branding, content and social media</li><li>Website design, custom coded when needed</li><li>SEO, analytics and growth</li></ul><p style="margin-top:14px">Open to roles and projects in branding, content and growth. I reply within a day.</p><div class="ctas"><a class="btn" href="mailto:${EMAIL}">Email me</a><a class="btn ghost" href="https://www.linkedin.com/in/sushma-somashekar-digital-marketing/" target="_blank" rel="noopener">LinkedIn ↗</a><a class="btn ghost" href="../assets/Sushma-Somashekar-Resume.pdf" download>Résumé ↓</a></div>`;
     else {
       const w = W[id], res = winText(id).split(/(?<=\.)\s+/).filter(Boolean).slice(0, 3);
       html = `${w.logo ? `<img class="logo" src="${IMG}logos/${w.logo}.webp" alt="">` : ''}${id === 'darena' ? STARB : ''}<p class="where">${GROWTH.includes(id) ? 'Growth strategy' : 'Branding & content'}</p><h3>${NAME[id]}</h3><p>${short(id)}</p><ul>${res.map(r => `<li>${r}</li>`).join('')}</ul><div class="ctas"><button class="btn" data-full="${id}">View project</button><button class="btn ghost" data-quick="${id}">Quick look</button></div>`;
     }
     $('#tab-body').innerHTML = html; tab.classList.add('open'); tab.scrollTop = 0;
   }
-  const closeTab = () => { tab.classList.remove('open'); current = null; $$('.cst.on', svgEl).forEach(c => c.classList.remove('on')); };
+  const closeTab = () => { clearTimeout(leaveT); tab.classList.remove('open'); current = null; skyEl.classList.remove('focus'); $$('.cst.on', svgEl).forEach(c => c.classList.remove('on')); };
+  tab.addEventListener('pointerenter', () => clearTimeout(leaveT));
+  tab.addEventListener('pointerleave', e => { if (e.pointerType === 'mouse') queueLeave(); });
+  addEventListener('scroll', () => { if (current) placeTab(); }, { passive: true });
   tab.addEventListener('click', e => { if (e.target.closest('[data-close-tab]') || e.target.closest('a[href="#contact"]')) closeTab(); });
   document.addEventListener('click', e => { if (tab.classList.contains('open') && !tab.contains(e.target) && !e.target.closest('.cst') && !e.target.closest('.modal')) closeTab(); });
   new IntersectionObserver(es => es.forEach(e => { if (!e.isIntersecting) closeTab(); }), { threshold: 0 }).observe($('#work'));

@@ -32,7 +32,7 @@ window.SITE = (() => {
       win: 'A bold, colourful story system in yellow, green and orange that makes people hungry to join.',
       reels: [['Instagram profile', 'https://www.instagram.com/tasteableaus/']],
       media: [{ src: 'tasteables-s1.webp' }, { src: 'tasteables-s2.webp' }, { src: 'tasteables-s3.webp' }, { src: 'tasteables-s4.webp' }, { src: 'tasteables-s5.webp' }, { src: 'tasteables-s6.webp' }, { src: 'tasteable-1.webp' }, { src: 'tasteable-2.webp' }, { src: 'tasteable-3.webp' }] },
-    { id: 'holidaytribe', name: 'Holiday', em: 'Tribe', lay: 'd', logo: 'holidaytribe', chips: ['Creating Conversion', 'Travel', 'Reels'],
+    { id: 'holidaytribe', name: 'Holiday', em: 'Tribe', lay: 'd', chips: ['Creating Conversion', 'Travel', 'Reels'],
       line: 'Bali, in 24 seconds. Travel reels that make you want to pack tonight.',
       about: 'A holiday company curating travel experiences.',
       role: 'Reel creation, social media creatives and campaigns.',
@@ -90,7 +90,7 @@ window.SITE = (() => {
     { id: 'darena', name: 'Darena', em: 'Health', lay: 'a', logo: 'darena', chips: ['USA', 'Website revamp', 'Email'],
       line: 'A full website revamp and newsletters people actually open. Health IT, made human.',
       about: 'A US health tech company focused on Health IT, MIPS compliance and simpler healthcare operations.',
-      role: 'As Branding & Marketing Associate: redesigned and hand-coded the homepage and product pages, rebuilt the site on shared CSS and reusable HTML, refreshed the brand, and wrote blogs and newsletters for two audiences.',
+      role: 'As Branding & Marketing Associate: redesigned and custom coded the homepage and product pages, rebuilt the site on shared CSS and reusable HTML, refreshed the brand, and wrote blogs and newsletters for two audiences.',
       win: 'Homepage speed 59 → 91. 16K visitors, 46,083 emails and 64 inquiries in seven months. Full story in the Featured section.',
       link: ['darena.health', 'https://darena.health'],
       media: [{ type: 'video', src: '../assets/video/darena-pages.mp4', poster: '../assets/img/darena-pages-poster.webp', wide: true }, { type: 'video', src: '../assets/video/darena-mips10.mp4', poster: '../assets/img/darena-mips10-poster.webp', wide: true }, { src: 'darena-cover-1.webp' }, { src: 'darena-cover-2.webp' }, { src: 'darena-web.webp', wide: true }, { src: 'darena-cover-3.webp' }, { src: 'darena-cover-4.webp' }] }
@@ -99,7 +99,7 @@ window.SITE = (() => {
   const BLURRY = ['whims-1.webp', 'whims-2.webp', 'whims-3.webp', 'tasteable-1.webp', 'tasteable-2.webp', 'tasteable-3.webp', 'kdp-8.webp', 'darena-blog.webp', 'darena-blog-2.webp', 'darena-blog-3.webp', 'cyub-feed.webp'];
   work.forEach(w => { w.media = w.media.filter(m => !BLURRY.includes(m.src)); });
   const notes = {
-    darena: ['Health IT is complex. I wanted to make it feel human.', 'When the website is slow, learn to fix it yourself. So I hand-coded the new pages.', 'MyMipsScore went from 57 to 94 on PageSpeed. My proudest number.'],
+    darena: ['Health IT is complex. I wanted to make it feel human.', 'When the website is slow, learn to fix it yourself. So I custom coded the new pages.', 'MyMipsScore went from 57 to 94 on PageSpeed. My proudest number.'],
     nexa: ['My first brand across an ocean, built remotely for a consultancy in Toronto.', 'Time zones are a design problem too. Analytics told me what to post next.', '184 reels and 92 posts. My camera roll has not recovered.'],
     cyub: ['A friend and I wanted clothes that felt good and did good. So we started our own label.', 'Founding teaches you everything at once: sourcing, R&D, investor calls, photoshoots and the website.', 'Nine months in, our clothes were on Bigg Boss Kannada.'],
     fanzart: ['Making a luxury fan feel emotional is a fun challenge.', 'A festival story can sell a ceiling fan. #SilentPromises proved it.', 'Reels for a fan brand passed 70K views. The fans really did blow up.'],
@@ -119,7 +119,7 @@ window.SITE = (() => {
     ['I would definitely recommend Sushma for any visual or branding.', 'Meryl Schroyen', 'Entrepreneur · The Sound of C'],
   ];
   const darenaFilms = [
-    { slot: 'top', src: '../assets/video/darena-pages.mp4', poster: '../assets/img/darena-pages-poster.webp', url: 'darena.health', title: 'Homepage and MyMipsScore page', note: 'Designed and hand-coded by me. Live since August 31.' },
+    { slot: 'top', src: '../assets/video/darena-pages.mp4', poster: '../assets/img/darena-pages-poster.webp', url: 'darena.health', title: 'Homepage and MyMipsScore page', note: 'Designed and custom coded by me. Live since August 31.' },
     { slot: 'mips10-before', badge: 'Before', src: '../assets/video/darena-mips10-before.mp4', poster: '../assets/img/darena-mips10-before-poster.webp', url: 'darena.health', title: 'The old guide', note: 'Text-heavy, no hierarchy, no visual interest.' },
     { slot: 'mips10', badge: 'After', src: '../assets/video/darena-mips10.mp4', poster: '../assets/img/darena-mips10-poster.webp', url: 'darena.health', title: 'My redesign', note: 'Clear steps, visual structure and a faster page.' }
   ];

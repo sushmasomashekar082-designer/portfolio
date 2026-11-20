@@ -1,7 +1,7 @@
 (() => {
   const $ = (s, r = document) => r.querySelector(s), $$ = (s, r = document) => [...r.querySelectorAll(s)];
   const RM = matchMedia('(prefers-reduced-motion: reduce)').matches, FINE = matchMedia('(hover: hover) and (pointer: fine)').matches;
-  const IMG = '../assets/img/', EMAIL = 'sushmasomashekar082@gmail.com';
+  const IMG = 'assets/img/', EMAIL = 'sushmasomashekar082@gmail.com';
   const { work, notes, quotes, darenaFilms } = window.SITE;
   const W = Object.fromEntries(work.map(w => [w.id, w]));
   const NAME = { darena: 'Darena Health', nexa: 'Nexa Avenue', cyub: 'C CYUB Clothing', fanzart: 'Fanzart', whims: 'WHIMS', tasteables: 'Tasteables', holidaytribe: 'HolidayTribe', aira: 'Aira Wedding Planners', kdp: 'KDP Books & Journals', credtech: 'Credtech Pune Chapter', nektar: 'Nektar Homes' };
@@ -239,7 +239,7 @@
   const tab = $('#tab');
   function openTab(id) {
     let html;
-    if (id === 'me') html = `<p class="where">Send a signal</p><h3>Sushma Somashekar</h3><p>Designer, brand storyteller and growth strategist with 5+ years in design and marketing. I've worked remotely with health tech, agency, eCommerce, luxury and wedding brands across India, Canada and the US.</p><ul><li>Branding, content and social media</li><li>Website design, custom coded when needed</li><li>SEO, analytics and growth</li></ul><p style="margin-top:14px">Open to roles and projects in branding, content and growth. I reply within a day.</p><div class="ctas"><a class="btn" href="mailto:${EMAIL}">Email me</a><a class="btn ghost" href="https://www.linkedin.com/in/sushma-somashekar-digital-marketing/" target="_blank" rel="noopener">LinkedIn ↗</a><a class="btn ghost" href="../assets/Sushma-Somashekar-Resume.pdf" download>Résumé ↓</a></div>`;
+    if (id === 'me') html = `<p class="where">Send a signal</p><h3>Sushma Somashekar</h3><p>Designer, brand storyteller and growth strategist with 5+ years in design and marketing. I've worked remotely with health tech, agency, eCommerce, luxury and wedding brands across India, Canada and the US.</p><ul><li>Branding, content and social media</li><li>Website design, custom coded when needed</li><li>SEO, analytics and growth</li></ul><p style="margin-top:14px">Open to roles and projects in branding, content and growth. I reply within a day.</p><div class="ctas"><a class="btn" href="mailto:${EMAIL}">Email me</a><a class="btn ghost" href="https://www.linkedin.com/in/sushma-somashekar-digital-marketing/" target="_blank" rel="noopener">LinkedIn ↗</a><a class="btn ghost" href="assets/Sushma-Somashekar-Resume.pdf" download>Résumé ↓</a></div>`;
     else {
       const w = W[id], res = winText(id).split(/(?<=\.)\s+/).filter(Boolean).slice(0, 3);
       html = `${w.logo ? `<img class="logo" src="${IMG}logos/${w.logo}.webp" alt="">` : ''}${id === 'darena' ? STARB : ''}<p class="where">${GROWTH.includes(id) ? 'Growth strategy' : 'Branding & content'}</p><h3>${NAME[id]}</h3><p>${short(id)}</p><ul>${res.map(r => `<li>${r}</li>`).join('')}</ul><div class="ctas"><button class="btn" data-full="${id}">View project</button><button class="btn ghost" data-quick="${id}">Quick look</button></div>`;

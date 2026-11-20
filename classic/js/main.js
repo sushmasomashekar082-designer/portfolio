@@ -1,8 +1,8 @@
 /* Creative Canvas: Sushma Somashekar
    To add a video to a project, add to its media list:
-   { type: 'video', src: 'assets/video/your-file.mp4', poster: 'assets/img/your-poster.webp' }
+   { type: 'video', src: '../assets/video/your-file.mp4', poster: '../assets/img/your-poster.webp' }
    To use your own music, put an mp3 at assets/audio/track.mp3 and set MUSIC_FILE below. */
-const MUSIC_FILE = null; // e.g. 'assets/audio/track.mp3'
+const MUSIC_FILE = null; // e.g. '../assets/audio/track.mp3'
 
 (() => {
   const RM = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -10,7 +10,7 @@ const MUSIC_FILE = null; // e.g. 'assets/audio/track.mp3'
   const isDesk = () => window.innerWidth > 760;
   const $ = (s, r = document) => r.querySelector(s);
   const $$ = (s, r = document) => [...r.querySelectorAll(s)];
-  const IMG = 'assets/img/';
+  const IMG = '../assets/img/';
 
   /* ================= DATA ================= */
   const work = [
@@ -50,7 +50,7 @@ const MUSIC_FILE = null; // e.g. 'assets/audio/track.mp3'
       about: 'A holiday company curating travel experiences.',
       role: 'Reel creation, social media creatives and campaigns.',
       win: 'Short, cinematic reels that sell the feeling of a place, not just the itinerary.',
-      media: [{ type: 'video', src: 'assets/video/holidaytribe-1.mp4', poster: 'assets/img/holidaytribe-1-poster.webp' }, { type: 'video', src: 'assets/video/holidaytribe-2.mp4', poster: 'assets/img/holidaytribe-2-poster.webp' }] },
+      media: [{ type: 'video', src: '../assets/video/holidaytribe-1.mp4', poster: '../assets/img/holidaytribe-1-poster.webp' }, { type: 'video', src: '../assets/video/holidaytribe-2.mp4', poster: '../assets/img/holidaytribe-2-poster.webp' }] },
     { id: 'ckc', name: 'crash.club', em: 'by CKC', lay: 't', chips: ['Creating Conversion', 'Launch roadmap'],
       line: 'A launch roadmap for a new brand: the plan before the noise.',
       about: 'crash.club by CKC, a brand preparing for launch.',
@@ -99,14 +99,14 @@ const MUSIC_FILE = null; // e.g. 'assets/audio/track.mp3'
       about: 'Nektar Homes offers curated stay experiences in the heart of Bangalore.',
       role: 'Brand kit (logo, colours and fonts), a one-page flyer and reels.',
       win: 'A warm, memorable identity built around a playful bee and a gold-and-earth palette.',
-      media: [{ src: 'nektar-kit-3.webp', wide: true }, { type: 'video', src: 'assets/video/nektar-reel.mp4', poster: 'assets/img/nektar-reel-poster.webp' }, { src: 'nektar-logo-3.webp' }, { src: 'nektar-kit-2.webp' }, { src: 'nektar-kit-4.webp', wide: true }, { src: 'nektar-kit-5.webp' }, { src: 'nektar-kit-6.webp' }, { src: 'nektar-flyer.webp' }, { type: 'video', src: 'assets/video/nektar-clip.mp4', poster: 'assets/img/nektar-clip-poster.webp' }, { src: 'nektar-kit-7.webp' }] },
+      media: [{ src: 'nektar-kit-3.webp', wide: true }, { type: 'video', src: '../assets/video/nektar-reel.mp4', poster: '../assets/img/nektar-reel-poster.webp' }, { src: 'nektar-logo-3.webp' }, { src: 'nektar-kit-2.webp' }, { src: 'nektar-kit-4.webp', wide: true }, { src: 'nektar-kit-5.webp' }, { src: 'nektar-kit-6.webp' }, { src: 'nektar-flyer.webp' }, { type: 'video', src: '../assets/video/nektar-clip.mp4', poster: '../assets/img/nektar-clip-poster.webp' }, { src: 'nektar-kit-7.webp' }] },
     { id: 'darena', name: 'Darena', em: 'Health', lay: 'a', chips: ['USA', 'Website revamp', 'Email'],
       line: 'A full website revamp and newsletters people actually open. Health IT, made human.',
       about: 'A US health tech company focused on Health IT, MIPS compliance and simpler healthcare operations.',
       role: 'As Branding & Marketing Associate: redesigned and custom coded the homepage and product pages, rebuilt the site on shared CSS and reusable HTML, refreshed the brand, and wrote blogs and newsletters for two audiences.',
       win: 'Homepage speed 59 → 91. 16K visitors, 46,083 emails and 64 inquiries in seven months. Full story in the Featured section.',
       link: ['darena.health', 'https://darena.health'],
-      media: [{ type: 'video', src: 'assets/video/darena-pages.mp4', poster: 'assets/img/darena-pages-poster.webp', wide: true }, { type: 'video', src: 'assets/video/darena-mips10.mp4', poster: 'assets/img/darena-mips10-poster.webp', wide: true }, { src: 'darena-web.webp', wide: true }, { src: 'darena-blog.webp' }, { src: 'darena-blog-2.webp' }, { src: 'darena-blog-3.webp' }] }
+      media: [{ type: 'video', src: '../assets/video/darena-pages.mp4', poster: '../assets/img/darena-pages-poster.webp', wide: true }, { type: 'video', src: '../assets/video/darena-mips10.mp4', poster: '../assets/img/darena-mips10-poster.webp', wide: true }, { src: 'darena-web.webp', wide: true }, { src: 'darena-blog.webp' }, { src: 'darena-blog-2.webp' }, { src: 'darena-blog-3.webp' }] }
   ];
   const byId = Object.fromEntries(work.map((w, i) => [w.id, i]));
 
@@ -222,9 +222,9 @@ const MUSIC_FILE = null; // e.g. 'assets/audio/track.mp3'
      Add a screen recording: put the MP4 in assets/video/ and add a line below.
      slot 'top' shows it at the start of the Darena section; 'mips10-before' and 'mips10' sit side by side in the MIPS Guide comparison. */
   const darenaFilms = [
-    { slot: 'top', src: 'assets/video/darena-pages.mp4', poster: 'assets/img/darena-pages-poster.webp', url: 'darena.health', title: 'Homepage and MyMipsScore page', note: 'Designed and custom coded by me. Live since August 31.' },
-    { slot: 'mips10-before', badge: 'Before', src: 'assets/video/darena-mips10-before.mp4', poster: 'assets/img/darena-mips10-before-poster.webp', url: 'darena.health', title: 'The old guide', note: 'Text-heavy, no hierarchy, no visual interest.' },
-    { slot: 'mips10', badge: 'After', src: 'assets/video/darena-mips10.mp4', poster: 'assets/img/darena-mips10-poster.webp', url: 'darena.health', title: 'My redesign', note: 'Clear steps, visual structure and a faster page.' }
+    { slot: 'top', src: '../assets/video/darena-pages.mp4', poster: '../assets/img/darena-pages-poster.webp', url: 'darena.health', title: 'Homepage and MyMipsScore page', note: 'Designed and custom coded by me. Live since August 31.' },
+    { slot: 'mips10-before', badge: 'Before', src: '../assets/video/darena-mips10-before.mp4', poster: '../assets/img/darena-mips10-before-poster.webp', url: 'darena.health', title: 'The old guide', note: 'Text-heavy, no hierarchy, no visual interest.' },
+    { slot: 'mips10', badge: 'After', src: '../assets/video/darena-mips10.mp4', poster: '../assets/img/darena-mips10-poster.webp', url: 'darena.health', title: 'My redesign', note: 'Clear steps, visual structure and a faster page.' }
   ];
   darenaFilms.forEach(f => {
     const host = f.slot === 'top' ? $('#d-films') : $(`[data-slot="${f.slot}"]`); if (!host) return;
@@ -575,7 +575,7 @@ const MUSIC_FILE = null; // e.g. 'assets/audio/track.mp3'
 
   /* ================= LOGOS ================= */
   const logos = ['cyub', 'fanzart', 'whims', 'tasteable', 'holidaytribe', 'aira', 'nexa', 'soundofc', 'gayle-charach', 'hd-impact'];
-  const lHTML = logos.map(l => `<img src="assets/img/logos/${l}.webp" alt="${l.replace('-', ' ')} logo" class="${['cyub', 'tasteable', 'soundofc', 'aira'].includes(l) ? 'sq' : ''}">`).join('');
+  const lHTML = logos.map(l => `<img src="../assets/img/logos/${l}.webp" alt="${l.replace('-', ' ')} logo" class="${['cyub', 'tasteable', 'soundofc', 'aira'].includes(l) ? 'sq' : ''}">`).join('');
   $('#logos-track').innerHTML = lHTML + lHTML;
 
   initMarquees();

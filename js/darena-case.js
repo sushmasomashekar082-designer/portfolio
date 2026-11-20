@@ -114,15 +114,15 @@ window.DARENA_CASE = `<div class="d-films"></div>
         <div class="d-pairs">
           <figure class="b cmp-card">
             <div class="cmp" style="--p:50%">
-              <img src="../assets/img/ps-mymips-after.webp" alt="MyMipsScore PageSpeed report after, August 19: performance 94" loading="lazy">
-              <div class="cmp-before"><img src="../assets/img/ps-mymips-before.webp" alt="MyMipsScore PageSpeed report before, August 6: performance 57" loading="lazy"></div>
+              <img src="assets/img/ps-mymips-after.webp" alt="MyMipsScore PageSpeed report after, August 19: performance 94" loading="lazy">
+              <div class="cmp-before"><img src="assets/img/ps-mymips-before.webp" alt="MyMipsScore PageSpeed report before, August 6: performance 57" loading="lazy"></div>
               <span class="cmp-bar"></span><span class="cmp-tag l">Before · Aug 6</span><span class="cmp-tag r">After · Aug 19</span>
               <input type="range" min="0" max="100" value="50" aria-label="Compare MyMipsScore before and after">
             </div>
             <figcaption><b>MyMipsScore page</b><span class="d-delta">57 → 94</span>Blocking time cut from <strong>4,080 ms to 120 ms</strong>. Loads 3× faster: 4.6s → 1.4s.</figcaption>
           </figure>
           <figure class="b cmp-card">
-            <div class="cmp single"><img src="../assets/img/ps-home-after.webp" alt="Homepage PageSpeed report after the revamp: 91, 100, 100, 100" loading="lazy"><span class="cmp-tag r">After · Sep 24</span></div>
+            <div class="cmp single"><img src="assets/img/ps-home-after.webp" alt="Homepage PageSpeed report after the revamp: 91, 100, 100, 100" loading="lazy"><span class="cmp-tag r">After · Sep 24</span></div>
             <figcaption><b>Homepage</b><span class="d-delta">59 → 91</span>Accessibility, best practices and SEO all score <strong>100</strong>.</figcaption>
           </figure>
         </div>
@@ -139,8 +139,8 @@ window.DARENA_CASE = `<div class="d-films"></div>
           <div class="d-vs-proof">
             <figure class="b cmp-card">
               <div class="cmp" style="--p:50%">
-                <img src="../assets/img/ps-mips10-after.webp" alt="10-Step MIPS Guide PageSpeed report after, October 19: performance 87" loading="lazy">
-                <div class="cmp-before"><img src="../assets/img/ps-mips10-before.webp" alt="10-Step MIPS Guide PageSpeed report before, October 14: performance 65" loading="lazy"></div>
+                <img src="assets/img/ps-mips10-after.webp" alt="10-Step MIPS Guide PageSpeed report after, October 19: performance 87" loading="lazy">
+                <div class="cmp-before"><img src="assets/img/ps-mips10-before.webp" alt="10-Step MIPS Guide PageSpeed report before, October 14: performance 65" loading="lazy"></div>
                 <span class="cmp-bar"></span><span class="cmp-tag l">Before · Oct 14</span><span class="cmp-tag r">After · Oct 19</span>
                 <input type="range" min="0" max="100" value="50" aria-label="Compare 10-Step MIPS Guide before and after">
               </div>

@@ -273,13 +273,25 @@
     el.addEventListener('click', () => { const t = wall[+el.dataset.i]; $('#v-body').innerHTML = t.m.type === 'video' ? `<video src="${t.m.src}" controls autoplay playsinline></video>` : `<img src="${IMG + t.m.src}" alt="${NAME[t.id]}">`; openModal('m-view'); });
   });
 
+  // trim the masonry to its shortest column so the bottom edge lines up
+  const wallEl = $('#wall-grid'), wallClip = document.createElement('div');
+  wallClip.className = 'wrap wall-clip'; wallEl.before(wallClip); wallClip.append(wallEl); wallEl.classList.remove('wrap');
+  function trimWall() {
+    wallClip.style.maxHeight = 'none'; const top = wallEl.getBoundingClientRect().top, cols = {};
+    $$('.tile', wallEl).forEach(t => { const r = t.getBoundingClientRect(), k = Math.round(r.left); cols[k] = Math.max(cols[k] || 0, r.bottom - top); });
+    const v = Object.values(cols); if (v.length > 1) wallClip.style.maxHeight = Math.round(Math.min(...v) + 40) + 'px';
+  }
+  let wT; const queueTrim = () => { clearTimeout(wT); wT = setTimeout(trimWall, 120); };
+  $$('.tile img', wallEl).forEach(i => { i.loading = 'eager'; i.addEventListener('load', queueTrim); });
+  $$('.tile video', wallEl).forEach(v => v.addEventListener('loadedmetadata', queueTrim));
+  addEventListener('resize', queueTrim); addEventListener('load', queueTrim); queueTrim();
   const vObs = new IntersectionObserver(es => es.forEach(e => { const v = e.target; v.muted = true; if (e.isIntersecting && !RM) v.play().catch(() => {}); else v.pause(); }), { threshold: .25 });
   $$('.tile video').forEach(v => vObs.observe(v));
 
   /* ================= STAR NOTES ================= */
   const star = '<svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l2.2 6.8H21l-5.5 4 2.1 6.7L12 15.4l-5.6 4.1 2.1-6.7-5.5-4h6.8z"/></svg>';
-  $('#notes').innerHTML = quotes.map((q, i) => `<button class="sn${i === 0 ? ' open' : ''}" aria-expanded="${i === 0}"><span class="top">${star}<span><b>${q[1]}</b><small>${q[2]}</small></span></span><span class="q"><p>“${q[0]}”</p></span></button>`).join('');
-  $$('.sn').forEach(b => b.addEventListener('click', () => { const on = !b.classList.contains('open'); b.classList.toggle('open', on); b.setAttribute('aria-expanded', on); }));
+  const qt = (q, cls) => `<figure class="qt${cls}">${star}<blockquote>“${q[0]}”</blockquote><figcaption><b>${q[1]}</b><small>${q[2]}</small></figcaption></figure>`;
+  $('#notes').innerHTML = qt(quotes[0], ' feature') + `<div class="qcols">${quotes.slice(1).map(q => qt(q, '')).join('')}</div>`;
 
   /* ================= SEND A SIGNAL ================= */
   const toast = (t) => { const el = $('#toast'); el.textContent = t; el.classList.add('show'); setTimeout(() => el.classList.remove('show'), 2200); };

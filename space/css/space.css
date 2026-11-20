@@ -354,3 +354,49 @@ img, video { display: block; max-width: 100%; }
 .hero .label { color: rgba(255, 255, 255, .82); }
 .hero .lede { color: rgba(255, 255, 255, .9); text-shadow: 0 1px 16px rgba(0, 0, 0, .6); }
 .hero .scroll-cue { color: rgba(255, 255, 255, .7); }
+
+/* ===== Spacing system (8px base) =====
+   section padding: 128 desktop, 80 phone
+   label > heading 16, heading > intro 16, head > content 48 */
+:root { --sec: 128px; --head-gap: 16px; --block: 48px; }
+.sec { padding: var(--sec) 0; }
+.proof { padding: var(--s6) 0 var(--sec); }
+.label { margin: 0 0 var(--head-gap); }
+.head { display: block; }
+.head .intro { margin-top: var(--head-gap); max-width: 52ch; font-size: 16px; color: var(--muted); }
+.contact .lede { margin-top: var(--head-gap); }
+.head .intro .link { display: block; margin-top: 8px; font-size: 15px; }
+.sky { margin-top: var(--block); }
+.wall, .notes { margin-top: var(--block); }
+.list { margin-top: var(--block); }
+.list[hidden] { display: none; }
+.logos { padding: var(--block) 0; }
+.logos .label { margin-bottom: var(--s4); }
+.stats li { padding-top: var(--s3); }
+.stats span { margin-top: var(--s2); }
+.contact .ctas { margin-top: var(--s4); }
+.foot { margin-top: var(--sec); }
+
+/* ===== Testimonials: always-visible quote cards ===== */
+.notes { display: grid; grid-template-columns: 1fr; gap: var(--s2); align-items: stretch; }
+.qt { margin: 0; padding: var(--s4); border-radius: var(--r); background: var(--panel); box-shadow: inset 0 0 0 1px var(--line); display: grid; gap: var(--s3); break-inside: avoid; }
+.qt .star { width: 20px; height: 20px; fill: var(--accent); filter: drop-shadow(0 0 8px rgba(240, 207, 142, .6)); }
+.qt blockquote { font-size: 17px; line-height: 1.65; color: var(--text); max-width: 62ch; }
+.qt figcaption { display: grid; gap: 2px; padding-top: var(--s2); border-top: 1px solid var(--line); }
+.qt figcaption b { font-weight: 500; font-size: 15px; }
+.qt figcaption small { font-size: 13px; color: var(--muted); }
+.qt.feature { padding: var(--s5); background: linear-gradient(120deg, rgba(240, 207, 142, .08), rgba(255, 255, 255, .02)), var(--panel); }
+.qt.feature blockquote { font-size: clamp(19px, 2vw, 24px); line-height: 1.55; max-width: 48ch; }
+.qcols { columns: 2 320px; column-gap: var(--s2); }
+.qcols .qt { margin-bottom: var(--s2); }
+
+@media (max-width: 900px) {
+  :root { --sec: 80px; --block: 32px; }
+  .proof { padding: var(--s5) 0 var(--sec); }
+  .qt, .qt.feature { padding: var(--s3); }
+  .qt.feature blockquote { font-size: 18px; }
+}
+
+/* content wall: masonry with a clean, faded bottom edge */
+.wall-clip { margin-top: var(--block); overflow: hidden; -webkit-mask-image: linear-gradient(#000 calc(100% - 90px), transparent); mask-image: linear-gradient(#000 calc(100% - 90px), transparent); }
+.wall-clip .wall { margin-top: 0; }

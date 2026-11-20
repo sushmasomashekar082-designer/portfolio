@@ -100,7 +100,7 @@ window.SITE = (() => {
   work.forEach(w => { w.media = w.media.filter(m => !BLURRY.includes(m.src)); });
   const notes = {
     darena: ['Health IT is complex. I wanted to make it feel human.', 'When the website is slow, learn to fix it yourself. So I hand-coded the new pages.', 'MyMipsScore went from 57 to 94 on PageSpeed. My proudest number.'],
-    nexa: ['My first brand across an ocean, for a consultancy in Toronto.', 'Time zones are a design problem too. Analytics told me what to post next.', '184 reels and 92 posts. My camera roll has not recovered.'],
+    nexa: ['My first brand across an ocean, built remotely for a consultancy in Toronto.', 'Time zones are a design problem too. Analytics told me what to post next.', '184 reels and 92 posts. My camera roll has not recovered.'],
     cyub: ['A friend and I wanted clothes that felt good and did good. So we started our own label.', 'Founding teaches you everything at once: sourcing, R&D, investor calls, photoshoots and the website.', 'Nine months in, our clothes were on Bigg Boss Kannada.'],
     fanzart: ['Making a luxury fan feel emotional is a fun challenge.', 'A festival story can sell a ceiling fan. #SilentPromises proved it.', 'Reels for a fan brand passed 70K views. The fans really did blow up.'],
     whims: ['Slow fashion and capsule wardrobes. A cause I already believed in.', 'For a young, conscious audience, say less and mean more.', 'I wrote the launch roadmap before the brand had even launched.'],

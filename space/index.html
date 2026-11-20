@@ -69,9 +69,9 @@
   <section class="sec work" id="work">
     <div class="wrap head">
       <p class="label">Selected work</p><h2 class="h2">Every star is a story <span>I've built.</span></h2>
-      <p class="intro">Hover over a constellation to light it up. Catch a passing satellite for a mission log from that project. <button class="link" id="as-list" aria-pressed="false">View as list</button></p>
+      <p class="intro">Scroll to draw each constellation, one project at a time. Use the star map to jump, and catch a falling meteor for a fun note. <button class="link" id="as-list" aria-pressed="false">View as list</button></p>
     </div>
-    <div class="sky" id="sky"><svg id="sky-svg" aria-hidden="false"></svg><div class="orbit o1"><button class="sat" data-sat="1" aria-label="Open a mission log"><svg viewBox="0 0 48 48" aria-hidden="true"><rect class="pn" x="2" y="19" width="14" height="10" rx="1.5"/><rect class="pn" x="32" y="19" width="14" height="10" rx="1.5"/><path d="M16 24h4M28 24h4" stroke="#cfd3dd" stroke-width="2"/><rect class="bd" x="19" y="16" width="10" height="16" rx="3"/><path d="M24 16v-6" stroke="#cfd3dd" stroke-width="1.6"/><circle class="bl" cx="24" cy="9" r="2.4"/></svg><span class="sat-t">Mission log</span></button></div><div class="orbit o2"><button class="sat" data-sat="2" aria-label="Open a mission log"><svg viewBox="0 0 48 48" aria-hidden="true"><rect class="pn" x="2" y="19" width="14" height="10" rx="1.5"/><rect class="pn" x="32" y="19" width="14" height="10" rx="1.5"/><path d="M16 24h4M28 24h4" stroke="#cfd3dd" stroke-width="2"/><rect class="bd" x="19" y="16" width="10" height="16" rx="3"/><path d="M24 16v-6" stroke="#cfd3dd" stroke-width="1.6"/><circle class="bl" cx="24" cy="9" r="2.4"/></svg><span class="sat-t">Mission log</span></button></div><div class="orbit o3"><button class="sat" data-sat="3" aria-label="Open a mission log"><svg viewBox="0 0 48 48" aria-hidden="true"><rect class="pn" x="2" y="19" width="14" height="10" rx="1.5"/><rect class="pn" x="32" y="19" width="14" height="10" rx="1.5"/><path d="M16 24h4M28 24h4" stroke="#cfd3dd" stroke-width="2"/><rect class="bd" x="19" y="16" width="10" height="16" rx="3"/><path d="M24 16v-6" stroke="#cfd3dd" stroke-width="1.6"/><circle class="bl" cx="24" cy="9" r="2.4"/></svg><span class="sat-t">Mission log</span></button></div></div>
+    <div class="sky chapters" id="sky"><div class="ch-stage"><div class="ch-art"><svg id="sky-svg" role="img" aria-label="Constellation for the current project. Click to open it."></svg></div><div class="ch-text" id="ch-text"></div><nav class="ch-map" id="ch-map" aria-label="Star map: jump to a project"></nav></div></div>
     <div class="wrap list" id="list" hidden></div>
   </section>
 
@@ -104,7 +104,7 @@
 </main>
 
 <a class="totop" href="#top" aria-label="Back to top"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8l2.6 6.2 6.6.5-5 4.4 1.6 6.5L12 16.9l-5.8 3.5 1.6-6.5-5-4.4 6.6-.5z"/></svg></a>
-<button class="shoot" id="shoot" aria-label="Catch the shooting star" tabindex="-1"></button>
+<button class="meteor" id="shoot" aria-label="Catch the falling meteor for a fun note"><span class="m-trail"></span><span class="m-head"></span><span class="m-tag">Click me</span></button>
 <div class="toast" id="toast" role="status"></div>
 
 <!-- project tab -->

@@ -28,11 +28,8 @@ window.DARENA_CASE = `<div class="d-films"></div>
 
         <article class="b b-read">
           <span class="k">Readers stay longer</span>
-          <div class="bars">
-            <div class="bar"><span class="lbl">APMA page</span><span class="track"><i style="--w:100%"></i></span><span class="val">5×</span><small>13s → 1m 07s</small></div>
-            <div class="bar"><span class="lbl">10-Step MIPS Guide</span><span class="track"><i style="--w:44%"></i></span><span class="val">2.2×</span><small>1m 54s → 4m 06s</small></div>
-            <div class="bar"><span class="lbl">Whole website</span><span class="track"><i style="--w:28%"></i></span><span class="val">+37%</span><small>15s → 21s</small></div>
-          </div>
+          <p class="tl-key"><i class="kb"></i>Before <i class="ka"></i>After · average time on page</p>
+          <div class="tl"><div class="tl-row"><span class="tl-lbl">APMA page</span><div class="tl-bars"><span class="tl-b" style="--w:5.3%"><em>13s</em></span><span class="tl-a" style="--w:27.2%"><em>1m 07s</em></span></div><span class="tl-x">5×</span></div><div class="tl-row"><span class="tl-lbl">10-Step MIPS Guide</span><div class="tl-bars"><span class="tl-b" style="--w:46.3%"><em>1m 54s</em></span><span class="tl-a" style="--w:100.0%"><em>4m 06s</em></span></div><span class="tl-x">2.2×</span></div><div class="tl-row"><span class="tl-lbl">Whole website</span><div class="tl-bars"><span class="tl-b" style="--w:6.1%"><em>15s</em></span><span class="tl-a" style="--w:8.5%"><em>21s</em></span></div><span class="tl-x">+37%</span></div><div class="tl-row tl-axis"><span></span><div class="tl-scale"><span style="left:0.0%">0m</span><span style="left:24.4%">1m</span><span style="left:48.8%">2m</span><span style="left:73.2%">3m</span><span style="left:97.6%">4m</span></div><span></span></div></div>
         </article>
 
         <article class="b b-email">
@@ -151,12 +148,8 @@ window.DARENA_CASE = `<div class="d-films"></div>
             </figure>
             <article class="b d-stay">
               <span class="k">Time spent reading the guide</span>
-              <span class="big" data-count="2.2" data-dec="1" data-suffix="×">0</span>
-              <div class="bars">
-                <div class="bar"><span class="lbl">Before</span><span class="track"><i style="--w:46%"></i></span><span class="val">1m 54s</span></div>
-                <div class="bar"><span class="lbl">After</span><span class="track"><i style="--w:100%"></i></span><span class="val">4m 06s</span></div>
-              </div>
-              <p>Average engagement time per user. Page users also grew from 52 to 83.</p>
+              <div class="clock"><svg viewBox="0 0 120 120" aria-label="Average time on the 10-Step MIPS Guide grew from 1 minute 54 seconds to 4 minutes 6 seconds, on a 5 minute clock"><circle class="c-track" cx="60" cy="60" r="52"/><circle class="c-before" cx="60" cy="60" r="52"/><circle class="c-after" cx="60" cy="60" r="52"/><g class="c-ticks"><line x1="60" y1="4" x2="60" y2="10" transform="rotate(0 60 60)"/><line x1="60" y1="4" x2="60" y2="8" transform="rotate(72 60 60)"/><line x1="60" y1="4" x2="60" y2="8" transform="rotate(144 60 60)"/><line x1="60" y1="4" x2="60" y2="8" transform="rotate(216 60 60)"/><line x1="60" y1="4" x2="60" y2="8" transform="rotate(288 60 60)"/></g></svg><div class="c-mid"><span class="big" data-count="2.2" data-dec="1" data-suffix="×">0</span><small>longer</small></div></div><div class="c-legend"><span><i class="kb"></i>Before <b>1m 54s</b></span><span><i class="ka"></i>After <b>4m 06s</b></span></div>
+              <p>Average engagement time per user, on a five-minute clock. Page users also grew from 52 to 83.</p>
             </article>
           </div>
         </div>
